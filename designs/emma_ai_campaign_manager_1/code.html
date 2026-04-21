@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emma AI Campaign Manager - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#222a3d",
+                        "tertiary-container": "#8342f4",
+                        "inverse-on-surface": "#283044",
+                        "inverse-primary": "#104af0",
+                        "on-primary-container": "#efefff",
+                        "surface-container-low": "#131b2e",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary": "#d2bbff",
+                        "on-background": "#dae2fd",
+                        "surface-tint": "#b8c3ff",
+                        "outline": "#8e90a2",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary-fixed": "#25005a",
+                        "error-container": "#93000a",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "primary-fixed": "#dde1ff",
+                        "primary-container": "#2d5bff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-container": "#171f33",
+                        "surface": "#0b1326",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-container": "#30418a",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "on-primary-fixed": "#001355",
+                        "on-tertiary-container": "#f6ecff",
+                        "secondary-fixed": "#dde1ff",
+                        "on-surface-variant": "#c4c5d9",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary": "#3f008e",
+                        "surface-bright": "#31394d",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-secondary": "#162972",
+                        "on-primary": "#002387",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "surface-container-lowest": "#060e20",
+                        "primary": "#b8c3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<nav class="bg-[#131b2e] dark:bg-[#131b2e] text-[#2d5bff] dark:text-[#2d5bff] font-inter text-sm font-medium tracking-normal fixed left-0 top-0 h-screen w-64 z-50 flex flex-col gap-y-2 p-4 border-r border-[#434656]/15 scale-95 active:scale-100 transition-transform">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary-container flex items-center justify-center text-on-primary-container font-bold">R</div>
+<div>
+<h1 class="text-lg font-black text-[#dae2fd] uppercase tracking-widest">RevRa</h1>
+<p class="text-xs text-on-surface-variant">Intelligent CRM</p>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container rounded-DEFAULT py-2.5 px-4 font-semibold mb-6 hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Campaign
+        </button>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">person_search</span>
+                Lead Management
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#2d5bff]/10 text-[#2d5bff] font-semibold transition-all" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Emma AI Campaigns
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Performance Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">hub</span>
+                Technical Integrations
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Admin Settings
+            </a>
+</div>
+<div class="mt-auto flex flex-col gap-1 pt-4 border-t border-outline-variant/15">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-[#0b1326] dark:bg-[#0b1326] text-[#2d5bff] dark:text-[#2d5bff] font-inter antialiased flex justify-between items-center w-full px-6 py-2 h-16 z-40 sticky top-0 transition-all duration-300 ease-out">
+<div class="text-xl font-bold tracking-tighter text-[#dae2fd]">RevRa CRM</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-DEFAULT pl-9 pr-4 py-1.5 text-sm text-on-surface placeholder:text-on-surface-variant focus:ring-1 focus:ring-primary-container w-64" placeholder="Search campaigns..." type="text"/>
+</div>
+<button class="text-[#dae2fd] opacity-60 hover:text-[#dae2fd] hover:bg-[#2d3449] p-2 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#dae2fd] opacity-60 hover:text-[#dae2fd] hover:bg-[#2d3449] p-2 rounded-full transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-8 bg-surface text-on-surface flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(210,187,255,0.6)]"></span>
+                            AI Active
+                        </span>
+<span class="text-on-surface-variant text-sm">Campaign Manager</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Configure Emma Campaign</h2>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-DEFAULT bg-surface-container-highest text-on-surface hover:bg-surface-bright transition-colors text-sm font-medium">Save Draft</button>
+<button class="px-4 py-2 rounded-DEFAULT bg-tertiary-container text-on-tertiary-container hover:bg-[#9254f6] transition-colors text-sm font-medium flex items-center gap-2 shadow-[0_0_15px_rgba(131,66,244,0.3)]">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                        Launch AI Agent
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Configuration Column -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Basic Info Card -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col gap-5 border border-outline-variant/15">
+<h3 class="text-lg font-semibold border-b border-outline-variant/15 pb-3">Campaign Details</h3>
+<div class="grid grid-cols-2 gap-5">
+<div class="flex flex-col gap-2 col-span-2">
+<label class="text-sm text-on-surface-variant font-medium">Campaign Name</label>
+<input class="bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all" type="text" value="Q3 SaaS Outreach - West Coast"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm text-on-surface-variant font-medium">Coverage Type Target</label>
+<select class="bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-on-surface focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all appearance-none">
+<option>B2B Enterprise Leads</option>
+<option>SMB Renewals</option>
+<option>Cold Outreach (Tier 1)</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm text-on-surface-variant font-medium">AI Script Selection</label>
+<select class="bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT px-3 py-2 text-on-surface focus:ring-1 focus:ring-tertiary-container focus:border-tertiary-container transition-all appearance-none">
+<option>Aggressive Growth (v2.1)</option>
+<option>Consultative Nurture</option>
+<option>Direct Pitch (Short)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- AI Behavior Card -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col gap-5 border border-outline-variant/15 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-container/10 blur-[40px] rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-center border-b border-outline-variant/15 pb-3">
+<h3 class="text-lg font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">psychology</span>
+                                Agent Behavior
+                            </h3>
+<span class="text-xs bg-tertiary-container/20 text-tertiary px-2 py-1 rounded-DEFAULT font-medium">Emma Engine v4</span>
+</div>
+<div class="grid grid-cols-2 gap-5">
+<div class="flex flex-col gap-2">
+<label class="text-sm text-on-surface-variant font-medium">Max Retries</label>
+<div class="flex items-center gap-3">
+<input class="flex-1 accent-tertiary-container" max="5" min="1" type="range" value="3"/>
+<span class="bg-surface-container-lowest px-2 py-1 rounded text-sm w-8 text-center border border-outline-variant/30">3</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm text-on-surface-variant font-medium">Voicemail Action</label>
+<div class="flex gap-2">
+<label class="flex-1 flex items-center justify-center gap-2 bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT py-2 cursor-pointer hover:bg-surface-bright transition-colors has-[:checked]:border-tertiary-container has-[:checked]:bg-tertiary-container/10">
+<input checked="" class="sr-only" name="vm" type="radio"/>
+<span class="material-symbols-outlined text-[18px] text-tertiary">record_voice_over</span>
+<span class="text-sm">Leave AI Message</span>
+</label>
+<label class="flex-1 flex items-center justify-center gap-2 bg-surface-container-lowest border border-outline-variant/30 rounded-DEFAULT py-2 cursor-pointer hover:bg-surface-bright transition-colors has-[:checked]:border-tertiary-container has-[:checked]:bg-tertiary-container/10">
+<input class="sr-only" name="vm" type="radio"/>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">call_end</span>
+<span class="text-sm text-on-surface-variant">Hang Up</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Column -->
+<div class="flex flex-col gap-6">
+<!-- Campaign Health -->
+<div class="bg-surface-container rounded-lg p-6 flex flex-col gap-4 border border-outline-variant/15 h-full">
+<h3 class="text-lg font-semibold border-b border-outline-variant/15 pb-3">Campaign Health</h3>
+<!-- Main Metric -->
+<div class="bg-surface-container-lowest p-4 rounded-DEFAULT border border-outline-variant/15 flex flex-col items-center justify-center py-8">
+<span class="text-4xl font-bold tracking-tighter text-on-surface">84.2%</span>
+<span class="text-sm text-on-surface-variant mt-1">Connection Rate</span>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[84%]"></div>
+</div>
+</div>
+<!-- Real-time Status -->
+<div class="flex flex-col gap-3 mt-2">
+<div class="flex justify-between items-center p-3 bg-surface-container-low rounded-DEFAULT border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(184,195,255,0.5)]"></span>
+<span class="text-sm">Started</span>
+</div>
+<span class="font-medium text-primary">1,240</span>
+</div>
+<div class="flex justify-between items-center p-3 bg-surface-container-low rounded-DEFAULT border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(184,195,255,0.5)]"></span>
+<span class="text-sm">Answered</span>
+</div>
+<span class="font-medium text-secondary">1,044</span>
+</div>
+<div class="flex justify-between items-center p-3 bg-surface-container-low rounded-DEFAULT border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(210,187,255,0.5)]"></span>
+<span class="text-sm">Completed Action</span>
+</div>
+<span class="font-medium text-tertiary">892</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

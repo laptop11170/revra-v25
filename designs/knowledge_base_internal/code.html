@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa CRM - Knowledge Base</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .glass-panel { background: rgba(45, 52, 73, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col py-6 border-r border-[#434656]/15 bg-[#131b2e] dark:bg-[#131b2e] w-64 z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-sm">auto_awesome</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#dae2fd] tracking-tight">RevRa CRM</h1>
+<p class="text-xs text-on-surface-variant font-medium tracking-wide text-tertiary">Intelligent Pulse</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container rounded-lg py-2.5 px-4 font-['Inter'] text-sm font-medium hover:bg-inverse-primary transition-colors duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Lead
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto px-2">
+<!-- Navigation Items -->
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined">gavel</span> Compliance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined">hub</span> Integrations
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined">auto_awesome</span> Leads
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined">emoji_events</span> Gamification
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined">monitoring</span> Performance
+            </a>
+<!-- ACTIVE TAB: Knowledge -->
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">library_books</span> Knowledge
+            </a>
+</div>
+<div class="mt-auto px-2 border-t border-outline-variant/15 pt-4">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-2 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-sm">webhook</span> Webhooks
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-2 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-sm">key</span> API Keys
+            </a>
+</div>
+</nav>
+<!-- TopNavBar & Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-64 relative w-full">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-[calc(100%-16rem)] z-50 flex items-center justify-between px-6 h-16 bg-[#131b2e] border-b border-transparent">
+<div class="flex items-center gap-8">
+<!-- Navigation Links (All inactive as this is a deep dive page) -->
+<nav class="flex gap-6">
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-md font-['Inter'] text-sm tracking-tight" href="#">Dashboard</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-md font-['Inter'] text-sm tracking-tight" href="#">Deals</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-md font-['Inter'] text-sm tracking-tight" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#2d5bff] scale-95 active:opacity-80 transition-all hover:bg-[#171f33] p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#2d5bff] scale-95 active:opacity-80 transition-all hover:bg-[#171f33] p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="text-[#2d5bff] scale-95 active:opacity-80 transition-all hover:bg-[#171f33] p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-surface-variant cursor-pointer ml-2" data-alt="close-up portrait of a professional woman with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxXMx0sRZSYDUvk2crVZ9PNM5I7yw09H_YpfzWxhgH6X9EpF28gGonRteSOna7gqWBMmd_sVagw6Twr7H6q8IR6B7V5--WTtnA1cusR3msVv8cEl6cDpft3-rpQQBiCx2azI-_x0UgvBPEyCGxyY34cs4TzZi120KcTN8rElCENOL-f38SkcIJc5GKSIH63Ao-MFRqMMpUGmqgMliKor0W2i-twZU_VVyMd-klGL1Cj1fHnpsOBvHtZGTRBQxMp6AadmsKB_JrCw"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 p-8 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Search & Header Area -->
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface mb-2">Knowledge Base</h2>
+<p class="text-on-surface-variant text-sm max-w-xl">Search internal training documents, policy guides, and SOPs. Press <kbd class="px-2 py-1 bg-surface-container-lowest rounded text-xs mx-1 border border-outline-variant/30">⌘K</kbd> to quick search.</p>
+</div>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg py-3 pl-12 pr-4 text-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all placeholder:text-outline/70" placeholder="Search documentation..." type="text"/>
+</div>
+</div>
+<!-- Bento Layout for Content -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column: Categories -->
+<div class="col-span-3 space-y-4">
+<div class="bg-surface-container-low rounded-lg p-5">
+<h3 class="text-sm font-semibold tracking-wide text-on-surface uppercase mb-4">Categories</h3>
+<ul class="space-y-1">
+<li>
+<button class="w-full flex items-center justify-between p-2 rounded-lg bg-surface-container-highest text-primary font-medium text-sm transition-colors">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">gavel</span> Compliance SOPs</span>
+<span class="bg-surface-container-lowest px-2 py-0.5 rounded text-xs text-on-surface-variant">24</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-2 rounded-lg hover:bg-surface-container text-on-surface-variant font-medium text-sm transition-colors">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">hub</span> API &amp; Integration</span>
+<span class="bg-surface-container-lowest px-2 py-0.5 rounded text-xs text-on-surface-variant">18</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-2 rounded-lg hover:bg-surface-container text-on-surface-variant font-medium text-sm transition-colors">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">forum</span> Objection Handling</span>
+<span class="bg-surface-container-lowest px-2 py-0.5 rounded text-xs text-on-surface-variant">42</span>
+</button>
+</li>
+</ul>
+</div>
+<!-- AI Suggestion Card -->
+<div class="glass-panel rounded-lg p-5 border border-tertiary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/20 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<h3 class="text-xs font-semibold tracking-wide text-tertiary uppercase flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span> Suggested for you
+                            </h3>
+<p class="text-sm text-on-surface mb-3 leading-relaxed">Based on your recent deals, review the updated <span class="text-primary cursor-pointer hover:underline">Q3 SaaS Pricing Addendum</span>.</p>
+</div>
+</div>
+<!-- Right Column: Document Viewer -->
+<div class="col-span-9">
+<div class="bg-surface-container-low rounded-lg p-8 min-h-[600px] flex flex-col">
+<!-- Doc Header -->
+<div class="border-b border-surface-container-highest pb-6 mb-6">
+<div class="flex items-start justify-between mb-2">
+<h1 class="text-2xl font-bold text-on-surface tracking-tight">Handling Enterprise Data Compliance Objections</h1>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface-variant transition-colors flex items-center" title="Bookmark">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary-container text-sm font-medium hover:bg-inverse-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">share</span> Share
+                                        </button>
+</div>
+</div>
+<div class="flex items-center gap-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Updated 2 days ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person</span> By Legal Ops</span>
+</div>
+</div>
+<!-- Doc Content -->
+<div class="prose prose-invert prose-sm max-w-none text-on-surface-variant space-y-6">
+<p class="text-base leading-relaxed text-on-surface">When an enterprise prospect raises concerns regarding data residency and compliance protocols (specifically GDPR and SOC2 Type II), it is critical to pivot the conversation from defense to our proactive architecture.</p>
+<h3 class="text-lg font-semibold text-on-surface mt-8 mb-4">Core Talk Track</h3>
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-5 relative group">
+<button class="absolute top-4 right-4 bg-surface-container-high hover:bg-surface-variant text-primary p-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-xs font-medium border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy Snippet
+                                    </button>
+<p class="font-mono text-sm text-secondary-fixed-dim leading-relaxed pr-24">
+                                        "I completely understand the concern. RevRa operates on a zero-trust architecture. We don't just comply with SOC2; our infrastructure actively isolates tenant data at the database level, ensuring your proprietary pipeline data never cross-pollinates."
+                                    </p>
+</div>
+<h3 class="text-lg font-semibold text-on-surface mt-8 mb-4">Handling the 'On-Premise' Request</h3>
+<p class="text-sm">We strictly do not offer on-premise deployments. Use the following snippet to gently close this avenue while highlighting cloud security.</p>
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-5 relative group">
+<button class="absolute top-4 right-4 bg-surface-container-high hover:bg-surface-variant text-primary p-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-xs font-medium border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy Snippet
+                                    </button>
+<p class="font-mono text-sm text-secondary-fixed-dim leading-relaxed pr-24">
+                                        "While we respect the legacy approach of on-premise, RevRa's AI engines require the elasticity of our secured cloud environment to deliver real-time predictive analytics. We bring bank-grade cloud security to you, rather than hardware maintenance."
+                                    </p>
+</div>
+</div>
+<!-- Doc Footer -->
+<div class="mt-auto pt-8 flex items-center justify-between border-t border-surface-container-highest">
+<div class="text-sm text-on-surface-variant flex items-center gap-2">
+                                    Was this helpful? 
+                                    <button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">thumb_up</span></button>
+<button class="hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">thumb_down</span></button>
+</div>
+<span class="text-xs text-outline font-mono">Doc ID: KNB-8921-A</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

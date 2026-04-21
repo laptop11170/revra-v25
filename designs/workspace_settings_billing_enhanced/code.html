@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa - Workspace Settings &amp; Billing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#eaddff",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#31394d",
+                        "tertiary-container": "#8342f4",
+                        "secondary-fixed": "#dde1ff",
+                        "background": "#0b1326",
+                        "surface-dim": "#0b1326",
+                        "outline": "#8e90a2",
+                        "inverse-primary": "#104af0",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "tertiary": "#d2bbff",
+                        "inverse-on-surface": "#283044",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "primary-fixed": "#dde1ff",
+                        "surface-variant": "#2d3449",
+                        "secondary": "#b8c3ff",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-tint": "#b8c3ff",
+                        "secondary-container": "#30418a",
+                        "on-secondary-fixed": "#001355",
+                        "primary": "#b8c3ff",
+                        "inverse-surface": "#dae2fd",
+                        "outline-variant": "#434656",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#060e20",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-secondary": "#162972",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#3f008e",
+                        "on-primary-container": "#efefff",
+                        "surface-container-high": "#222a3d",
+                        "surface": "#0b1326",
+                        "primary-container": "#2d5bff",
+                        "on-primary-fixed": "#001355",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-background": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container": "#171f33",
+                        "on-primary": "#002387"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-surface-container-low/80 backdrop-blur-[24px];
+            }
+            .text-glow-primary {
+                text-shadow: 0 0 12px rgba(45, 91, 255, 0.6);
+            }
+            .text-glow-tertiary {
+                text-shadow: 0 0 12px rgba(131, 66, 244, 0.6);
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-screen w-64 z-50 bg-[#131b2e] dark:bg-[#131b2e] border-r border-[#434656]/15 flex flex-col py-6 font-['Inter'] text-sm tracking-wide">
+<!-- Brand Header -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center shrink-0">
+<img alt="RevRa CRM Logo" class="w-full h-full object-cover rounded opacity-80 mix-blend-screen" data-alt="Abstract 3D glowing blue orb representing intelligent pulse artificial intelligence logo mark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJpXZJecJWcYBnK-dNjZEZbZLh4AlzttVDwTOzBLL68iLaGkSA5WhXLmYbhIBpV9IwB0CWEAFbZUkomHVSdMsYCnNh5snisdb7ZJmbXGfsV4-tOhJRUFFpDNHpkmUW5FPTTBMw5UZimUBp5KxTxhxBXyCQunmpfmdPi-TrSz_9hbGTAZBMFfH_9pFe89yZDCZVQyzDu3dTjJvTk_42RfkY73ErNomw8muRKjtvNvkOMA8-etHS_3WkbljVGo8XKZrnTKhiS-a1_A"/>
+</div>
+<div>
+<div class="text-2xl font-black tracking-tighter text-[#2d5bff]">RevRa</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant/60 mt-0.5">Intelligent Pulse</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg py-2.5 font-semibold flex items-center justify-center gap-2 active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                New Deal
+            </button>
+</div>
+<!-- Primary Navigation -->
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="text-[#434656] flex items-center px-4 py-3 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-[#434656] flex items-center px-4 py-3 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="forum">forum</span>
+                Discussions
+            </a>
+<a class="text-[#434656] flex items-center px-4 py-3 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="calendar_today">calendar_today</span>
+                Calendar
+            </a>
+<a class="text-[#434656] flex items-center px-4 py-3 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="call">call</span>
+                Dialer
+            </a>
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 my-1 flex items-center px-4 py-3 transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto pt-4 flex flex-col gap-1 border-t border-[#434656]/15 px-2">
+<a class="text-[#434656] flex items-center px-4 py-2 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="help">help</span>
+                Support
+            </a>
+<a class="text-[#434656] flex items-center px-4 py-2 mx-2 my-1 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg group-hover:text-primary transition-colors" data-icon="manage_accounts">manage_accounts</span>
+                Account
+            </a>
+</div>
+</nav>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-[#0b1326] dark:bg-[#0b1326] flex items-center justify-between px-8 w-full border-b border-transparent shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<!-- Search Bar (Left aligned) -->
+<div class="flex-1 max-w-md">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/50 rounded-full py-2 pl-10 pr-4 border-none focus:ring-1 focus:ring-primary-container focus:bg-surface-container transition-all text-sm font-['Inter'] antialiased text-[#dae2fd]" placeholder="Search across RevRa..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-xs text-outline font-mono bg-surface-container px-1.5 py-0.5 rounded">⌘K</span>
+</div>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full hover:bg-[#171f33] hover:text-[#dae2fd] transition-colors flex items-center justify-center text-[#434656] scale-98 active:opacity-80 transition-all relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-[#171f33] hover:text-[#dae2fd] transition-colors flex items-center justify-center text-tertiary scale-98 active:opacity-80 transition-all">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+<div class="h-6 w-px bg-[#131b2e] mx-2"></div>
+<button class="w-10 h-10 rounded-full hover:bg-[#171f33] hover:text-[#dae2fd] transition-colors flex items-center justify-center text-[#434656] scale-98 active:opacity-80 transition-all overflow-hidden p-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a businessman in a dark navy suit against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ-2QX3j23GxSCsdvI5TEnloZNf1B8rSGTXfbuCGm8dMCggDo4hw8EHPWz2Iw-del0dc-Cn2stS40AfNWFta7fe1XZEvIAJCgvox7_K5GU5YBGrv1AaC3zI6LXdjZLJrrrIFeB6tuXXfNg0hewjcAYn2oIk1nz2Ilr3lKNB1uv3TIi7FChu2kdqp1oZDPefY8-aRgKWWGFSYu1gPUTJ6gW1cBh_DlEwqdpUEsZQPIzqGf7cLOrFNNOGStn_GixAwGZpr4SEbm76Q"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-8 min-h-[calc(100vh-4rem)] bg-surface relative">
+<!-- Ambient Background Glow -->
+<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Page Header -->
+<div class="mb-8 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Workspace Settings</h1>
+<p class="text-on-surface-variant mt-2 text-sm max-w-xl">Manage your team's configuration, billing details, and active integrations.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-sm font-medium transition-colors border border-outline-variant/15">
+                    Cancel
+                </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container hover:bg-inverse-primary text-sm font-semibold transition-all shadow-[0_4px_15px_rgba(45,91,255,0.4)] hover:shadow-[0_6px_20px_rgba(45,91,255,0.5)] active:scale-[0.98]">
+                    Save Changes
+                </button>
+</div>
+</div>
+<!-- Sub Navigation Tabs -->
+<div class="flex mb-8 relative z-10 bg-surface-container-low/50 p-1.5 rounded-xl inline-flex border border-outline-variant/10 shadow-sm backdrop-blur-sm">
+<a class="px-5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container/50 rounded-lg transition-all" href="#">Profile</a>
+<a class="px-5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container/50 rounded-lg transition-all" href="#">Team</a>
+<a class="px-5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container/50 rounded-lg transition-all" href="#">Integrations</a>
+<a class="px-5 py-2 text-sm font-semibold text-primary bg-primary-container/15 border border-primary-container/20 rounded-lg shadow-sm transition-all" href="#">Billing &amp; AI Credits</a>
+</div>
+<!-- Content Grid (Bento Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+<!-- Left Column: Billing Overview -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Current Plan Card -->
+<div class="bg-surface-container-low border border-outline-variant/20 shadow-xl rounded-2xl p-8 relative overflow-hidden group">
+<!-- Decorative Graphic -->
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-gradient-to-br from-primary-container/20 to-transparent rounded-full blur-3xl group-hover:bg-primary-container/30 transition-all duration-700"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Current Plan</span>
+<span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-surface-container text-on-surface-variant uppercase tracking-wider border border-outline-variant/20 shadow-sm">Active</span>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface tracking-tight mb-2">Growth Tier</h2>
+<div class="flex items-baseline gap-1.5">
+<span class="text-3xl font-bold text-on-surface">$103.75</span>
+<span class="text-sm font-medium text-on-surface-variant">/ week</span>
+</div>
+</div>
+<div class="w-full md:w-auto bg-surface/50 backdrop-blur-md rounded-xl p-5 min-w-[280px] border border-outline-variant/15 shadow-sm">
+<div class="flex justify-between items-end mb-3">
+<span class="text-sm font-semibold text-on-surface">Weekly Lead Limit</span>
+<span class="text-sm font-bold text-on-surface">3,450 <span class="text-on-surface-variant font-medium">/ 5,000</span></span>
+</div>
+<div class="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden relative shadow-inner">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-primary-container to-tertiary-container rounded-full shadow-[0_0_12px_rgba(45,91,255,0.6)]" style="width: 69%;"></div>
+</div>
+<div class="flex justify-between items-center mt-3">
+<p class="text-xs font-medium text-on-surface-variant">69% Used</p>
+<p class="text-xs font-medium text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="update">update</span> Resets in 3 days
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Method -->
+<div class="bg-surface-container-low border border-outline-variant/15 shadow-lg rounded-2xl p-8 flex flex-col gap-5">
+<h3 class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Payment Method</h3>
+<div class="bg-surface/50 rounded-xl p-5 border border-outline-variant/10 flex items-center justify-between group hover:border-outline-variant/30 transition-colors">
+<div class="flex items-center gap-5">
+<div class="w-14 h-10 bg-surface-bright rounded-lg flex items-center justify-center shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined text-on-surface text-2xl" data-icon="credit_card">credit_card</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-on-surface mb-0.5">Mastercard ending in 4242</p>
+<p class="text-xs text-on-surface-variant font-medium">Expires 12/26</p>
+</div>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-primary hover:text-inverse-primary bg-primary/5 hover:bg-primary/10 rounded-lg transition-colors border border-transparent hover:border-primary/20">Edit Method</button>
+</div>
+</div>
+</div>
+<!-- Right Column: AI Wallet & Integrations -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- AI Credit Wallet (Glassmorphic) -->
+<div class="glass-panel rounded-2xl p-8 border border-tertiary/30 relative overflow-hidden shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-b from-tertiary-container/10 to-transparent pointer-events-none"></div>
+<div class="absolute -right-8 -top-8 w-40 h-40 bg-tertiary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2.5 mb-8">
+<div class="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-tertiary">AI Credit Wallet</h3>
+</div>
+<div class="mb-10 text-center bg-surface/30 py-6 rounded-xl border border-white/5 backdrop-blur-sm">
+<div class="text-5xl font-headline font-black text-white mb-2 tracking-tight text-glow-tertiary drop-shadow-md">4,120</div>
+<div class="text-sm font-medium text-on-surface-variant">Credits Remaining this cycle</div>
+</div>
+<div class="space-y-3">
+<h4 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4 pl-1">Usage Breakdown</h4>
+<!-- Breakdown Item 1 -->
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-highest/40 border border-outline-variant/10 hover:bg-surface-container-highest/80 hover:border-outline-variant/20 transition-all group">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary group-hover:shadow-[0_0_10px_rgba(210,187,255,0.8)] transition-shadow"></div>
+<span class="text-sm font-medium text-on-surface group-hover:text-white transition-colors">Email Drafts</span>
+</div>
+<span class="text-sm font-bold text-on-surface-variant group-hover:text-tertiary transition-colors">450</span>
+</div>
+<!-- Breakdown Item 2 -->
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-highest/40 border border-outline-variant/10 hover:bg-surface-container-highest/80 hover:border-outline-variant/20 transition-all group">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary-container group-hover:shadow-[0_0_10px_rgba(131,66,244,0.8)] transition-shadow"></div>
+<span class="text-sm font-medium text-on-surface group-hover:text-white transition-colors">Briefings</span>
+</div>
+<span class="text-sm font-bold text-on-surface-variant group-hover:text-tertiary-container transition-colors">320</span>
+</div>
+<!-- Breakdown Item 3 -->
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-highest/40 border border-outline-variant/10 hover:bg-surface-container-highest/80 hover:border-outline-variant/20 transition-all group">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container group-hover:shadow-[0_0_10px_rgba(45,91,255,0.8)] transition-shadow"></div>
+<span class="text-sm font-medium text-on-surface group-hover:text-white transition-colors">Lead Scoring</span>
+</div>
+<span class="text-sm font-bold text-on-surface-variant group-hover:text-primary-container transition-colors">110</span>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-xl bg-tertiary-container text-on-tertiary-container text-sm font-bold hover:bg-tertiary-container/90 hover:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(131,66,244,0.3)]">
+                            Top Up Credits
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

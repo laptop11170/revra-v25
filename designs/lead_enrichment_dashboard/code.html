@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lead Enrichment Pulse - RevRa CRM</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#31394d",
+                    "on-tertiary": "#3f008e",
+                    "on-error-container": "#ffdad6",
+                    "on-background": "#dae2fd",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary-fixed": "#25005a",
+                    "primary-container": "#2d5bff",
+                    "on-primary-container": "#efefff",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#eaddff",
+                    "outline": "#8e90a2",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "on-primary-fixed": "#001355",
+                    "on-primary": "#002387",
+                    "background": "#0b1326",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "outline-variant": "#434656",
+                    "on-secondary-fixed": "#001355",
+                    "surface-container-lowest": "#060e20",
+                    "tertiary-container": "#8342f4",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-secondary-container": "#a1b1ff",
+                    "inverse-on-surface": "#283044",
+                    "surface-variant": "#2d3449",
+                    "surface-container-highest": "#2d3449",
+                    "surface-tint": "#b8c3ff",
+                    "on-tertiary-container": "#f6ecff",
+                    "on-error": "#690005",
+                    "surface": "#0b1326",
+                    "on-secondary": "#162972",
+                    "secondary-container": "#30418a",
+                    "secondary": "#b8c3ff",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c4c5d9",
+                    "on-surface": "#dae2fd",
+                    "inverse-surface": "#dae2fd",
+                    "surface-container-low": "#131b2e",
+                    "surface-container": "#171f33",
+                    "tertiary": "#d2bbff",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "secondary-fixed": "#dde1ff",
+                    "surface-dim": "#0b1326",
+                    "primary-fixed": "#dde1ff",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "primary": "#b8c3ff",
+                    "inverse-primary": "#104af0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-[#131b2e] bg-[#0b1326] dark:bg-[#0b1326] font-['Inter'] text-sm tracking-tight text-[#dae2fd]">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold text-[#dae2fd] tracking-[-0.02em]">RevRa AI</div>
+<div class="hidden md:flex gap-6">
+<a class="text-[#2d5bff] font-semibold border-b-2 border-[#2d5bff] pb-1 hover:bg-[#171f33] transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200" href="#">Deals</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] scale-95 active:opacity-80 transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] scale-95 active:opacity-80 transition-all"><span class="material-symbols-outlined">bolt</span></button>
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] scale-95 active:opacity-80 transition-all"><span class="material-symbols-outlined">settings</span></button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full ml-2 border border-outline-variant/30" data-alt="close-up portrait of young professional woman with natural lighting and dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg2QCZj5BaSjVhxNeL3StdIIIZTeLr78Kun3HK31lCDgl6fZHIzGb3WtQdhJEY5Ek48G5Dnv65ZLxx_WTj9RURt1-jf80fUEedA3Og_5QWD38Qc5aQZD94MpPFBRlogzTudnOJOyECMLcR2R3FCnfxtJ8mGZ9tG0iaqLpBLE5mKCoWGQKQDVFKFkg2NF76loDneeQKX24ztPc7OqGun85-ja59msNKI-c9BaOGehuXJWqBnYdHXTvyUkwxPFRGBGSrifrvrngxGQ"/>
+</div>
+</nav>
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col py-6 border-r border-[#434656]/15 fixed left-0 top-0 h-full w-64 bg-[#131b2e] dark:bg-[#131b2e] z-40 pt-20">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm">pulse_alert</span>
+</div>
+<div>
+<div class="text-lg font-black text-[#dae2fd] tracking-tight">RevRa CRM</div>
+<div class="text-xs text-on-surface-variant font-medium">Intelligent Pulse</div>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-medium py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-inverse-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span> New Lead
+            </button>
+</div>
+<nav class="flex-1 space-y-1 font-['Inter'] text-sm font-medium">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[20px]">gavel</span> Compliance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[20px]">hub</span> Integrations
+            </a>
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span> Leads
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[20px]">emoji_events</span> Gamification
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span> Performance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[20px]">library_books</span> Knowledge
+            </a>
+</nav>
+<div class="mt-auto pt-6 space-y-1 font-['Inter'] text-sm font-medium border-t border-outline-variant/15 mx-4">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg px-2 py-2 flex items-center gap-3 transition-all hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[18px]">webhook</span> Webhooks
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg px-2 py-2 flex items-center gap-3 transition-all hover:text-[#dae2fd]" href="#">
+<span class="material-symbols-outlined text-[18px]">key</span> API Keys
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-20 md:pl-64 min-h-screen">
+<div class="p-6 md:p-8 max-w-7xl mx-auto space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-headline font-bold tracking-tight text-on-surface mb-1">Lead Enrichment Pulse</h1>
+<p class="text-sm text-on-surface-variant font-medium">Real-time status of third-party data verification protocols.</p>
+</div>
+<button class="bg-surface-variant text-on-surface px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-surface-bright transition-colors flex items-center gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[18px]">sync</span> Run Bulk Sync
+                </button>
+</div>
+<!-- Stats Tonal Layering Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10 transition-opacity group-hover:opacity-100 opacity-50"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">credit_score</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface-variant tracking-wide uppercase text-[11px] letter-spacing-[0.05em]">Credit Pulls</h3>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-bold tracking-tight">4,289</span>
+<span class="text-xs text-primary font-medium flex items-center"><span class="material-symbols-outlined text-[14px]">trending_up</span> 12%</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-2">Verified in last 30 days</p>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-32 h-32 bg-tertiary/5 rounded-full blur-2xl -mr-10 -mt-10 transition-opacity group-hover:opacity-100 opacity-50"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface-variant tracking-wide uppercase text-[11px] letter-spacing-[0.05em]">Income Verification</h3>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-bold tracking-tight">3,105</span>
+<span class="text-xs text-tertiary font-medium flex items-center"><span class="material-symbols-outlined text-[14px]">trending_up</span> 8%</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-2">W2 &amp; 1099 matches found</p>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl -mr-10 -mt-10 transition-opacity group-hover:opacity-100 opacity-50"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">family_home</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface-variant tracking-wide uppercase text-[11px] letter-spacing-[0.05em]">Household Profiling</h3>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-bold tracking-tight">8,940</span>
+<span class="text-xs text-on-surface-variant font-medium flex items-center"><span class="material-symbols-outlined text-[14px]">trending_flat</span> 2%</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-2">Demographic appending complete</p>
+</div>
+</div>
+<!-- Asymmetric Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Content: Recent Enrichments List -->
+<div class="lg:col-span-2 bg-surface-container-low rounded-lg p-1">
+<div class="bg-surface-container rounded-lg p-6 h-full">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-headline font-semibold text-on-surface">Recent Enrichments</h2>
+<button class="text-xs text-primary hover:text-primary-fixed transition-colors font-medium">View All</button>
+</div>
+<div class="space-y-1">
+<!-- List Item 1 -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-surface-bright/40 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-sm font-semibold text-primary">MC</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Marcus Chen</div>
+<div class="text-xs text-on-surface-variant">ID: L-8892 • 10 mins ago</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface border border-outline-variant/10">Credit: 720-740</span>
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-tertiary-fixed-dim border border-outline-variant/10">Tier 1 (&gt;150k)</span>
+<div class="w-2 h-2 rounded-full bg-error ml-2 shadow-[0_0_8px_rgba(255,180,171,0.4)]" title="Action Required"></div>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-surface-bright/40 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-sm font-semibold text-secondary">SJ</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Sarah Jenkins</div>
+<div class="text-xs text-on-surface-variant">ID: L-8891 • 45 mins ago</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface border border-outline-variant/10">Credit: 680-700</span>
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface border border-outline-variant/10">Tier 3 (80k-100k)</span>
+<div class="w-2 h-2 rounded-full bg-primary ml-2" title="Clear"></div>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-surface-bright/40 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-sm font-semibold text-tertiary">DB</div>
+<div>
+<div class="text-sm font-medium text-on-surface">David Bowles</div>
+<div class="text-xs text-on-surface-variant">ID: L-8890 • 1 hr ago</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface border border-outline-variant/10">Credit: 800+</span>
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-tertiary-fixed-dim border border-outline-variant/10">Tier 1 (&gt;150k)</span>
+<div class="w-2 h-2 rounded-full bg-tertiary ml-2 shadow-[0_0_8px_rgba(210,187,255,0.6)]" title="AI Insight Available"></div>
+</div>
+</div>
+<!-- List Item 4 -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-surface-bright/40 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-sm font-semibold text-on-surface">AW</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Alicia Wong</div>
+<div class="text-xs text-on-surface-variant">ID: L-8889 • 2 hrs ago</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface/50 border border-outline-variant/10">Pending</span>
+<span class="px-2.5 py-1 rounded text-[11px] font-medium bg-surface-container-lowest text-on-surface/50 border border-outline-variant/10">Pending</span>
+<div class="w-2 h-2 rounded-full bg-outline-variant ml-2" title="Processing"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Content: AI Insight Glassmorphism Card -->
+<div class="lg:col-span-1">
+<div class="bg-surface-variant/60 backdrop-blur-[20px] rounded-lg p-6 border border-outline-variant/15 h-full flex flex-col relative overflow-hidden">
+<!-- Premium Gradient Flare -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-tertiary to-primary-container rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="text-sm font-semibold text-tertiary uppercase tracking-wide">RevRa Intelligence</h2>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-3 leading-tight">Highly Qualifiable Leads Detected</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
+                            Recent enrichment batches identified <span class="text-on-surface font-semibold">14 leads</span> in the 'Uncontacted' stage with verified income &gt;$120k and credit profiles exceeding 740. Immediate outreach is recommended to maximize conversion probability.
+                        </p>
+<div class="mt-auto space-y-3">
+<div class="bg-surface-container-lowest/50 rounded p-3 flex items-center justify-between border border-outline-variant/10">
+<div>
+<div class="text-sm font-medium text-on-surface">David Bowles</div>
+<div class="text-[10px] text-tertiary-fixed-dim">Match Score: 98%</div>
+</div>
+<button class="w-8 h-8 rounded bg-surface-bright flex items-center justify-center text-on-surface hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest/50 rounded p-3 flex items-center justify-between border border-outline-variant/10">
+<div>
+<div class="text-sm font-medium text-on-surface">Elena Rodriguez</div>
+<div class="text-[10px] text-tertiary-fixed-dim">Match Score: 95%</div>
+</div>
+<button class="w-8 h-8 rounded bg-surface-bright flex items-center justify-center text-on-surface hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<button class="w-full mt-6 bg-tertiary-container text-on-tertiary-container font-medium py-2.5 rounded-lg text-sm transition-transform active:scale-95 flex items-center justify-center gap-2">
+                            Review All 14 Leads
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

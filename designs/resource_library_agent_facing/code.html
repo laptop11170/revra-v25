@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa CRM - Resource Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3449;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #434656;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-[#131b2e] bg-[#0b1326] dark:bg-[#0b1326]">
+<div class="flex items-center gap-8 w-1/3">
+<div class="text-xl font-bold text-[#dae2fd] tracking-[-0.02em]">RevRa AI</div>
+<div class="relative w-64 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#dae2fd]/50 text-sm">search</span>
+<input class="w-full bg-[#131b2e] border-none rounded-lg pl-9 pr-4 py-1.5 text-sm font-['Inter'] tracking-tight text-[#dae2fd] placeholder:text-[#dae2fd]/50 focus:ring-1 focus:ring-[#2d5bff] outline-none transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6 hidden lg:flex">
+<a class="font-['Inter'] text-sm tracking-tight text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-lg" href="#">Dashboard</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-lg" href="#">Deals</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-colors duration-200 px-3 py-1.5 rounded-lg" href="#">Analytics</a>
+</nav>
+<div class="flex items-center justify-end gap-3 w-1/3">
+<button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#171f33] transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-[#dae2fd]">notifications</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#171f33] transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-[#dae2fd]">bolt</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#171f33] transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-[#dae2fd]">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-[#171f33] ml-2 shrink-0 border border-[#434656]/30">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8H_e50X7kkGcGRAXsQkqcGjJvHsBeGc7IhHeHjTu4_NjY2X5Xchnqlrtox9fFwz0FDsHqZ7t0WjgCXzLcHCOm5qPgHzIENjWblYrctYzLn_6LVpkvB_2eH1xFG0CJnjtrkPotqH1k2bgpftk5plh3E6hwQJ32Se8Gy_FrxoQyHmRL3TyETZ0n9DrVnCNyePmAH8Q8ScjGlq8M1Yc2AyON5RVr2YBKSdNi0DrXrQ_M2Y5GZNIazL9QheQftgE4l0R29OtgRoOrwg"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 border-r border-[#434656]/15 docked left-0 h-full w-64 bg-[#131b2e] dark:bg-[#131b2e] z-40 pt-20 hidden md:flex">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2d5bff] to-[#8342f4] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#dae2fd] tracking-tight leading-tight">RevRa CRM</h2>
+<p class="text-xs text-[#2d5bff] font-medium tracking-wide uppercase">Intelligent Pulse</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-[#2d5bff] hover:bg-[#2d5bff]/90 text-[#efefff] rounded-lg py-2.5 px-4 font-['Inter'] text-sm font-medium flex items-center justify-center gap-2 transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(45,91,255,0.2)]">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Lead
+            </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+                Compliance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+                Integrations
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                Leads
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">emoji_events</span>
+                Gamification
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+                Performance
+            </a>
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">library_books</span>
+                Knowledge
+            </a>
+</nav>
+<div class="mt-auto pt-4 border-t border-[#434656]/15 flex flex-col gap-1">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-2 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">webhook</span>
+                Webhooks
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-2 flex items-center gap-3 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">key</span>
+                API Keys
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 px-4 md:px-8 pb-12 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-headline font-bold text-on-surface tracking-[-0.02em] mb-2">Resource Library</h1>
+<p class="text-on-surface-variant font-body text-sm md:text-base">Curated assets and guides to accelerate your close rate.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Filters
+                </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                    Upload Asset
+                </button>
+</div>
+</div>
+<!-- AI Intelligent Pulse Banner -->
+<div class="bg-gradient-to-r from-surface-container-highest to-surface-container-low rounded-xl p-6 mb-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<!-- Decorative blur -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-tertiary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-start gap-4 z-10">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center shrink-0 border border-tertiary/30">
+<span class="material-symbols-outlined text-tertiary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-lg font-headline font-semibold text-tertiary mb-1">AI Contextual Recommendations</h3>
+<p class="text-on-surface-variant text-sm max-w-2xl">Based on your 3 active leads nearing the closing stage, these resources have the highest historical conversion impact.</p>
+</div>
+</div>
+<div class="flex gap-3 z-10 shrink-0">
+<div class="bg-surface-container rounded-lg p-2 flex items-center gap-3 w-48 border border-outline-variant/20 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded bg-secondary-container/50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">picture_as_pdf</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-medium text-on-surface truncate group-hover:text-primary transition-colors">Medicare 101 Guide</p>
+<p class="text-[10px] text-tertiary">92% Win Rate Match</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex overflow-x-auto pb-4 mb-6 gap-2 no-scrollbar border-b border-surface-container-high">
+<button class="px-5 py-2 rounded-t-lg bg-surface-container text-primary font-medium text-sm border-b-2 border-primary whitespace-nowrap">All Assets</button>
+<button class="px-5 py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-medium text-sm whitespace-nowrap">ACA Enrollment</button>
+<button class="px-5 py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-medium text-sm whitespace-nowrap">Medicare Basics</button>
+<button class="px-5 py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-medium text-sm whitespace-nowrap">Life Insurance</button>
+<button class="px-5 py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-medium text-sm whitespace-nowrap">Annuities</button>
+</div>
+<!-- Asset Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Featured Asset (Spans 2 cols) -->
+<div class="xl:col-span-2 bg-surface-container rounded-xl overflow-hidden group flex flex-col sm:flex-row relative">
+<div class="sm:w-1/2 relative h-48 sm:h-auto bg-surface-container-low">
+<!-- Placeholder for visually rich thumbnail -->
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-low to-surface-container-lowest">
+<img alt="Featured Asset" class="w-full h-full object-cover opacity-60 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="abstract data visualization with glowing blue and purple nodes connected by thin glowing lines on a dark navy background representing intelligence and connectivity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBplw4Ee5mNCnUUJhgllvVBDugnxcHoO0AJbgACF8I6CzkdQ8KZIEsjqRzmCUrajBHj9NSZPTA9-OkJkY_1ee1CP6lKglruvK1eKh56C8RYFnFOvuGTYwITGkes96l-bcAgS1T7j2VjE8SLCceSqzRIXsSTu9hRL3IP6w15OyA1sYS1u0WUnfON7XH6KCImXXYbIXM4u0C6FrPSW_Elg9LcR32m-sB7_MLFB229I9ys6Ml2Gwd7QF9Hu7L3exwVNCqIWdknJvpmYw"/>
+</div>
+<div class="absolute top-4 left-4 bg-surface-variant/80 backdrop-blur-md px-2.5 py-1 rounded-md flex items-center gap-1.5 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px] text-tertiary">play_circle</span>
+<span class="text-xs font-medium text-on-surface">Interactive Video</span>
+</div>
+</div>
+<div class="p-6 sm:w-1/2 flex flex-col justify-between relative z-10 bg-gradient-to-l from-surface-container via-surface-container to-transparent">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-tertiary-container/20 text-tertiary">Trending</span>
+<span class="text-xs text-on-surface-variant">Updated 2 days ago</span>
+</div>
+<h3 class="text-xl font-headline font-semibold text-on-surface mb-2 leading-tight group-hover:text-primary transition-colors">Mastering the ACA Pitch: 2024 Updates</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4">A comprehensive 15-minute walkthrough of key changes to the Affordable Care Act and how to position them to hesitant leads.</p>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<button class="flex-1 bg-primary-container hover:bg-primary-container/90 text-on-primary-container py-2 px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                            Send to Lead
+                        </button>
+<button class="w-10 h-10 rounded-lg bg-surface-container-highest hover:bg-surface-bright flex items-center justify-center text-on-surface transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Card 1 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group flex flex-col">
+<div class="h-40 relative bg-surface-container-low overflow-hidden">
+<img alt="Asset Thumbnail" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="clean minimal desk layout with stacked white papers, a sleek pen, and soft overhead lighting creating subtle shadows indicating a professional document" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_HUaRU3rT4b4X6cVXQoHf31t8kwExVzgAcg27KXdr_g5xBR2cuaQCSaC1_lpErZDiNACz3E9e2QIzUswXcit2jmiHeKSk8Fk5Fs23pLQhg47c1kf4vK4lQ40ygybPVrm0PuvMNp--DU_QbioUPpK_w6lr2oQ7mM9CP2FEs1ZoKlT_G0k2rZBL9yiU-CaAU6ZCPfUY2b1bsPrZpNzx4eFvLIdTgS1X-U2twYfQNDm_jb-bprCSswGZP1RF-6Nt69nwE2CiiF1Uag"/>
+<div class="absolute top-3 left-3 bg-surface-variant/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-medium text-on-surface flex items-center gap-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[12px] text-secondary">picture_as_pdf</span>
+                        PDF Guide
+                    </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<p class="text-[11px] text-primary font-medium tracking-wide uppercase mb-1">Medicare 101</p>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-2 leading-snug line-clamp-2">Understanding Parts A, B, C &amp; D</h3>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-4">A client-friendly, visual breakdown of Medicare parts. Ideal for first-time enrollees.</p>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-surface-container-high">
+<button class="text-sm font-medium text-primary hover:text-primary-fixed transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">send</span>
+                            Quick Send
+                        </button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Card 2 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group flex flex-col">
+<div class="h-40 relative bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-container to-surface-container-highest opacity-50"></div>
+<img alt="Asset Thumbnail" class="w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="close up of a modern digital tablet screen displaying colorful bar charts and graphs held by hands in a dark corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMGUHqaIn9z9A8vhM3dz2U-GRBPz6H6WVc44JL-86AQ79vzjpnuM8nBzhCro8HJvbmlVyiy7scLkinqQA_0TLCmROCSZ2aHT42wzQxo6B0KVNNWpAb2PdWuUz0M76CHv_2jpIFpd7PmsQ_LaLvSDghdF8ZHkzQjIrfDik64Q72r755nc5PDAfneeflurPEbBYCrlWq3c8N-Ydz_Ye-YoCuNRt82NZKzQwT_vqIEC7KwKYnHrG3fK3D1gFeeKD8DYmpMihrZQxkug"/>
+<div class="absolute top-3 left-3 bg-surface-variant/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-medium text-on-surface flex items-center gap-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[12px] text-secondary">feed</span>
+                        Flyer
+                    </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<p class="text-[11px] text-primary font-medium tracking-wide uppercase mb-1">Life Insurance</p>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-2 leading-snug line-clamp-2">Term vs. Whole Life Comparison</h3>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-4">One-page comparative matrix highlighting pros and cons of major life insurance types.</p>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-surface-container-high">
+<button class="text-sm font-medium text-primary hover:text-primary-fixed transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">send</span>
+                            Quick Send
+                        </button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Card 3 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group flex flex-col">
+<div class="h-40 relative bg-surface-container-low overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-container-lowest"></div>
+<span class="material-symbols-outlined text-5xl text-outline-variant/50 relative z-10">description</span>
+<div class="absolute top-3 left-3 z-10 bg-surface-variant/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-medium text-on-surface flex items-center gap-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[12px] text-secondary">picture_as_pdf</span>
+                        Checklist
+                    </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<p class="text-[11px] text-primary font-medium tracking-wide uppercase mb-1">ACA Enrollment</p>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-2 leading-snug line-clamp-2">Pre-Enrollment Client Checklist</h3>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-4">Required documents list to send to clients prior to their enrollment appointment.</p>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-surface-container-high">
+<button class="text-sm font-medium text-primary hover:text-primary-fixed transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">send</span>
+                            Quick Send
+                        </button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Standard Card 4 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group flex flex-col">
+<div class="h-40 relative bg-surface-container-low overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent opacity-80 z-10"></div>
+<img alt="Asset Thumbnail" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="professional businesswoman in dark blazer speaking directly to camera in a modern glass office setting with cool blue undertones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEi4qAZsPn7S_6cGtXyyrkmVxEddFFz7gbyr3DBnneIazMlb_oOXz-Z8SdbjOHhBDq7O2nEuX1r4WyENBsobP7j1tUu1YegMAgl0EghbBS8WoPi_SR-eOYC6xMuWa8Igvw3bdX25bjbVHfohDIUxD1VPhCar_8vbOCIHdygswjLm89uslkMYZSpY1fTaPhIim5VYK41QhfS965pYSS6nljbTx0A5L52SbZBiLz94Fc115bj-c1WkmIVdTTd-QG5yNCotzWtbsT1A"/>
+<div class="absolute top-3 left-3 z-20 bg-surface-variant/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-medium text-on-surface flex items-center gap-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[12px] text-tertiary">play_circle</span>
+                        Video snippet
+                    </div>
+<div class="absolute bottom-2 right-2 z-20 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white">0:45</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<p class="text-[11px] text-tertiary font-medium tracking-wide uppercase mb-1">Objection Handling</p>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-2 leading-snug line-clamp-2">"I'll think about it" Rebuttal</h3>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-4">Short, punchy video script to overcome the most common stall tactic.</p>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-surface-container-high">
+<button class="text-sm font-medium text-primary hover:text-primary-fixed transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+                            Copy Link
+                        </button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

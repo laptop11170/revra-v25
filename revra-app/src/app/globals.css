@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Design System Colors - RevRa Dark Theme */
+  --color-surface: #0b1326;
+  --color-surface-dim: #0b1326;
+  --color-surface-container: #171f33;
+  --color-surface-container-low: #131b2e;
+  --color-surface-container-high: #222a3d;
+  --color-surface-container-highest: #2d3449;
+  --color-surface-container-lowest: #060e20;
+  --color-surface-bright: #31394d;
+  --color-surface-variant: #2d3449;
+
+  --color-primary: #b8c3ff;
+  --color-primary-fixed: #dde1ff;
+  --color-primary-fixed-dim: #b8c3ff;
+  --color-on-primary: #002387;
+  --color-on-primary-fixed: #001355;
+  --color-on-primary-fixed-variant: #0035bd;
+  --color-primary-container: #2d5bff;
+  --color-on-primary-container: #efefff;
+  --color-inverse-primary: #104af0;
+
+  --color-secondary: #b8c3ff;
+  --color-secondary-fixed: #dde1ff;
+  --color-secondary-fixed-dim: #b8c3ff;
+  --color-on-secondary: #162972;
+  --color-on-secondary-fixed: #001355;
+  --color-on-secondary-fixed-variant: #30418a;
+  --color-secondary-container: #30418a;
+  --color-on-secondary-container: #a1b1ff;
+
+  --color-tertiary: #d2bbff;
+  --color-tertiary-fixed: #eaddff;
+  --color-tertiary-fixed-dim: #d2bbff;
+  --color-on-tertiary: #3f008e;
+  --color-on-tertiary-fixed: #25005a;
+  --color-on-tertiary-fixed-variant: #5a00c6;
+  --color-tertiary-container: #8342f4;
+  --color-on-tertiary-container: #f6ecff;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #8e90a2;
+  --color-outline-variant: #434656;
+
+  --color-on-surface: #dae2fd;
+  --color-on-surface-variant: #c4c5d9;
+  --color-inverse-on-surface: #283044;
+  --color-inverse-surface: #dae2fd;
+
+  --color-background: #0b1326;
+  --color-on-background: #dae2fd;
+  --color-surface-tint: #b8c3ff;
+
+  --font-headline: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2d3449 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #2d3449;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #434656;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0b1326;
+  color: #dae2fd;
+}
+
+.glass-panel {
+  background: rgba(45, 52, 73, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(67, 70, 86, 0.15);
+}
+
+.gradient-action {
+  background: linear-gradient(135deg, #b8c3ff 0%, #2d5bff 100%);
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(67, 70, 86, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(67, 70, 86, 0.1) 1px, transparent 1px);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon-fill {
+  font-variation-settings: 'FILL' 1;
+}

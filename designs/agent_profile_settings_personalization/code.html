@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Profile &amp; Personalization Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#002387",
+                    "on-error-container": "#ffdad6",
+                    "surface-bright": "#31394d",
+                    "surface-variant": "#2d3449",
+                    "on-tertiary": "#3f008e",
+                    "on-secondary": "#162972",
+                    "on-secondary-container": "#a1b1ff",
+                    "surface-container-lowest": "#060e20",
+                    "primary": "#b8c3ff",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "on-secondary-fixed": "#001355",
+                    "secondary-container": "#30418a",
+                    "outline-variant": "#434656",
+                    "primary-container": "#2d5bff",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "surface-container": "#171f33",
+                    "surface": "#0b1326",
+                    "inverse-surface": "#dae2fd",
+                    "secondary-fixed": "#dde1ff",
+                    "on-tertiary-container": "#f6ecff",
+                    "on-surface-variant": "#c4c5d9",
+                    "on-primary-fixed": "#001355",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "surface-tint": "#b8c3ff",
+                    "outline": "#8e90a2",
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "surface-dim": "#0b1326",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "secondary": "#b8c3ff",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "primary-fixed": "#dde1ff",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "surface-container-highest": "#2d3449",
+                    "background": "#0b1326",
+                    "on-tertiary-fixed": "#25005a",
+                    "error-container": "#93000a",
+                    "on-surface": "#dae2fd",
+                    "inverse-on-surface": "#283044",
+                    "tertiary-container": "#8342f4",
+                    "surface-container-high": "#222a3d",
+                    "tertiary-fixed": "#eaddff",
+                    "tertiary": "#d2bbff",
+                    "on-background": "#dae2fd",
+                    "inverse-primary": "#104af0",
+                    "surface-container-low": "#131b2e",
+                    "on-primary-container": "#efefff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": [
+                            "Inter"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Inter"
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center px-8 py-3 w-full bg-[#0b1326] dark:bg-[#0b1326] text-[#2d5bff] dark:text-[#b8c3ff] font-['Inter'] antialiased tracking-tight docked full-width top-0 sticky z-50 flat no shadows border-b border-[#434656]/15">
+<div class="text-2xl font-black text-[#dae2fd] tracking-tighter uppercase">RevRa</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#2d3449]/50 transition-all duration-300 active:scale-95 text-[#dae2fd]/70 hover:text-[#dae2fd]">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#2d3449]/50 transition-all duration-300 active:scale-95 text-[#dae2fd]/70 hover:text-[#dae2fd]">bolt</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#2d3449]/50 transition-all duration-300 active:scale-95 text-[#2d5bff] border-b-2 border-[#2d5bff] pb-1">settings</span>
+<img alt="Agent Profile" class="w-8 h-8 rounded-full object-cover" data-alt="Professional headshot of a confident business agent in modern lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7mL4KSYjeAvbLB0ANFGNA5pm7Io2MGDVLoix4VM74r92mxWMD70ws1DDEu2TAiRmi7lHv5nf8YtvSnMCCidE_sDY01N-2oFSL-qZ9t_5HP-r1KB9gbz-UI7U_DxYMohKEYzqoNSjCcjpbiJmXkfDp2KIzskaACMm5B3gfkGLVHzlgthzSbjtYcJWnGLg4LiSh3Y2vqrdjCxd8RLwx8InbnjIGdVF_Dfc8YJJ8_k6U-QHmduoAj4KBM21oudlqbo2hH6fCvubwvA"/>
+</div>
+</header>
+<!-- SideNavBar (Web Only) -->
+<aside class="hidden md:flex flex-col gap-2 py-6 pr-4 shadow-2xl bg-[#131b2e] dark:bg-[#131b2e] text-[#8342f4] dark:text-[#d2bbff] font-['Inter'] font-medium text-sm h-screen w-72 fixed left-0 top-0 overflow-y-auto">
+<div class="px-6 pb-6 flex items-center gap-3">
+<div class="text-[#dae2fd] font-bold tracking-tight text-xl uppercase">The Pulse</div>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">dashboard</span> Overview
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Appointments
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">psychology</span> Emma AI
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">dynamic_feed</span> Bulk Actions
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">group_work</span> Lead Pool
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">query_stats</span> Analytics
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container rounded flex items-center justify-center gap-2 py-3 font-semibold hover:bg-inverse-primary transition-colors">
+<span class="material-symbols-outlined">add</span> New Lead
+            </button>
+</div>
+<div class="mt-6 flex flex-col gap-1 border-t border-outline-variant/15 pt-4">
+<a class="bg-[#171f33] text-[#2d5bff] rounded-lg border-l-4 border-[#2d5bff] ml-2 pl-4 py-3 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">account_circle</span> Profile
+            </a>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 scale-100 hover:scale-[1.02] transition-transform flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto">
+<div class="max-w-5xl mx-auto space-y-10">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+<div>
+<h1 class="text-3xl md:text-4xl font-headline font-bold text-on-surface tracking-tight">Personalization &amp; Settings</h1>
+<p class="text-on-surface-variant font-body mt-2 text-sm max-w-xl">Configure your CRM environment, communication channels, and AI preferences to optimize your daily workflow.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded bg-surface-container-high text-on-surface font-label text-sm hover:bg-surface-variant transition-colors border border-outline-variant/15">Cancel</button>
+<button class="px-5 py-2.5 rounded bg-primary-container text-on-primary-container font-label text-sm font-semibold hover:bg-inverse-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span> Save Changes
+                    </button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column (Profile & Bio) -->
+<div class="lg:col-span-1 space-y-8">
+<!-- Profile Card -->
+<section class="bg-surface-container rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-transparent pointer-events-none"></div>
+<h2 class="text-lg font-headline font-semibold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span> Identity
+                        </h2>
+<div class="flex flex-col items-center text-center space-y-4 mb-6">
+<div class="relative">
+<img alt="Agent Profile" class="w-24 h-24 rounded-full object-cover border-4 border-surface-container-low shadow-lg" data-alt="Professional headshot of a confident business agent in modern lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG4bFq9rzQKMrOfmo38kvH6yHPSjVcuzyOAA1AKFf0rt5FaFVaUhvkFMoehwyJtCFFBTs7cxz9FJ9jwVTFmQS7rxqNu0ERqoSXeJwZOsNhc6khhWk04canUTu5rOOMZD4tkidsy2JO0YK0nLnGDPIp7T5XsirWpH3p8wnClR27uLmltk26ZI9JmfQ5gE83v_K_vpvpjIm44kF1bT5eKIoY5JU_uO-coyCspouRyiqcaoz4fErmMoW_00Sv9qCFMBlW4DlW8bfWEw"/>
+<button class="absolute bottom-0 right-0 bg-surface-variant text-on-surface p-1.5 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-md border border-outline-variant/15">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Alex Mercer</h3>
+<p class="text-on-surface-variant text-sm">Senior Sales Executive</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1.5">First Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded text-on-surface px-4 py-2.5 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body text-sm" type="text" value="Alex"/>
+</div>
+<div>
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1.5">Last Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded text-on-surface px-4 py-2.5 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body text-sm" type="text" value="Mercer"/>
+</div>
+<div>
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1.5">Email Address</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded text-on-surface px-4 py-2.5 focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all font-body text-sm" type="email" value="alex.m@revra.com"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column (Integrations & Settings) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Integrations Bento -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Twilio Card -->
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-outline-variant/20 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-surface-container-highest rounded text-primary-container">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer flex items-center px-0.5">
+<div class="w-4 h-4 bg-on-primary-container rounded-full absolute right-0.5 shadow-sm"></div>
+</div>
+</div>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-1">Twilio Voice &amp; SMS</h3>
+<p class="text-sm text-on-surface-variant mb-4">Dedicated local number for outbound dialing and automated SMS flows.</p>
+<div class="bg-surface-container-lowest rounded p-3 border border-outline-variant/15 flex items-center justify-between">
+<span class="text-sm font-mono text-on-surface tracking-wider">+1 (555) 019-2834</span>
+<button class="text-xs font-label text-primary hover:text-inverse-primary transition-colors">Reassign</button>
+</div>
+</div>
+<!-- Google Calendar Card -->
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/5 hover:border-outline-variant/20 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-surface-container-highest rounded text-primary-container">
+<span class="material-symbols-outlined">event</span>
+</div>
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer flex items-center px-0.5">
+<div class="w-4 h-4 bg-on-primary-container rounded-full absolute right-0.5 shadow-sm"></div>
+</div>
+</div>
+<h3 class="text-base font-headline font-semibold text-on-surface mb-1">Calendar Sync</h3>
+<p class="text-sm text-on-surface-variant mb-4">Bi-directional sync with Google Workspace for seamless scheduling.</p>
+<div class="bg-surface-container-lowest rounded p-3 border border-outline-variant/15 flex items-center justify-between">
+<span class="text-sm text-on-surface truncate">alex.m@revra.com</span>
+<span class="flex items-center gap-1 text-xs text-secondary"><span class="material-symbols-outlined text-[14px]">sync</span> Active</span>
+</div>
+</div>
+</section>
+<!-- AI & Automation (Emma AI Focus) -->
+<section class="bg-surface-container rounded-xl p-6 border border-tertiary-container/20 relative overflow-hidden">
+<div class="absolute right-0 top-0 w-64 h-64 bg-tertiary-container/10 blur-[60px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+<h2 class="text-lg font-headline font-semibold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">psychology</span> Emma AI Preferences
+                        </h2>
+<div class="space-y-5 relative z-10">
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/10">
+<div>
+<div class="text-sm font-semibold text-on-surface mb-0.5">Predictive Lead Scoring</div>
+<div class="text-xs text-on-surface-variant">Allow Emma to automatically assign priority scores based on engagement history.</div>
+</div>
+<div class="w-10 h-5 bg-tertiary-container rounded-full relative cursor-pointer flex items-center px-0.5">
+<div class="w-4 h-4 bg-on-tertiary-container rounded-full absolute right-0.5 shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/10">
+<div>
+<div class="text-sm font-semibold text-on-surface mb-0.5">Smart Email Drafting</div>
+<div class="text-xs text-on-surface-variant">Generate contextual email replies based on CRM stage and previous threads.</div>
+</div>
+<div class="w-10 h-5 bg-tertiary-container rounded-full relative cursor-pointer flex items-center px-0.5">
+<div class="w-4 h-4 bg-on-tertiary-container rounded-full absolute right-0.5 shadow-sm"></div>
+</div>
+</div>
+<div class="pt-2">
+<label class="block text-xs font-label text-on-surface-variant uppercase tracking-wider mb-2">Default Communication Tone</label>
+<div class="flex gap-3">
+<button class="flex-1 py-2 bg-surface-container-highest border-2 border-tertiary-container rounded text-sm text-tertiary font-medium">Professional</button>
+<button class="flex-1 py-2 bg-surface-container-lowest border border-outline-variant/15 rounded text-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors">Casual</button>
+<button class="flex-1 py-2 bg-surface-container-lowest border border-outline-variant/15 rounded text-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors">Direct</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

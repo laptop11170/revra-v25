@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Morning Briefing - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "secondary": "#b8c3ff",
+                        "secondary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface": "#dae2fd",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "tertiary-container": "#8342f4",
+                        "on-surface-variant": "#c4c5d9",
+                        "outline": "#8e90a2",
+                        "surface-tint": "#b8c3ff",
+                        "surface": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3f008e",
+                        "tertiary-fixed": "#eaddff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "on-background": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#2d3449",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-primary-container": "#efefff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "outline-variant": "#434656",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container": "#171f33",
+                        "surface-container-low": "#131b2e",
+                        "primary": "#b8c3ff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-primary": "#002387",
+                        "on-primary-fixed": "#001355",
+                        "background": "#0b1326",
+                        "inverse-primary": "#104af0",
+                        "primary-container": "#2d5bff",
+                        "inverse-surface": "#dae2fd",
+                        "primary-fixed": "#dde1ff",
+                        "tertiary-fixed-dim": "#d2bbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#131b2e] border-r border-[#434656]/15 flex flex-col p-4 gap-2 z-50">
+<div class="mb-8 px-2 flex items-center justify-between">
+<h1 class="text-xl font-black text-[#dae2fd] tracking-tighter">RevRa CRM</h1>
+</div>
+<div class="px-2 mb-6">
+<div class="flex items-center gap-3">
+<img alt="Agent Profile" class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-high" data-alt="professional portrait of a confident male real estate agent in a dark modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9tHuT27MKRAXOO00mDQu09vVVOgamx-FvyqH52u0QHXC8xNjuROGybcUzBqwlkJ6z2j1lEDiKVGqg1PHgUfL5_sH-Naw1wWbNhhEb6bfuDJSxr7wENopU5VouvSTVmIbrWdhF4buhUVjAxRgfvE3ykQkI8pw98vU-wqgKv_mP_8R-hSNrjtNmUVnbDkjW_qjBDD-Ono6kuPufe1IbVsynpr2Q-GgvWghuBl_KMji-CuQQtvM5OkAFo-bzE4FpAMsDwig7F-eNdw"/>
+<div>
+<p class="text-sm font-medium text-on-surface">Agent Workspace</p>
+<p class="text-xs text-on-surface-variant">The Intelligent Pulse</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#2d5bff] bg-[#2d5bff]/10 font-semibold transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Morning Briefing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">inbox</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">person_search</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Leads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Pipeline</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Dialer</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">schema</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Workflows</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Discussions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd]/60 hover:text-[#dae2fd] hover:bg-[#171f33] transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-['Inter'] antialiased tracking-tight text-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-2 py-4 border-t border-outline-variant/15">
+<div class="flex items-center justify-between text-xs text-on-surface-variant mb-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-tertiary">psychiatry</span> AI Credits: 1,240</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 w-full z-40 bg-[#0b1326]/80 backdrop-blur-xl border-b border-[#434656]/15 flex justify-between items-center px-6 py-3 ml-64 w-[calc(100%-16rem)]">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-[18px]">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-1.5 pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary-container transition-shadow" placeholder="Search leads, calls, workflows..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-[#dae2fd]/70 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 ease-in-out relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-[#dae2fd]/70 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-[#dae2fd]/70 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+<div class="h-5 w-px bg-outline-variant/30 mx-1"></div>
+<button class="text-sm font-medium text-on-surface hover:text-primary transition-colors px-3 py-1.5 rounded-md hover:bg-surface-variant">Quick Actions</button>
+<button class="bg-[#2d5bff] text-on-primary-container text-sm font-medium px-4 py-1.5 rounded-lg hover:bg-[#104af0] transition-colors">Add Lead</button>
+</div>
+</header>
+<!-- Briefing Content -->
+<div class="p-8 flex-1 overflow-y-auto max-w-7xl mx-auto w-full">
+<!-- Header Area -->
+<div class="flex items-end justify-between mb-10">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Morning Briefing</h2>
+<p class="text-on-surface-variant text-sm max-w-2xl">Good morning. You have <span class="text-error font-medium">3 overdue items</span> and <span class="text-tertiary font-medium">2 new AI suggestions</span> to review today.</p>
+</div>
+<button class="flex items-center gap-2 bg-surface-variant/60 backdrop-blur-md border border-outline-variant/15 text-on-surface px-5 py-2.5 rounded-lg hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-primary group-hover:text-primary-container transition-colors" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="text-sm font-medium">Read Aloud</span>
+</button>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column (Urgent & High Priority) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<!-- Overdue Follow-Ups (Red) -->
+<section class="bg-surface-container rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-error">warning</span>
+<h3 class="text-lg font-bold text-on-surface">Overdue Follow-Ups</h3>
+<span class="bg-error/10 text-error text-xs font-semibold px-2 py-0.5 rounded-full ml-auto">Immediate Action Required</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-5 italic border-l-2 border-outline-variant/30 pl-3">"These 2 leads have gone cold after initial contact. Recommend immediate touchpoints before EOD."</p>
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between hover:bg-surface-bright transition-colors border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-on-surface-variant font-medium border border-outline-variant/20">
+                                        MR
+                                    </div>
+<div>
+<h4 class="font-medium text-on-surface text-sm">Michael Roberts</h4>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2 days overdue • Enterprise Tier
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors tooltip" title="Call">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors tooltip" title="SMS">
+<span class="material-symbols-outlined text-[18px]">sms</span>
+</button>
+<button class="text-xs font-medium bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 px-3 py-1.5 rounded flex items-center gap-1 hover:bg-tertiary-container/40 transition-colors">
+<span class="material-symbols-outlined text-[14px]">psychiatry</span> Emma AI
+                                    </button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between hover:bg-surface-bright transition-colors border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-on-surface-variant font-medium border border-outline-variant/20">
+                                        SL
+                                    </div>
+<div>
+<h4 class="font-medium text-on-surface text-sm">Sarah Lin</h4>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 1 day overdue • Demo Follow-up
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">sms</span>
+</button>
+<button class="text-xs font-medium bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 px-3 py-1.5 rounded flex items-center gap-1 hover:bg-tertiary-container/40 transition-colors">
+<span class="material-symbols-outlined text-[14px]">psychiatry</span> Emma AI
+                                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- New Leads (Blue) & Hot Leads (Green) Side-by-Side on wide screens -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- New Leads -->
+<section class="bg-surface-container rounded-xl p-5 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-container text-[20px]">person_add</span>
+<h3 class="text-base font-bold text-on-surface">New Leads</h3>
+</div>
+<p class="text-xs text-on-surface-variant mb-4 italic pl-2 border-l border-outline-variant/30">"3 inbound requests overnight. Focus on West Coast territory first."</p>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest/50 rounded p-3 flex justify-between items-start border border-outline-variant/10">
+<div>
+<p class="text-sm font-medium text-on-surface">TechCorp Solutions</p>
+<p class="text-xs text-on-surface-variant mt-1">Inbound • Score: <span class="text-primary font-medium">78</span></p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest/50 rounded p-3 flex justify-between items-start border border-outline-variant/10">
+<div>
+<p class="text-sm font-medium text-on-surface">Global Dynamics</p>
+<p class="text-xs text-on-surface-variant mt-1">Referral • Score: <span class="text-primary font-medium">72</span></p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Hot Leads -->
+<section class="bg-surface-container rounded-xl p-5 relative overflow-hidden">
+<!-- Using a specific green token from standard Tailwind since custom config lacks a success token, but keeping it subdued -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#10b981]"></div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[#10b981] text-[20px]">local_fire_department</span>
+<h3 class="text-base font-bold text-on-surface">Hot Leads</h3>
+</div>
+<p class="text-xs text-on-surface-variant mb-4 italic pl-2 border-l border-outline-variant/30">"These prospects show high buying signals based on recent site activity."</p>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest/50 rounded p-3 flex justify-between items-start border border-outline-variant/10">
+<div>
+<p class="text-sm font-medium text-on-surface">Acme Logistics</p>
+<p class="text-xs text-on-surface-variant mt-1">Score: <span class="text-[#10b981] font-bold">92</span> • Pricing Page</p>
+</div>
+<button class="bg-[#10b981]/20 text-[#10b981] px-2 py-1 rounded text-xs font-medium hover:bg-[#10b981]/30 transition-colors">Draft Pitch</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Right Column (AI & Daily Tasks) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- AI Suggestions (Purple) -->
+<section class="bg-surface-variant/40 rounded-xl p-6 border border-tertiary-container/30 relative overflow-hidden backdrop-blur-md">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/5 to-transparent pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-4 relative z-10">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">psychiatry</span>
+<h3 class="text-base font-bold text-on-surface">Emma AI Insights</h3>
+</div>
+<div class="space-y-4 relative z-10">
+<div class="bg-surface-container-lowest/60 rounded-lg p-4 border border-outline-variant/15">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5">lightbulb</span>
+<div>
+<p class="text-sm text-on-surface leading-relaxed">Consider offering a Q3 discount to <span class="font-medium text-primary-fixed">Omega Corp</span>. Their engagement dropped 40% after receiving the standard pricing deck.</p>
+<div class="mt-3 flex gap-2">
+<button class="text-xs bg-tertiary-container text-white px-3 py-1.5 rounded font-medium hover:bg-[#7232e0] transition-colors">Draft Email</button>
+<button class="text-xs bg-transparent text-on-surface-variant hover:text-on-surface px-2 py-1.5 rounded transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Due Today (Yellow) -->
+<section class="bg-surface-container rounded-xl p-6 relative overflow-hidden flex-1">
+<!-- Using an amber tone for 'Due Today' -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#f59e0b]"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-[#f59e0b] text-[20px]">today</span>
+<h3 class="text-base font-bold text-on-surface">Due Today</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-container-high transition-colors -mx-2">
+<input class="mt-1 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<div>
+<p class="text-sm font-medium text-on-surface">Prep presentation for Zenith</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Meeting at 2:00 PM EST</p>
+</div>
+</li>
+<li class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-container-high transition-colors -mx-2">
+<input class="mt-1 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<div>
+<p class="text-sm font-medium text-on-surface">Review Q2 Pipeline metrics</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Self-assigned task</p>
+</div>
+</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

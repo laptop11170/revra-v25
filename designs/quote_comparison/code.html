@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa Quote Comparison</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#b8c3ff",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "inverse-primary": "#104af0",
+                        "on-tertiary-container": "#f6ecff",
+                        "surface": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-tertiary": "#3f008e",
+                        "on-secondary-container": "#a1b1ff",
+                        "surface-container": "#171f33",
+                        "secondary-fixed": "#dde1ff",
+                        "primary-fixed": "#dde1ff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-primary": "#002387",
+                        "outline-variant": "#434656",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-primary-fixed": "#001355",
+                        "on-primary-container": "#efefff",
+                        "surface-variant": "#2d3449",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dae2fd",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-secondary": "#162972",
+                        "tertiary-container": "#8342f4",
+                        "surface-container-low": "#131b2e",
+                        "on-error-container": "#ffdad6",
+                        "background": "#0b1326",
+                        "surface-dim": "#0b1326",
+                        "on-background": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "tertiary-fixed": "#eaddff",
+                        "on-tertiary-fixed": "#25005a",
+                        "on-secondary-fixed": "#001355",
+                        "on-surface": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#060e20",
+                        "secondary-container": "#30418a",
+                        "tertiary": "#d2bbff",
+                        "outline": "#8e90a2",
+                        "inverse-on-surface": "#283044",
+                        "on-error": "#690005",
+                        "surface-container-high": "#222a3d",
+                        "surface-bright": "#31394d",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "primary": "#b8c3ff",
+                        "primary-container": "#2d5bff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem", /* Adjusting DEFAULT to match 8px requirement, standard tailwind DEFAULT is 0.25rem (4px) but instruction says 8px curve */
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col md:flex-row antialiased">
+<!-- SideNavBar (Web) -->
+<nav class="hidden md:flex flex-col h-screen fixed left-0 top-0 z-40 bg-[#131b2e] dark:bg-[#131b2e] docked left-0 h-full w-64 rounded-r-lg">
+<div class="p-6">
+<h1 class="text-xl font-black tracking-tighter text-[#dae2fd]">RevRa CRM</h1>
+</div>
+<div class="px-4 pb-4">
+<div class="bg-surface-container-lowest rounded-lg p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Agent Profile" class="w-full h-full object-cover" data-alt="professional headshot of a man in a dark suit against a neutral background, confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAymRXMrtyTqkWUUo5TqFdD0PHUDT2oIpjRzb_u0EWEBxWGRQeLyN2HS3LAaoA39HZcNnDquesu53xn-b2ZnTTF7HPQy17Jav112H_0lE4Y7zOf6w3FvTf1XLyR2YDOzcILsRVgxslMFjVi2VToYdD9vAiUWXg6j3NyY6iofeObUbk_PXCBgWHsZgUwVS7zKi3TS4058N1UuxSB-Mt10ue1QD7M6V_d0TyT1JMw6zWyyE_4uAGvykMj-r2tkKmgUN_nS-UVn2wAZg"/>
+</div>
+<div>
+<p class="font-headline font-semibold text-sm text-on-surface">Agent Alpha</p>
+<p class="font-body text-xs text-on-surface-variant">Premium Tier</p>
+</div>
+</div>
+<button class="mt-4 w-full bg-primary-container text-on-primary-container rounded flex items-center justify-center gap-2 py-2 font-label font-medium text-sm transition-all duration-200 hover:bg-[#171f33]">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Quote
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto py-4 font-['Inter'] text-sm tracking-wide">
+<!-- Active Tab: Quotes -->
+<a class="bg-[#2d5bff] text-white rounded mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                Quotes
+            </a>
+<a class="text-[#dae2fd] opacity-60 hover:opacity-100 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-[#171f33] rounded transition-all duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+                Leads
+            </a>
+<a class="text-[#dae2fd] opacity-60 hover:opacity-100 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-[#171f33] rounded transition-all duration-200" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+                Leaderboard
+            </a>
+<a class="text-[#dae2fd] opacity-60 hover:opacity-100 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-[#171f33] rounded transition-all duration-200" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+                Usage
+            </a>
+</div>
+<div class="mt-auto py-4 font-['Inter'] text-sm tracking-wide">
+<a class="text-[#dae2fd] opacity-60 hover:opacity-100 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-[#171f33] rounded transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="text-[#dae2fd] opacity-60 hover:opacity-100 mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-[#171f33] rounded transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- TopNavBar (Mobile) -->
+<nav class="md:hidden flex justify-between items-center w-full px-6 py-3 max-w-full bg-[#0b1326] dark:bg-[#0b1326] docked full-width top-0 z-40 sticky">
+<h1 class="text-xl font-black tracking-tighter text-[#dae2fd]">RevRa CRM</h1>
+<div class="flex items-center gap-4 text-[#2d5bff] dark:text-[#b8c3ff]">
+<button class="hover:bg-[#171f33] transition-colors p-2 rounded-full scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-[#171f33] transition-colors p-2 rounded-full scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="hover:bg-[#171f33] transition-colors p-2 rounded-full scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-4 md:p-8 flex flex-col gap-8 w-full max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-low p-6 rounded-lg">
+<div>
+<p class="font-label text-sm text-tertiary font-semibold tracking-wider mb-1">LEAD #4092</p>
+<h2 class="font-headline text-2xl md:text-3xl font-bold tracking-tight text-on-surface">Sarah Jenkins</h2>
+<p class="font-body text-on-surface-variant mt-1 text-sm">Comparing ACA vs Medicare Options • Zip: 33101</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container hover:bg-surface-bright text-on-surface px-4 py-2 rounded flex items-center gap-2 font-label text-sm transition-colors border border-outline-variant/15">
+<span class="material-symbols-outlined text-lg">edit</span>
+                    Edit Parameters
+                </button>
+<button class="bg-tertiary-container hover:bg-tertiary text-on-tertiary-container px-4 py-2 rounded flex items-center gap-2 font-label text-sm transition-colors">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    AI Suggestion
+                </button>
+</div>
+</header>
+<!-- Comparison Cards Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+<!-- Plan Card 1: Standard ACA -->
+<div class="bg-surface-container rounded-lg flex flex-col relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+<div class="p-6 pb-0">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-lowest px-3 py-1 rounded font-label text-xs font-semibold text-on-surface-variant border border-outline-variant/15">ACA Bronze</div>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">Value Health Shield</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-headline text-3xl font-extrabold text-on-surface tracking-tighter">$245</span>
+<span class="font-body text-on-surface-variant text-sm mb-1">/mo</span>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex flex-col gap-4 border-y border-outline-variant/15">
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Deductible</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$7,500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Out-of-Pocket Max</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$9,100</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Primary Care</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$45 Copay</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h4 class="font-label text-xs text-on-surface-variant font-semibold mb-3 uppercase tracking-wider">Key Benefits</h4>
+<ul class="flex flex-col gap-3 font-body text-sm text-on-surface mb-8">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Preventive care included
+                        </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Generic drug coverage
+                        </li>
+<li class="flex items-start gap-2 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-base">cancel</span>
+                            Out-of-network coverage
+                        </li>
+</ul>
+<button class="mt-auto w-full bg-surface-bright hover:bg-surface-container-highest text-on-surface py-3 rounded font-label font-semibold text-sm transition-colors border border-outline-variant/15">
+                        Select Plan
+                    </button>
+</div>
+</div>
+<!-- Plan Card 2: Recommended (AI) -->
+<div class="bg-surface-container rounded-lg flex flex-col relative overflow-hidden transition-transform duration-300 hover:-translate-y-1 ring-2 ring-tertiary shadow-[0_0_40px_rgba(131,66,244,0.15)] transform scale-105 z-10">
+<!-- AI Gradient Ribbon -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tertiary-container to-primary"></div>
+<div class="p-6 pb-0">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-tertiary/10 px-3 py-1 rounded font-label text-xs font-semibold text-tertiary flex items-center gap-1 border border-tertiary/20">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                            RevRa Recommended
+                        </div>
+<div class="bg-surface-container-lowest px-3 py-1 rounded font-label text-xs font-semibold text-on-surface-variant border border-outline-variant/15">ACA Silver</div>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">Optima Core Care</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-headline text-3xl font-extrabold text-on-surface tracking-tighter">$385</span>
+<span class="font-body text-on-surface-variant text-sm mb-1">/mo</span>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex flex-col gap-4 border-y border-outline-variant/15">
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Deductible</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$2,500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Out-of-Pocket Max</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$6,800</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Primary Care</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$25 Copay</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h4 class="font-label text-xs text-on-surface-variant font-semibold mb-3 uppercase tracking-wider">Key Benefits</h4>
+<ul class="flex flex-col gap-3 font-body text-sm text-on-surface mb-8">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Low deductible threshold
+                        </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Broad specialist network
+                        </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Telehealth included (No Copay)
+                        </li>
+</ul>
+<button class="mt-auto w-full bg-primary-container hover:bg-[#104af0] text-on-primary-container py-3 rounded font-label font-semibold text-sm transition-colors shadow-lg shadow-primary-container/20">
+                        Select Plan
+                    </button>
+</div>
+</div>
+<!-- Plan Card 3: Premium -->
+<div class="bg-surface-container rounded-lg flex flex-col relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+<div class="p-6 pb-0">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-lowest px-3 py-1 rounded font-label text-xs font-semibold text-on-surface-variant border border-outline-variant/15">ACA Gold</div>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">Elite Comprehensive</h3>
+<div class="flex items-end gap-1 mb-6">
+<span class="font-headline text-3xl font-extrabold text-on-surface tracking-tighter">$612</span>
+<span class="font-body text-on-surface-variant text-sm mb-1">/mo</span>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex flex-col gap-4 border-y border-outline-variant/15">
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Deductible</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Out-of-Pocket Max</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$3,200</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-on-surface-variant">Primary Care</span>
+<span class="font-headline text-sm font-semibold text-on-surface">$10 Copay</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h4 class="font-label text-xs text-on-surface-variant font-semibold mb-3 uppercase tracking-wider">Key Benefits</h4>
+<ul class="flex flex-col gap-3 font-body text-sm text-on-surface mb-8">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Ultra-low deductible
+                        </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Nationwide PPO Network
+                        </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Dental &amp; Vision included
+                        </li>
+</ul>
+<button class="mt-auto w-full bg-surface-bright hover:bg-surface-container-highest text-on-surface py-3 rounded font-label font-semibold text-sm transition-colors border border-outline-variant/15">
+                        Select Plan
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bottom Insight Bar -->
+<div class="bg-surface-container-low rounded-lg p-6 border-l-4 border-tertiary flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary text-2xl mt-1" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<div>
+<h4 class="font-headline font-semibold text-on-surface mb-1">AI Insight Analysis</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Based on Sarah's zip code and stated preference for low unexpected costs, the <strong class="text-on-surface">Optima Core Care (Silver)</strong> plan offers the best balance of premium cost to risk mitigation. The CSR (Cost-Sharing Reduction) eligibility significantly lowers the out-of-pocket maximum compared to the Bronze tier.</p>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bulk Task Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "primary": "#b8c3ff",
+                    "on-primary-fixed": "#001355",
+                    "inverse-on-surface": "#283044",
+                    "on-surface": "#dae2fd",
+                    "surface": "#0b1326",
+                    "on-tertiary-fixed": "#25005a",
+                    "secondary-fixed": "#dde1ff",
+                    "secondary-container": "#30418a",
+                    "on-primary-container": "#efefff",
+                    "surface-container": "#171f33",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#b8c3ff",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary": "#3f008e",
+                    "tertiary": "#d2bbff",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "surface-container-highest": "#2d3449",
+                    "on-tertiary-container": "#f6ecff",
+                    "on-secondary": "#162972",
+                    "outline": "#8e90a2",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-background": "#dae2fd",
+                    "inverse-surface": "#dae2fd",
+                    "surface-variant": "#2d3449",
+                    "secondary": "#b8c3ff",
+                    "surface-container-lowest": "#060e20",
+                    "surface-container-high": "#222a3d",
+                    "outline-variant": "#434656",
+                    "on-secondary-fixed": "#001355",
+                    "background": "#0b1326",
+                    "on-primary": "#002387",
+                    "inverse-primary": "#104af0",
+                    "on-surface-variant": "#c4c5d9",
+                    "tertiary-fixed": "#eaddff",
+                    "tertiary-container": "#8342f4",
+                    "primary-container": "#2d5bff",
+                    "on-secondary-container": "#a1b1ff",
+                    "error-container": "#93000a",
+                    "surface-bright": "#31394d",
+                    "surface-dim": "#0b1326",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.5rem",
+                    "xl": "0.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden antialiased">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex bg-[#0b1326] dark:bg-slate-950 flex flex-col h-full border-none py-6 h-screen left-0 w-64 shrink-0">
+<div class="px-6 mb-8 flex flex-col gap-1">
+<span class="text-lg font-black text-[#dae2fd] tracking-tighter">RevRa</span>
+<span class="text-xs text-[#dae2fd]/50 tracking-wider">Intelligence CRM</span>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-[#2d5bff] text-on-primary-container rounded flex items-center justify-center gap-2 py-3 font-semibold text-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Lead
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-[#171f33] text-[#b8c3ff] border-r-2 border-[#2d5bff] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">person_search</span>
+                Leads
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Policies
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+                Commissions
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold text-tertiary" href="#">
+<span class="material-symbols-outlined text-[18px] text-tertiary">auto_awesome</span>
+                AI Workbench
+            </a>
+</div>
+<div class="mt-auto px-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out font-inter text-xs uppercase tracking-widest font-semibold" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full bg-surface relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-6 py-3 bg-[#131b2e] dark:bg-slate-900/80 backdrop-blur-xl docked full-width top-0 z-50 border-none flat no shadows shrink-0">
+<div class="flex items-center gap-4 w-1/3">
+<div class="md:hidden text-xl font-bold tracking-tighter text-[#dae2fd]">RevRa CRM</div>
+<div class="hidden md:flex relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded text-sm pl-9 pr-4 py-2 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search tasks, leads, policies..." type="text"/>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 w-1/3">
+<div class="flex items-center gap-2 bg-tertiary-container/10 px-3 py-1.5 rounded border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary text-sm">auto_awesome</span>
+<span class="text-xs font-semibold text-tertiary tracking-tight">AI: Optimal</span>
+</div>
+<button class="p-2 rounded text-[#dae2fd]/70 hover:bg-[#2d3449] transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded text-[#dae2fd]/70 hover:bg-[#2d3449] transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 border border-outline-variant/30">
+<img alt="Agent Avatar" class="w-full h-full object-cover" data-alt="Professional headshot of a smiling male agent in a dark suit against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB21lwCIutbazdaew7gica-vy2cBMhxwrzScQhDSV79yDVR5RW6-OPmwQ5_AjX9L13dViZKhhmMnz9sDNRGz9bAtaMD83ISMDbOaTwh1kPJBPfIJX3Z3kjzs4lnYupsoTS2zFOo1iMa5N2Lvd7m6k9YqkDCCagP9SmnJ9xN0FjMEsuPnccs4JdrAGoTzPT7qrIRaLF0_Yc6t2PnTOzTso2voIiyF4_5MGYqOUgJVbhUCcBjAEIqUUqKJookirHJmXgXm7MmU4Ho8A"/>
+</div>
+</div>
+</header>
+<!-- Task Management Canvas -->
+<div class="flex-1 overflow-auto p-6 flex flex-col gap-6">
+<!-- Page Header & Global Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-on-surface mb-1">Bulk Task Management</h1>
+<p class="text-sm text-on-surface-variant">Manage and execute follow-ups across 243 active leads.</p>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-4 py-2 bg-surface-container-highest text-on-surface text-sm font-medium rounded flex items-center gap-2 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        All Categories
+                        <span class="material-symbols-outlined text-[16px] ml-1 text-on-surface-variant">expand_more</span>
+</button>
+<div class="flex bg-surface-container-low rounded p-1">
+<button class="px-4 py-1.5 bg-surface-container-highest text-on-surface text-sm font-medium rounded shadow-sm">Due Today</button>
+<button class="px-4 py-1.5 text-on-surface-variant text-sm font-medium rounded hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error blur-[1px]"></span>
+                            Overdue
+                        </button>
+<button class="px-4 py-1.5 text-on-surface-variant text-sm font-medium rounded hover:text-on-surface transition-colors">Upcoming</button>
+</div>
+</div>
+</div>
+<!-- Bulk Action Bar (Glassmorphic Pop-over, usually hidden unless items selected, shown here for design) -->
+<div class="bg-surface-variant/60 backdrop-blur-[20px] rounded border border-outline-variant/15 p-3 flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-4 px-2">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant/50 text-primary-container focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+<span class="text-sm font-medium text-on-surface">12 Selected</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<button class="text-sm text-on-surface-variant hover:text-on-surface font-medium transition-colors">Clear Selection</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 bg-surface-container-highest hover:bg-surface-bright text-on-surface text-sm font-medium rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                        Reschedule
+                    </button>
+<button class="px-3 py-1.5 bg-surface-container-highest hover:bg-surface-bright text-on-surface text-sm font-medium rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Reassign
+                    </button>
+<button class="px-3 py-1.5 bg-surface-container-highest hover:bg-surface-bright text-on-surface text-sm font-medium rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">sms</span>
+                        Send Bulk SMS
+                    </button>
+<button class="px-4 py-1.5 bg-gradient-to-r from-primary to-primary-container text-on-primary-container text-sm font-medium rounded flex items-center gap-2 transition-opacity hover:opacity-90 ml-2 shadow-[0_4px_12px_rgba(45,91,255,0.2)]">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                        Mark Completed
+                    </button>
+</div>
+</div>
+<!-- High-Density Data Grid -->
+<div class="bg-surface-container-low rounded flex-1 overflow-hidden flex flex-col">
+<!-- Grid Header -->
+<div class="grid grid-cols-[auto_minmax(200px,1fr)_minmax(150px,1fr)_minmax(120px,1fr)_minmax(150px,1fr)_minmax(100px,1fr)] gap-4 p-4 bg-surface-container-high border-b border-outline-variant/10 text-xs font-semibold text-on-surface-variant uppercase tracking-wider items-center">
+<div class="w-8 flex justify-center">
+<input class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant/50 text-primary-container focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div>Task / Lead</div>
+<div>Category</div>
+<div>Due Date</div>
+<div>AI Insight</div>
+<div class="text-right">Action</div>
+</div>
+<!-- Grid Body -->
+<div class="overflow-y-auto flex-1 p-2 space-y-1">
+<!-- Row 1: Overdue -->
+<div class="grid grid-cols-[auto_minmax(200px,1fr)_minmax(150px,1fr)_minmax(120px,1fr)_minmax(150px,1fr)_minmax(100px,1fr)] gap-4 p-2 md:p-3 bg-surface-container hover:bg-surface-bright rounded transition-colors items-center group relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-error rounded-r opacity-70"></div>
+<div class="w-8 flex justify-center">
+<input class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant/50 text-primary-container focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Follow up on Life Policy quote</span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">person</span>
+                                Sarah Jenkins
+                            </span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-container-highest text-on-surface">Quote Follow-up</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error shadow-[0_0_8px_rgba(255,180,171,0.5)]"></span>
+<span class="text-sm text-error">Yesterday, 4:00 PM</span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-tertiary-container/10 text-tertiary border border-tertiary/20">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+                                High Intent: Email Now
+                            </span>
+</div>
+<div class="text-right">
+<button class="text-primary-container hover:text-primary transition-colors text-sm font-medium px-3 py-1 rounded hover:bg-primary-container/10">Execute</button>
+</div>
+</div>
+<!-- Row 2: Selected -->
+<div class="grid grid-cols-[auto_minmax(200px,1fr)_minmax(150px,1fr)_minmax(120px,1fr)_minmax(150px,1fr)_minmax(100px,1fr)] gap-4 p-2 md:p-3 bg-surface-container-highest rounded transition-colors items-center relative border border-primary-container/30">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary-container rounded-r"></div>
+<div class="w-8 flex justify-center">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant/50 text-primary-container focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Annual Review Check-in</span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">person</span>
+                                Michael Chang
+                            </span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-container-low text-on-surface">Annual Review</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-on-surface">Today, 10:30 AM</span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium text-on-surface-variant">
+                                No insight available
+                            </span>
+</div>
+<div class="text-right flex items-center justify-end gap-1">
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-bright"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</div>
+</div>
+<!-- Row 3: Standard -->
+<div class="grid grid-cols-[auto_minmax(200px,1fr)_minmax(150px,1fr)_minmax(120px,1fr)_minmax(150px,1fr)_minmax(100px,1fr)] gap-4 p-2 md:p-3 bg-surface-container hover:bg-surface-bright rounded transition-colors items-center group">
+<div class="w-8 flex justify-center">
+<input class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant/50 text-primary-container focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Send Auto Insurance Renewal</span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">person</span>
+                                Emily Rodriguez
+                            </span>
+</div>
+<div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-container-highest text-on-surface">Renewal</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-on-surface">Today, 2:00 PM</span>
+</div>
+<div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-tertiary-container/10 text-tertiary border border-tertiary/20">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+                                Suggest Bundle
+                            </span>
+</div>
+<div class="text-right">
+<button class="text-primary-container hover:text-primary transition-colors text-sm font-medium px-3 py-1 rounded hover:bg-primary-container/10 opacity-0 group-hover:opacity-100">Execute</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

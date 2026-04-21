@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa CRM - Carrier Integration Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen overflow-x-hidden selection:bg-tertiary-container selection:text-on-tertiary-container">
+<!-- TopNavBar Context -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-[#131b2e]">
+<div class="flex items-center gap-8 lg:ml-64">
+<h1 class="text-xl font-bold text-[#dae2fd] tracking-[-0.02em]">RevRa AI</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Deals</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] transition-colors duration-200 scale-95 active:opacity-80 transition-all flex items-center justify-center h-10 w-10 rounded hover:bg-[#171f33]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] transition-colors duration-200 scale-95 active:opacity-80 transition-all flex items-center justify-center h-10 w-10 rounded hover:bg-[#171f33]">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+<button class="text-[#dae2fd]/60 hover:text-[#dae2fd] transition-colors duration-200 scale-95 active:opacity-80 transition-all flex items-center justify-center h-10 w-10 rounded hover:bg-[#171f33]">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/30 ml-2">
+<img alt="User profile avatar" class="h-full w-full object-cover" data-alt="close up professional headshot of a person with soft studio lighting against a dark gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaZT3OKfnMVoZXPHy8pTKbDBrUtJDz4zej5Vz4MDd2JNT4Q8aRDnKebVYKosgk3OtZHv8XSemYCCZxCMxdUj_AE9HKDumw2FdRGne7NZDfGpGDJLPp2CwS6OiZqbVZpA2933Oht-TGytsyk-dsNQZaHhWfI0H59eURWgE-zaf2KXDAgRpZd_tkLnU0WTZQYQZKMpoBwQ4L_VWdt_BowKxN36LVtYWlyZPsW8ICassJO73pmRHa22gAoL8x_jchdutZUpMtj7np4w"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Context -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 border-r border-[#434656]/15 w-64 z-40 bg-[#131b2e] dark:bg-[#131b2e] hidden lg:flex mt-16">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-gradient-to-br from-primary-container to-tertiary-container flex items-center justify-center shadow-[0_0_15px_rgba(45,91,255,0.3)]">
+<span class="material-symbols-outlined text-on-primary-container text-sm font-bold" data-icon="pulse">pulse_alert</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#dae2fd] leading-tight">RevRa CRM</h2>
+<p class="text-xs text-on-surface-variant font-label opacity-70">Intelligent Pulse</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container rounded flex items-center justify-center gap-2 py-2.5 font-label text-sm hover:brightness-110 transition-all shadow-[0_4px_20px_rgba(45,91,255,0.15)]">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                New Lead
+            </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1 overflow-y-auto px-2">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                Compliance
+            </a>
+<!-- Active State Navigation -->
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="hub">hub</span>
+                Integrations
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                Leads
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+                Gamification
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                Performance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+                Knowledge
+            </a>
+</nav>
+<div class="mt-auto px-2 border-t border-outline-variant/15 pt-4">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="webhook">webhook</span>
+                Webhooks
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+                API Keys
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-16 min-h-screen flex flex-col">
+<!-- Page Header & Sync Stats (Glassmorphic Bento) -->
+<div class="p-6 lg:p-8 bg-gradient-to-b from-surface-container-low to-surface pb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<h1 class="font-headline text-3xl font-bold tracking-[-0.02em] text-on-surface mb-2">Carrier Hub</h1>
+<p class="text-on-surface-variant font-body">Manage API integrations and secure data streams with insurance providers.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-lowest px-4 py-2 rounded border border-outline-variant/15">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(184,195,255,0.6)] animate-pulse"></div>
+<span class="font-label text-sm text-on-surface">Hub Status: Optimal Flow</span>
+</div>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Sync Volume Card -->
+<div class="bg-surface-variant/60 backdrop-blur-[20px] rounded border border-outline-variant/10 p-6 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative z-10">
+<p class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="sync">sync</span>
+                            Policies Synced
+                        </p>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline text-5xl font-bold tracking-[-0.02em] text-on-surface">1.2M</span>
+<span class="text-secondary text-sm font-medium flex items-center"><span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 14%</span>
+</div>
+<p class="text-xs text-outline mt-2">Last 30 Days Volumetric Data</p>
+</div>
+</div>
+<!-- API Health Card -->
+<div class="bg-surface-variant/60 backdrop-blur-[20px] rounded border border-outline-variant/10 p-6 flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="health_and_safety">health_and_safety</span>
+                            Avg Payload Success
+                        </p>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline text-5xl font-bold tracking-[-0.02em] text-on-surface">99.8<span class="text-3xl">%</span></span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded mt-4 overflow-hidden">
+<div class="bg-primary h-full w-[99.8%] rounded"></div>
+</div>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="bg-gradient-to-br from-surface-container to-surface-container-low rounded border border-tertiary/20 p-6 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-tertiary/10 rounded-full blur-[30px]"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-6 h-6 rounded bg-tertiary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-tertiary icon-fill" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="font-label text-xs uppercase tracking-widest text-tertiary font-bold">RevRa Intelligence</span>
+</div>
+<p class="text-sm font-body text-on-surface leading-relaxed mb-4">
+                            Data flow from <span class="font-semibold text-primary-fixed-dim">Aetna</span> is showing slight latency during peak hours. Consider batching syncs off-hours to optimize API quota.
+                        </p>
+<button class="mt-auto self-start text-xs font-label text-tertiary hover:text-tertiary-fixed-dim flex items-center gap-1 transition-colors">
+                            Apply Optimization <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Carrier Grid Section -->
+<div class="p-6 lg:p-8 flex-1 bg-surface">
+<!-- Controls -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded py-2.5 pl-10 pr-4 text-sm text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary-container focus:outline-none transition-shadow" placeholder="Search carriers or NPIs..." type="text"/>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1 rounded">
+<button class="px-3 py-1.5 text-xs font-label text-on-surface bg-surface-variant rounded shadow-sm">All</button>
+<button class="px-3 py-1.5 text-xs font-label text-on-surface-variant hover:text-on-surface transition-colors">Connected</button>
+<button class="px-3 py-1.5 text-xs font-label text-on-surface-variant hover:text-on-surface transition-colors">Errors</button>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Carrier Card: Aetna (Connected) -->
+<div class="bg-surface-container rounded p-5 flex flex-col gap-5 border border-outline-variant/10 hover:bg-surface-container-high transition-colors duration-300 relative group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-bright flex items-center justify-center font-headline font-bold text-lg text-primary shadow-inner">A</div>
+<div>
+<h3 class="font-headline font-semibold text-on-surface text-base">Aetna</h3>
+<p class="text-xs text-outline font-body">CVS Health Company</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1 rounded">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_rgba(184,195,255,0.8)]"></div>
+<span class="text-[10px] font-label text-on-surface-variant uppercase tracking-wider">Live</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 bg-surface-container-lowest/50 p-3 rounded">
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant font-body">Policy Sync</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-bright peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant font-body">Claims Data</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-bright peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-2 border-t border-outline-variant/10">
+<span class="text-xs text-outline font-label">Last sync: 2m ago</span>
+<button class="text-sm font-label text-on-surface hover:text-primary transition-colors flex items-center gap-1">
+                            Configure <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Carrier Card: Cigna (Connected) -->
+<div class="bg-surface-container rounded p-5 flex flex-col gap-5 border border-outline-variant/10 hover:bg-surface-container-high transition-colors duration-300 relative">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-bright flex items-center justify-center font-headline font-bold text-lg text-tertiary-fixed-dim shadow-inner">C</div>
+<div>
+<h3 class="font-headline font-semibold text-on-surface text-base">Cigna</h3>
+<p class="text-xs text-outline font-body">Global Health</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1 rounded">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_rgba(184,195,255,0.8)]"></div>
+<span class="text-[10px] font-label text-on-surface-variant uppercase tracking-wider">Live</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 bg-surface-container-lowest/50 p-3 rounded">
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant font-body">Policy Sync</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-bright peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-outline font-body">Claims Data</span>
+<label class="relative inline-flex items-center cursor-pointer opacity-50 cursor-not-allowed" title="Requires Plan Upgrade">
+<input class="sr-only peer" disabled="" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-bright peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface/50 after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
+</label>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-2 border-t border-outline-variant/10">
+<span class="text-xs text-outline font-label">Last sync: 15m ago</span>
+<button class="text-sm font-label text-on-surface hover:text-primary transition-colors flex items-center gap-1">
+                            Configure <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Carrier Card: Humana (Error/Action Required) -->
+<div class="bg-surface-container rounded p-5 flex flex-col gap-5 border border-error/30 hover:border-error/50 transition-colors duration-300 relative shadow-[0_0_15px_rgba(255,180,171,0.05)]">
+<div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-error to-transparent opacity-50"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-bright flex items-center justify-center font-headline font-bold text-lg text-on-surface shadow-inner">H</div>
+<div>
+<h3 class="font-headline font-semibold text-on-surface text-base">Humana</h3>
+<p class="text-xs text-outline font-body">Medicare Advantage</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-error-container/20 px-2 py-1 rounded border border-error/20">
+<div class="w-1.5 h-1.5 rounded-full bg-error shadow-[0_0_5px_rgba(255,180,171,0.8)] animate-pulse"></div>
+<span class="text-[10px] font-label text-error uppercase tracking-wider">Auth Failed</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 bg-surface-container-lowest/50 p-3 rounded">
+<p class="text-xs text-error font-body flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[14px] mt-0.5" data-icon="warning">warning</span>
+                            API Key rotation required. Token expired at 00:00 UTC.
+                        </p>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/10">
+<button class="w-full bg-surface-bright hover:bg-surface-variant text-on-surface text-sm font-label py-2 rounded transition-colors flex items-center justify-center gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[16px]" data-icon="key">key</span>
+                            Update Credentials
+                        </button>
+</div>
+</div>
+<!-- Carrier Card: UnitedHealthcare (Not Connected) -->
+<div class="bg-surface-container rounded p-5 flex flex-col gap-5 border border-outline-variant/10 hover:bg-surface-container-high transition-colors duration-300 relative opacity-80 hover:opacity-100">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center font-headline font-bold text-lg text-outline shadow-inner border border-outline-variant/20">U</div>
+<div>
+<h3 class="font-headline font-semibold text-on-surface text-base">UHC</h3>
+<p class="text-xs text-outline font-body">UnitedHealth Group</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1 rounded">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+<span class="text-[10px] font-label text-outline uppercase tracking-wider">Idle</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 flex-1 flex items-center justify-center py-4">
+<p class="text-xs text-outline font-body text-center px-4">Integrate UHC to pull member eligibility and active claims automatically.</p>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/10">
+<button class="w-full bg-primary-container hover:brightness-110 text-on-primary-container text-sm font-label py-2 rounded transition-all shadow-[0_4px_15px_rgba(45,91,255,0.1)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="cable">cable</span>
+                            Connect API
+                        </button>
+</div>
+</div>
+<!-- Carrier Card: Blue Cross (Not Connected) -->
+<div class="bg-surface-container rounded p-5 flex flex-col gap-5 border border-outline-variant/10 hover:bg-surface-container-high transition-colors duration-300 relative opacity-80 hover:opacity-100">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center font-headline font-bold text-lg text-outline shadow-inner border border-outline-variant/20">B</div>
+<div>
+<h3 class="font-headline font-semibold text-on-surface text-base">BCBS</h3>
+<p class="text-xs text-outline font-body">Blue Cross Blue Shield</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2 py-1 rounded">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+<span class="text-[10px] font-label text-outline uppercase tracking-wider">Idle</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 flex-1 flex items-center justify-center py-4">
+<p class="text-xs text-outline font-body text-center px-4">Connect via clearinghouse or direct carrier endpoint.</p>
+</div>
+<div class="mt-auto pt-2 border-t border-outline-variant/10">
+<button class="w-full bg-primary-container hover:brightness-110 text-on-primary-container text-sm font-label py-2 rounded transition-all shadow-[0_4px_15px_rgba(45,91,255,0.1)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="cable">cable</span>
+                            Connect API
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

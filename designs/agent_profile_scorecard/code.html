@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Profile - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#b8c3ff",
+                        "outline": "#8e90a2",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary-fixed": "#25005a",
+                        "error-container": "#93000a",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "primary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-error": "#690005",
+                        "surface-container-high": "#222a3d",
+                        "tertiary-container": "#8342f4",
+                        "inverse-on-surface": "#283044",
+                        "on-primary-container": "#efefff",
+                        "surface-container-low": "#131b2e",
+                        "inverse-primary": "#104af0",
+                        "on-background": "#dae2fd",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-secondary": "#162972",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary": "#3f008e",
+                        "surface-bright": "#31394d",
+                        "on-primary": "#002387",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "surface-container-lowest": "#060e20",
+                        "primary": "#b8c3ff",
+                        "surface-container": "#171f33",
+                        "surface": "#0b1326",
+                        "inverse-surface": "#dae2fd",
+                        "primary-container": "#2d5bff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "secondary-container": "#30418a",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "on-primary-fixed": "#001355",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-tertiary-container": "#f6ecff",
+                        "secondary-fixed": "#dde1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-surface'); }
+        .glass-panel { background-color: rgba(45, 52, 73, 0.6); backdrop-filter: blur(20px); }
+        .gradient-text { background: linear-gradient(to right, theme('colors.primary'), theme('colors.tertiary')); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background text-on-surface">
+<!-- SideNavBar (Suppressed on mobile, visible on desktop) -->
+<nav class="hidden md:flex flex-col h-screen p-4 space-y-2 docked left-0 w-64 bg-[#131b2e] border-r border-outline-variant/15 z-20 shrink-0">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-sm">auto_awesome</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#dae2fd]">RevRa AI</h1>
+<p class="text-xs text-on-surface-variant">The Intelligent Pulse</p>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">terminal</span>
+<span class="font-['Inter'] font-medium text-sm">Command Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">hub</span>
+<span class="font-['Inter'] font-medium text-sm">Lead Manager</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">auto_awesome_motion</span>
+<span class="font-['Inter'] font-medium text-sm">Templates</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT bg-[#2d3449] text-[#2d5bff] border-r-4 border-[#2d5bff] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-['Inter'] font-medium text-sm">Performance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+<span class="font-['Inter'] font-medium text-sm">Network</span>
+</a>
+</div>
+<div class="mt-auto space-y-4">
+<button class="w-full py-2.5 bg-tertiary-container text-on-tertiary-container rounded-DEFAULT font-medium text-sm hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                New AI Command
+            </button>
+<div class="pt-4 border-t border-outline-variant/15 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+<span class="font-['Inter'] font-medium text-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">account_circle</span>
+<span class="font-['Inter'] font-medium text-sm">Account</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden bg-background">
+<!-- TopNavBar (Visible everywhere) -->
+<header class="flex items-center justify-between px-6 h-16 w-full docked full-width top-0 bg-[#0b1326] shrink-0 z-10 border-b border-outline-variant/15 md:border-none md:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-xl font-bold tracking-tighter text-[#dae2fd] md:hidden">RevRa CRM</div>
+<!-- Search Bar -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-DEFAULT px-3 py-1.5 w-64 border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-0 w-full p-0" placeholder="Search insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-DEFAULT text-[#dae2fd]/60 hover:bg-[#2d3449] transition-colors active:scale-95 duration-150 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-background"></span>
+</button>
+<button class="p-2 rounded-DEFAULT text-tertiary hover:bg-[#2d3449] transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+<button class="p-2 rounded-DEFAULT text-[#dae2fd]/60 hover:bg-[#2d3449] transition-colors active:scale-95 duration-150 hidden sm:block">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-primary to-primary-container text-on-primary-container px-4 py-2 rounded-DEFAULT font-medium text-sm hover:brightness-110 active:scale-95 transition-all">
+                    Close Deal
+                </button>
+<div class="w-8 h-8 rounded-DEFAULT overflow-hidden bg-surface-container-high border border-outline-variant/15 ml-2 cursor-pointer hover:ring-2 hover:ring-primary-container transition-all">
+<img alt="Agent Profile" class="w-full h-full object-cover" data-alt="close up portrait of a male professional smiling slightly in a modern dark office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD39ewVEsoyG1QQ5vtu-qL6rUHyRS8B_Uj1v7uHH7721Zc9zL_czzINc-vEX8q1Y4e1Wyl2ux5aOUriYR5ZCOokUCbpVkROJCsK09fHEIQIuUFUcFfVbRBimKD87aXHqrg9ASzckI1EBAZNmE7W-JyoHfVhlziPkiMhb61qgSnOM7dMDDahgsiSEFaaoxd0F2IGaP-oGCFq3sbUNElZYOdvT1sN_P-XgsmH8uXY8LbzMqTgiR8Z6kQTIYn8FTY9Er9M-2R2oTAqRg"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 md:space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface mb-1">Agent Performance</h2>
+<p class="text-on-surface-variant text-sm">Your intelligent scorecard for Q3</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1.5 bg-surface-container-low rounded-DEFAULT text-xs font-medium text-tertiary flex items-center gap-1 border border-outline-variant/15">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                        Last 30 Days
+                    </div>
+<button class="px-3 py-1.5 bg-surface-container rounded-DEFAULT text-xs font-medium text-on-surface hover:bg-surface-bright transition-colors flex items-center gap-1 border border-outline-variant/15">
+<span class="material-symbols-outlined text-[14px]">download</span>
+                        Report
+                    </button>
+</div>
+</div>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+<!-- Hero Profile & Score (Spans 8 cols) -->
+<div class="md:col-span-8 bg-surface-container rounded-lg p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden group border border-outline-variant/15">
+<!-- Decor -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl group-hover:bg-primary-container/20 transition-all duration-700"></div>
+<div class="flex-shrink-0 relative">
+<div class="w-24 h-24 rounded-lg overflow-hidden border-2 border-surface bg-surface-container-lowest">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="close up portrait of a male professional smiling slightly in a modern dark office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbMUw9IwvSVt7uCog0LnwGUUBfDBeTPiflKX3PPy1ZkFMV8aO_3z82CybvvfhzFU0W0VglU02R80EiF7mPYOwrpbMouH2l2QeX-k6h6m6cIRc9JV_lLltUy8hYq1s4jvBbMdsytZjM2QpOQ3kGIB5rqhLMDXRcddG_L7k4-sAoAG5DE14ZmlVs1sWoM2NToibXwimoU-nsoBvhX68NdaGRRWZW_1MCjLXjyFl3Mb_-B-vRP9nlU58s-2fnUQRbqcCBFb__MeHNVw"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-1 rounded-DEFAULT border border-surface shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                            ELITE
+                        </div>
+</div>
+<div class="flex-1 flex flex-col justify-center relative z-10">
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-xl font-bold text-on-surface">Alex Mercer</h3>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Senior Deal Strategist</p>
+<div class="grid grid-cols-3 gap-4">
+<div>
+<p class="text-xs text-on-surface-variant mb-1 uppercase tracking-wider">Velocity Score</p>
+<p class="text-2xl font-bold tracking-tight text-on-surface flex items-baseline gap-1">
+                                    94 <span class="text-xs text-secondary-fixed-dim font-normal">/100</span>
+</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 uppercase tracking-wider">Win Rate</p>
+<p class="text-2xl font-bold tracking-tight text-primary flex items-center gap-1">
+                                    42% <span class="material-symbols-outlined text-xs text-emerald-400">trending_up</span>
+</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 uppercase tracking-wider">Quota</p>
+<p class="text-2xl font-bold tracking-tight text-on-surface">
+                                    115%
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Credits Widget (Spans 4 cols) -->
+<div class="md:col-span-4 bg-surface-container rounded-lg p-6 flex flex-col justify-between border border-outline-variant/15 relative overflow-hidden">
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-tertiary-container/10 rounded-full blur-2xl"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<h3 class="text-sm font-medium text-on-surface-variant uppercase tracking-wide">AI Engine</h3>
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-end gap-2 mb-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">8,402</span>
+<span class="text-sm text-on-surface-variant mb-1">credits used</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden mt-4">
+<div class="bg-gradient-to-r from-tertiary to-tertiary-container h-full rounded-full w-[84%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-xs text-on-surface-variant">
+<span>0</span>
+<span>10k Limit</span>
+</div>
+</div>
+</div>
+<!-- Stats at a Glance Row -->
+<div class="md:col-span-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+<!-- Calls Made -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/15 flex items-center gap-4">
+<div class="w-12 h-12 rounded-DEFAULT bg-surface-container flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider mb-1">Outbound Calls</p>
+<p class="text-xl font-bold text-on-surface">342 <span class="text-xs font-normal text-on-surface-variant ml-1">this month</span></p>
+</div>
+</div>
+<!-- Meetings Booked -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/15 flex items-center gap-4">
+<div class="w-12 h-12 rounded-DEFAULT bg-surface-container flex items-center justify-center text-secondary border border-outline-variant/10">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider mb-1">Meetings Booked</p>
+<p class="text-xl font-bold text-on-surface">48 <span class="text-xs font-normal text-on-surface-variant ml-1">this month</span></p>
+</div>
+</div>
+<!-- Pipeline Generated -->
+<div class="bg-surface-container-lowest rounded-lg p-5 border border-outline-variant/15 flex items-center gap-4">
+<div class="w-12 h-12 rounded-DEFAULT bg-surface-container flex items-center justify-center text-[#ffb4ab] border border-outline-variant/10">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider mb-1">Pipeline Gen</p>
+<p class="text-xl font-bold text-on-surface">$1.2M <span class="text-xs font-normal text-on-surface-variant ml-1">this month</span></p>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Coaching & Badges -->
+<!-- Coaching Corner (Spans 7 cols) -->
+<div class="md:col-span-7 bg-surface-container-low rounded-lg p-6 border border-outline-variant/15 flex flex-col">
+<div class="flex items-center gap-2 mb-6 border-b border-outline-variant/15 pb-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h3 class="text-sm font-semibold text-on-surface uppercase tracking-wide">AI Coaching Corner</h3>
+</div>
+<div class="space-y-4 flex-1">
+<!-- Tip 1 -->
+<div class="bg-surface-container rounded-DEFAULT p-4 flex gap-3 border-l-2 border-tertiary">
+<span class="material-symbols-outlined text-tertiary mt-0.5 text-[20px]">lightbulb</span>
+<div>
+<h4 class="text-sm font-medium text-on-surface mb-1">Objection Handling</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Your win rate drops 15% when price is mentioned early. Try deflecting price questions until value is fully established using the 'Value-First Script' template.</p>
+<button class="mt-2 text-xs font-medium text-tertiary hover:underline">View Recommended Script →</button>
+</div>
+</div>
+<!-- Tip 2 -->
+<div class="bg-surface-container rounded-DEFAULT p-4 flex gap-3 border-l-2 border-secondary-container">
+<span class="material-symbols-outlined text-secondary mt-0.5 text-[20px]">schedule</span>
+<div>
+<h4 class="text-sm font-medium text-on-surface mb-1">Follow-up Timing</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Deals untouched for &gt;4 days have a 60% chance of stalling. You currently have 3 high-value deals in this state.</p>
+<button class="mt-2 text-xs font-medium text-secondary hover:underline">Review Stalled Deals →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Achievement Badges (Spans 5 cols) -->
+<div class="md:col-span-5 bg-surface-container-low rounded-lg p-6 border border-outline-variant/15">
+<div class="flex items-center justify-between mb-6 border-b border-outline-variant/15 pb-4">
+<h3 class="text-sm font-semibold text-on-surface uppercase tracking-wide">Achievements</h3>
+<span class="text-xs text-on-surface-variant">4 unlocked</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Badge 1 -->
+<div class="bg-surface-container flex flex-col items-center text-center p-4 rounded-DEFAULT border border-outline-variant/10 hover:bg-surface-bright transition-colors cursor-default">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-2 shadow-[0_0_15px_rgba(45,91,255,0.2)]">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h4 class="text-xs font-bold text-on-surface mb-0.5">Top Closer</h4>
+<p class="text-[10px] text-on-surface-variant">Highest MRR in Aug</p>
+</div>
+<!-- Badge 2 -->
+<div class="bg-surface-container flex flex-col items-center text-center p-4 rounded-DEFAULT border border-outline-variant/10 hover:bg-surface-bright transition-colors cursor-default">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center mb-2 shadow-[0_0_15px_rgba(131,66,244,0.2)]">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<h4 class="text-xs font-bold text-on-surface mb-0.5">Velocity King</h4>
+<p class="text-[10px] text-on-surface-variant">Fastest Deal Cycle</p>
+</div>
+<!-- Badge 3 -->
+<div class="bg-surface-container flex flex-col items-center text-center p-4 rounded-DEFAULT border border-outline-variant/10 hover:bg-surface-bright transition-colors cursor-default">
+<div class="w-12 h-12 rounded-full bg-emerald-900/40 flex items-center justify-center mb-2 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+<span class="material-symbols-outlined text-emerald-400" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<h4 class="text-xs font-bold text-on-surface mb-0.5">Zero Churn</h4>
+<p class="text-[10px] text-on-surface-variant">100% Retention Q2</p>
+</div>
+<!-- Locked Badge -->
+<div class="bg-surface-container-lowest flex flex-col items-center text-center p-4 rounded-DEFAULT border border-dashed border-outline-variant/30 opacity-60">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<h4 class="text-xs font-bold text-outline mb-0.5">Millionaire Club</h4>
+<p class="text-[10px] text-outline">$1M Annual Quota</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom spacing for mobile nav if needed later -->
+<div class="h-8 md:hidden"></div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lead Management - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#222a3d",
+                        "tertiary-container": "#8342f4",
+                        "inverse-on-surface": "#283044",
+                        "inverse-primary": "#104af0",
+                        "on-primary-container": "#efefff",
+                        "surface-container-low": "#131b2e",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary": "#d2bbff",
+                        "on-background": "#dae2fd",
+                        "surface-tint": "#b8c3ff",
+                        "outline": "#8e90a2",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary-fixed": "#25005a",
+                        "error-container": "#93000a",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "primary-fixed": "#dde1ff",
+                        "primary-container": "#2d5bff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-container": "#171f33",
+                        "surface": "#0b1326",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-container": "#30418a",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "on-primary-fixed": "#001355",
+                        "on-tertiary-container": "#f6ecff",
+                        "secondary-fixed": "#dde1ff",
+                        "on-surface-variant": "#c4c5d9",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary": "#3f008e",
+                        "surface-bright": "#31394d",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-secondary": "#162972",
+                        "on-primary": "#002387",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "surface-container-lowest": "#060e20",
+                        "primary": "#b8c3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-screen w-64 z-50 bg-[#131b2e] dark:bg-[#131b2e] flex flex-col gap-y-2 p-4 border-r border-[#434656]/15">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-black text-lg">
+                R
+            </div>
+<div>
+<div class="text-lg font-black text-[#dae2fd] uppercase tracking-widest leading-none">RevRa</div>
+<div class="text-xs text-[#dae2fd] opacity-70 mt-1">Intelligent CRM</div>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-[#171f33] hover:text-white text-on-primary-container rounded-lg py-3 px-4 font-semibold text-sm mb-6 flex items-center justify-center gap-2 transition-transform scale-95 active:scale-100">
+<span class="material-symbols-outlined text-sm">add</span>
+            New Campaign
+        </button>
+<div class="flex-1 flex flex-col gap-1">
+<a class="bg-[#2d5bff]/10 text-[#2d5bff] rounded-lg font-semibold flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined text-[#2d5bff]">person_search</span>
+                Lead Management
+            </a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Emma AI Campaigns
+            </a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Performance Analytics
+            </a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">hub</span>
+                Technical Integrations
+            </a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Admin Settings
+            </a>
+</div>
+<div class="mt-auto pt-4 flex flex-col gap-1 border-t border-[#434656]/15">
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] hover:text-white rounded-lg flex items-center gap-3 px-4 py-3 text-sm font-medium tracking-normal scale-95 active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center w-full px-6 py-2 bg-[#0b1326] dark:bg-[#0b1326] full-width top-0 z-40 transition-all duration-300 ease-out">
+<div class="text-xl font-bold tracking-tighter text-[#dae2fd] font-inter antialiased">RevRa CRM</div>
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative bg-surface-container-low rounded-full px-4 py-1.5 flex items-center gap-2 border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none text-sm text-on-surface focus:ring-0 placeholder-on-surface-variant/50 w-48" placeholder="Search leads..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#dae2fd] opacity-60 hover:text-[#dae2fd] hover:bg-[#2d3449] p-2 rounded-full transition-all duration-300 ease-out flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#dae2fd] opacity-60 hover:text-[#dae2fd] hover:bg-[#2d3449] p-2 rounded-full transition-all duration-300 ease-out flex items-center justify-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-6 flex-1 flex flex-col gap-6">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-2xl font-bold text-on-surface tracking-tight mb-1">Lead Pool Operations</h1>
+<p class="text-sm text-on-surface-variant">Reassign, tag, and distribute incoming leads.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors border border-outline-variant/15">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                        Routing Rules
+                    </button>
+<button class="bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">group_add</span>
+                        Bulk Reassign
+                    </button>
+</div>
+</div>
+<!-- Top Grid: Stats & Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- AI Insights Card -->
+<div class="bg-surface-container rounded-xl p-5 border border-outline-variant/15 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/10 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">psychology</span>
+<span class="text-sm font-semibold text-tertiary tracking-wide uppercase">AI Recommendation</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="relative z-10">
+<p class="text-lg font-medium text-on-surface leading-tight mb-3">Rebalance Western Region.</p>
+<p class="text-sm text-on-surface-variant mb-4">Agent 'Sarah J.' is overloaded. Redistributing 12 'High Intent' leads to 'Mike T.' will optimize response times by 14%.</p>
+<button class="bg-tertiary-container hover:bg-tertiary text-on-tertiary-container px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors w-fit">
+                            Execute AI Rebalance
+                            <span class="material-symbols-outlined text-[14px]">bolt</span>
+</button>
+</div>
+</div>
+<!-- Distribution Chart (Simplified UI Representation) -->
+<div class="bg-surface-container rounded-xl p-5 border border-outline-variant/15 lg:col-span-2 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-semibold text-on-surface tracking-wide uppercase">Lead Quality Distribution</h3>
+<select class="bg-surface-container-low border border-outline-variant/15 text-sm rounded-lg px-2 py-1 text-on-surface focus:ring-primary focus:border-primary">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<div class="flex-1 flex items-end gap-2 mt-4 relative h-32">
+<!-- Chart Bars -->
+<div class="flex-1 bg-surface-container-low rounded-t-sm h-[80%] relative group">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">80%</div>
+</div>
+<div class="flex-1 bg-primary-container/40 rounded-t-sm h-[40%] relative group border-t-2 border-primary-container">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">40%</div>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-t-sm h-[60%] relative group">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">60%</div>
+</div>
+<div class="flex-1 bg-tertiary-container/60 rounded-t-sm h-[90%] relative group border-t-2 border-tertiary-container">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">90%</div>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-t-sm h-[30%] relative group">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">30%</div>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-t-sm h-[50%] relative group">
+<div class="absolute bottom-full mb-1 w-full text-center text-[10px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">50%</div>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-on-surface-variant uppercase tracking-wider">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+</div>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface-container-low rounded-xl flex flex-col flex-1 border border-outline-variant/15 overflow-hidden">
+<!-- Table Toolbar -->
+<div class="p-4 border-b border-outline-variant/15 flex justify-between items-center bg-surface-container-high/50">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<input class="rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm text-on-surface-variant font-medium">Select All (240)</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<div class="flex gap-2 opacity-50 pointer-events-none"> <!-- Disabled state until selection -->
+<button class="text-xs font-medium text-on-surface bg-surface-container hover:bg-surface-bright px-3 py-1.5 rounded flex items-center gap-1 border border-outline-variant/15">
+<span class="material-symbols-outlined text-[14px]">swap_horiz</span> Reassign
+                            </button>
+<button class="text-xs font-medium text-on-surface bg-surface-container hover:bg-surface-bright px-3 py-1.5 rounded flex items-center gap-1 border border-outline-variant/15">
+<span class="material-symbols-outlined text-[14px]">sell</span> Tag
+                            </button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-on-surface-variant text-[16px]">filter_list</span>
+<select class="bg-surface-container border border-outline-variant/15 text-xs rounded pl-8 pr-6 py-1.5 text-on-surface focus:ring-primary focus:border-primary appearance-none">
+<option>All Stages</option>
+<option>New</option>
+<option>Contacted</option>
+</select>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="text-xs text-on-surface-variant uppercase tracking-wider bg-surface-container-high/30">
+<tr>
+<th class="px-4 py-3 w-12 text-center" scope="col"></th>
+<th class="px-4 py-3 font-semibold" scope="col">Lead Name</th>
+<th class="px-4 py-3 font-semibold" scope="col">Company</th>
+<th class="px-4 py-3 font-semibold" scope="col">Current Agent</th>
+<th class="px-4 py-3 font-semibold" scope="col">Stage</th>
+<th class="px-4 py-3 font-semibold" scope="col">AI Score</th>
+<th class="px-4 py-3 font-semibold text-right" scope="col">Last Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-4 py-3 text-center">
+<input class="rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary text-[10px] font-bold flex items-center justify-center">JD</div>
+                                    John Doe
+                                </td>
+<td class="px-4 py-3 text-on-surface-variant">Acme Corp</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">person</span> Unassigned
+                                    </div>
+</td>
+<td class="px-4 py-3">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">New</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">92</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right text-xs text-on-surface-variant">2 mins ago</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-4 py-3 text-center">
+<input class="rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface text-[10px] font-bold flex items-center justify-center">AS</div>
+                                    Alice Smith
+                                </td>
+<td class="px-4 py-3 text-on-surface-variant">Globex Tech</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-bright overflow-hidden">
+<!-- Placeholder for avatar -->
+</div>
+<span class="text-sm">Sarah J.</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<span class="bg-surface-container-highest text-on-surface-variant border border-outline-variant/30 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">Contacted</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="font-bold">65</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right text-xs text-on-surface-variant">1 hr ago</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-4 py-3 text-center">
+<input class="rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-error-container/30 text-error text-[10px] font-bold flex items-center justify-center">BW</div>
+                                    Bob Wilson
+                                </td>
+<td class="px-4 py-3 text-on-surface-variant">Initech</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-bright overflow-hidden">
+<!-- Placeholder for avatar -->
+</div>
+<span class="text-sm text-error flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-error glow"></span>Mike T.</span>
+</div>
+</td>
+<td class="px-4 py-3">
+<span class="bg-surface-container-highest text-on-surface-variant border border-outline-variant/30 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">Nurture</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">star_outline</span>
+<span class="font-bold">41</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right text-xs text-on-surface-variant">Yesterday</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-4 py-3 text-center">
+<input class="rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary text-[10px] font-bold flex items-center justify-center">EJ</div>
+                                    Emma Jones
+                                </td>
+<td class="px-4 py-3 text-on-surface-variant">Soylent Corp</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">person</span> Unassigned
+                                    </div>
+</td>
+<td class="px-4 py-3">
+<span class="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">New</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">88</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right text-xs text-on-surface-variant">3 hrs ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-3 border-t border-outline-variant/15 flex justify-between items-center text-xs text-on-surface-variant bg-surface-container-low mt-auto">
+<span>Showing 1-4 of 240 leads</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-surface-bright text-on-surface-variant hover:text-on-surface disabled:opacity-50"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-bright text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa - Import History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2d5bff",
+                        "inverse-primary": "#104af0",
+                        "on-secondary-fixed": "#001355",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "background": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#d2bbff",
+                        "on-primary": "#002387",
+                        "surface-container": "#171f33",
+                        "primary": "#b8c3ff",
+                        "inverse-on-surface": "#283044",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-tertiary-fixed": "#25005a",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-surface-variant": "#c4c5d9",
+                        "surface-container-high": "#222a3d",
+                        "surface-bright": "#31394d",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed": "#eaddff",
+                        "on-tertiary": "#3f008e",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "on-primary-container": "#efefff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "outline": "#8e90a2",
+                        "tertiary-container": "#8342f4",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface": "#dae2fd",
+                        "on-background": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "secondary-container": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "error-container": "#93000a",
+                        "on-secondary": "#162972",
+                        "surface-tint": "#b8c3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-[#0b1326] flex justify-between items-center w-full px-6 py-3 h-16 z-50 fixed full-width top-0 border-none flat no shadows tonal-layering">
+<div class="flex items-center gap-4 w-64">
+<span class="text-2xl font-black tracking-tighter text-[#dae2fd]">RevRa</span>
+</div>
+<div class="flex-1 flex justify-start pl-6">
+<div class="relative w-96 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-xl">search</span>
+<input class="w-full bg-surface-container-low text-on-surface border-none rounded pl-10 pr-4 py-2 focus:ring-1 focus:ring-outline-variant/30 focus:bg-surface-container transition-all font-body text-sm placeholder:text-on-surface-variant/50" placeholder="Search across RevRa..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded flex items-center justify-center text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="w-10 h-10 rounded flex items-center justify-center text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 scale-95 active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)]"></span>
+</button>
+<button class="w-10 h-10 rounded flex items-center justify-center text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 scale-95 active:opacity-80 overflow-hidden ml-2">
+<img alt="Super Admin Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional businessman in a dark navy suit against a dark background, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUZv5B6t6fWB0M_SiT6Fvjw1AHcPy3UtqzIKcb743S_5bLc_WzHiT8JEZr3Hogjg1AWR214q6bFp7A0u7InrQewbZYAafDwz3ldX-RUCVM6ZuZBS-xl46K-x_72IlMKymnRVITV_vJ66lCYpjsTuQzrJQeQOFYTs0tEoKM8adwzc5xooRqEZJ1s3ec0ggPGhoKmFJAiEpDbE1aa5jmqDAlcceqBV-urSy9wJvp2Gm6c4L_YlfD8gFWSL14-t4ZaHcpJCX1tDbN8A"/>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 flex flex-col p-4 space-y-2 z-40 bg-[#131b2e] rounded-r-lg pt-20 flat no shadows font-['Inter'] font-medium text-sm">
+<div class="flex items-center gap-3 px-3 py-4 mb-4">
+<div class="w-10 h-10 rounded bg-gradient-to-br from-tertiary-container to-primary-container flex items-center justify-center shadow-[0_0_15px_rgba(131,66,244,0.3)]">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold tracking-tight">The Pulse</span>
+<span class="text-xs text-on-surface-variant">AI Performance Level</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 bg-[#171f33] text-[#2d5bff] rounded shadow-[0_0_15px_rgba(45,91,255,0.15)] Active: translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">history</span>
+<span>Import History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+<span>Billing &amp; Credits</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[20px]">loyalty</span>
+<span>Subscriptions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+<span>Global Settings</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col space-y-1 pt-4 border-t border-outline-variant/15">
+<button class="w-full py-2.5 px-4 bg-surface-container hover:bg-surface-bright text-on-surface rounded text-sm font-semibold transition-colors flex justify-center items-center gap-2">
+                Purchase Credits
+            </button>
+<div class="pt-2"></div>
+<a class="flex items-center gap-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[18px]">help</span>
+<span class="text-xs">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] transition-colors duration-300 rounded" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span class="text-xs">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 mt-16 p-8 flex flex-col lg:flex-row gap-8 items-start">
+<!-- Left Column: Data Canvas -->
+<div class="flex-1 flex flex-col w-full min-w-0">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-8 w-full">
+<div>
+<h1 class="text-3xl font-headline font-bold tracking-tight text-on-surface flex items-center gap-3">
+                        Lead Import History
+                    </h1>
+<p class="text-on-surface-variant mt-1 text-sm">Review past data ingests and AI mapping accuracy.</p>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-semibold px-5 py-2.5 rounded flex items-center gap-2 shadow-[0_4px_20px_rgba(45,91,255,0.2)] hover:shadow-[0_4px_25px_rgba(45,91,255,0.3)] transition-all hover:-translate-y-0.5 text-sm">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+                    Import New CSV
+                </button>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container rounded w-full overflow-hidden flex flex-col shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left whitespace-nowrap">
+<thead class="bg-surface-container-high text-xs font-headline tracking-[0.05em] text-on-surface-variant uppercase">
+<tr>
+<th class="px-6 py-4 font-medium first:pl-8">Date / Time</th>
+<th class="px-6 py-4 font-medium">File Name</th>
+<th class="px-6 py-4 font-medium">Agent</th>
+<th class="px-6 py-4 font-medium text-right">Total Rows</th>
+<th class="px-6 py-4 font-medium">Status</th>
+<th class="px-6 py-4 font-medium last:pr-8 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(210,187,255,0.8)]"></span>
+                                    AI Mapping Accuracy
+                                </th>
+</tr>
+</thead>
+<tbody class="text-sm font-body text-on-surface divide-y divide-transparent">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-pointer border-b border-surface">
+<td class="px-6 py-4 first:pl-8">
+<div class="flex flex-col">
+<span class="font-medium">Oct 24, 2023</span>
+<span class="text-xs text-on-surface-variant">09:14 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">csv</span>
+</div>
+<span class="font-medium text-primary hover:underline">q4_enterprise_leads_v2.csv</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img alt="Agent" class="w-6 h-6 rounded-full object-cover" data-alt="professional headshot of a smiling asian woman in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY4SZnrV4IoTrHJNTpRbc3Rpc4xikW9emrIN1QEuHm4iP8UZvtViuiBX48CHTRvxI0AFJYlkVRSawrEPjhSJaA3dCHeA49I81CXNhTSRgOCC0frwcb9RfIebrwyEIBLhRNhvQmTGzo1LxV0QUvZPMvG4Hj4cIDRjQW4RDtoIcEvSIwUxWBNBtZj4OH1wtFCwTy6VhgQ6qWkZs3Pw2crnLSvavVD4grNR4e6mS27Euf3iDKEwfPMJqZmHLIjDN9fRNIl8AjZGUKZQ"/>
+<span class="text-on-surface-variant">Sarah J.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-headline text-on-surface">12,450</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/20 text-secondary text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                        Success
+                                    </span>
+</td>
+<td class="px-6 py-4 last:pr-8">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden w-24">
+<div class="h-full bg-tertiary-container w-[98%]"></div>
+</div>
+<span class="text-tertiary font-semibold tracking-tight text-xs">98%</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-pointer border-b border-surface">
+<td class="px-6 py-4 first:pl-8">
+<div class="flex flex-col">
+<span class="font-medium">Oct 23, 2023</span>
+<span class="text-xs text-on-surface-variant">14:30 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">csv</span>
+</div>
+<span class="font-medium text-primary hover:underline">inbound_web_oct.csv</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[10px] font-bold">API</div>
+<span class="text-on-surface-variant">System</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-headline text-on-surface">3,205</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-highest text-error text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Partial (84 fails)
+                                    </span>
+</td>
+<td class="px-6 py-4 last:pr-8">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden w-24">
+<div class="h-full bg-tertiary-container w-[82%]"></div>
+</div>
+<span class="text-tertiary font-semibold tracking-tight text-xs">82%</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-pointer border-b border-surface">
+<td class="px-6 py-4 first:pl-8">
+<div class="flex flex-col">
+<span class="font-medium">Oct 21, 2023</span>
+<span class="text-xs text-on-surface-variant">08:05 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">csv</span>
+</div>
+<span class="font-medium text-primary hover:underline">legacy_system_dump_final.csv</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img alt="Agent" class="w-6 h-6 rounded-full object-cover" data-alt="professional headshot of a smiling man with short hair wearing a dark shirt in a well-lit studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjnBbwwzKLiH4E2YIQMxh6_v9dn0zJ_tY45zOxOlrQvUN53I3xHxEu5smbCKKjTaGoBeLyY8ghQOFzm9dPx5RrvGU-LYZEDd6noYiSvU2Lj6-SuaJc8WU99Hcc0RPs_FIYuO1ewd_hKK7BAJ8qHBfMOnTvyhwEPg-TmR3T4ce7dqUhKdCuQKuT6uTo8JQfKEBf9Pi0m-CQmQzxGaETrvB-mcJBmjM0Quo42T_NJqrg5QLGQa7fyKnNh-_5VqlZISqWI3ksNaxNqA"/>
+<span class="text-on-surface-variant">Marcus T.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-headline text-on-surface">45,112</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/20 text-secondary text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                        Success
+                                    </span>
+</td>
+<td class="px-6 py-4 last:pr-8">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden w-24">
+<div class="h-full bg-tertiary-container w-[99%]"></div>
+</div>
+<span class="text-tertiary font-semibold tracking-tight text-xs">99.4%</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group cursor-pointer border-b border-surface">
+<td class="px-6 py-4 first:pl-8">
+<div class="flex flex-col">
+<span class="font-medium">Oct 19, 2023</span>
+<span class="text-xs text-on-surface-variant">16:45 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-lowest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">csv</span>
+</div>
+<span class="font-medium text-primary hover:underline">event_attendees_ny.csv</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img alt="Agent" class="w-6 h-6 rounded-full object-cover" data-alt="professional headshot of a smiling asian woman in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxvScQZTACUBUW7i4PcEL0tlOUKLmuFYX_xwyORMJc6cLVY1J5Qm3RliJvAoYkTxVTDmbk70KhOzZKJS4rBMfWPKfIhBWcoS664pnqEBa2xXnC7nC5TitaVoqiP4rzG9bSrCwGqWrFdTXynxHNjoRbPzDdRXlGWGQCZG6DxuV8e5u687wKpsQBfv_eelbBS8czIOt7jojgIZVdlHdecEQxfonF3msIGhEK4UMlUj_HphYOGaRQJRfsnsCoTiuKn59LvP5CVivr3g"/>
+<span class="text-on-surface-variant">Sarah J.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-headline text-on-surface">845</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-error/10 text-error text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                        Failed
+                                    </span>
+</td>
+<td class="px-6 py-4 last:pr-8">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden w-24">
+<div class="h-full bg-error w-[12%]"></div>
+</div>
+<span class="text-error font-semibold tracking-tight text-xs">12%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-surface-container-lowest flex justify-between items-center text-xs text-on-surface-variant font-medium">
+<span>Showing 1 to 4 of 42 imports</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container text-on-surface flex items-center justify-center hover:bg-surface-bright transition-colors">1</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container transition-colors">2</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container transition-colors">3</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Contextual Sidebar (Health Stats) -->
+<aside class="w-full lg:w-80 flex flex-col gap-6 shrink-0 mt-20 lg:mt-0">
+<!-- Health Overview Card -->
+<div class="bg-surface-container rounded p-6 shadow-[0_8px_30px_rgba(0,0,0,0.12)] relative overflow-hidden">
+<!-- Subtle Gradient Glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container opacity-20 blur-3xl rounded-full pointer-events-none"></div>
+<h2 class="text-title-lg font-headline font-semibold text-on-surface mb-6">Import Health</h2>
+<div class="flex flex-col gap-1 mb-8">
+<span class="text-sm text-on-surface-variant font-medium">Total Leads Ingested (MTD)</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline tracking-[-0.02em] text-on-surface font-bold">142.8k</span>
+<span class="text-xs text-secondary font-medium flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded p-4 flex flex-col gap-3 relative">
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant font-medium uppercase tracking-widest">AI Diagnostics</span>
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(210,187,255,0.8)] animate-pulse"></span>
+</div>
+<div class="text-sm font-medium text-on-surface">
+                        RevRa AI suggests updating standard headers to reduce mapping errors by 14%.
+                    </div>
+<button class="text-tertiary text-xs font-semibold hover:text-tertiary-fixed-dim transition-colors text-left mt-1 w-fit">
+                        View Suggested Mappings →
+                    </button>
+</div>
+</div>
+<!-- Common Errors Card -->
+<div class="bg-surface-container rounded p-6 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+<h3 class="text-sm font-headline font-semibold text-on-surface mb-4">Most Common Mapping Errors</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">title</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Job Title Formatting</span>
+<span class="text-xs text-on-surface-variant">"CEO" vs "Chief Executive Officer"</span>
+</div>
+</div>
+<span class="text-xs font-headline font-semibold text-error bg-error/10 px-2 py-0.5 rounded">42 incidents</span>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-surface">Region Mismatch</span>
+<span class="text-xs text-on-surface-variant">Null values in 'State' column</span>
+</div>
+</div>
+<span class="text-xs font-headline font-semibold text-error bg-error/10 px-2 py-0.5 rounded">18 incidents</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

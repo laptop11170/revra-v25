@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Audit Logs - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "primary-fixed": "#dde1ff",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "primary": "#b8c3ff",
+                        "on-primary-fixed": "#001355",
+                        "inverse-on-surface": "#283044",
+                        "on-surface": "#dae2fd",
+                        "surface": "#0b1326",
+                        "on-tertiary-fixed": "#25005a",
+                        "secondary-fixed": "#dde1ff",
+                        "secondary-container": "#30418a",
+                        "on-primary-container": "#efefff",
+                        "surface-container": "#171f33",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#3f008e",
+                        "tertiary": "#d2bbff",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container-highest": "#2d3449",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-secondary": "#162972",
+                        "outline": "#8e90a2",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-background": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-variant": "#2d3449",
+                        "secondary": "#b8c3ff",
+                        "surface-container-lowest": "#060e20",
+                        "surface-container-high": "#222a3d",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "background": "#0b1326",
+                        "on-primary": "#002387",
+                        "inverse-primary": "#104af0",
+                        "on-surface-variant": "#c4c5d9",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary-container": "#8342f4",
+                        "primary-container": "#2d5bff",
+                        "on-secondary-container": "#a1b1ff",
+                        "error-container": "#93000a",
+                        "surface-bright": "#31394d",
+                        "surface-dim": "#0b1326",
+                        "on-error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); font-family: theme('fontFamily.body'); }
+        .glass-panel { background: rgba(45, 52, 73, 0.6); backdrop-filter: blur(20px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Responsive for Mobile) -->
+<header class="md:hidden flex justify-between items-center w-full px-6 py-3 bg-[#131b2e] dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 z-50 border-none flat no shadows">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tighter text-[#dae2fd]">RevRa CRM</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> AI: Optimal
+            </span>
+<button class="hover:bg-[#2d3449] transition-colors duration-200 p-2 rounded-full text-[#dae2fd]/70 scale-95 active:opacity-80 transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:bg-[#2d3449] transition-colors duration-200 p-2 rounded-full text-[#dae2fd]/70 scale-95 active:opacity-80 transition-all"><span class="material-symbols-outlined">settings</span></button>
+<img alt="Agent Avatar" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" data-alt="Professional portrait of a confident male executive in a dark suit against a blurred office background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA2QFRBhQFS7y4f0mdBEB9dvBJP-9WLziWvSXwIu93M4W5o4vKVf_WKjSkduV4I6dHQM-qyRWk2GFq6p33ubXxLPoJ2waU_VTrXy7kBBsWaBCziIEnHQAOdjf7B_mP82hyrWwy4YQsnDTwjTcXQ_6cwh8kXGYBtpZVBCFRFPMAUBrqlKu8uGqKr-Ln0dyRV57t11bZoB_68n3nh_iA48oMx3ssXgjXwo7QR-ix59ofkvDIAxX04SJBhjwy-ZplexKgoaBDm88R2g"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen left-0 w-64 bg-[#0b1326] dark:bg-slate-950 py-6 z-40 border-none flat no shadows shrink-0 border-r border-outline-variant/15">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary-container flex items-center justify-center shadow-[0_0_15px_rgba(45,91,255,0.3)]">
+<span class="material-symbols-outlined text-on-primary-container text-xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#dae2fd] tracking-tight">RevRa</h1>
+<p class="text-[10px] text-tertiary uppercase tracking-widest font-semibold">Intelligence CRM</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-inter text-sm font-semibold py-2.5 rounded-DEFAULT flex items-center justify-center gap-2 hover:bg-[#2d5bff]/90 transition-all duration-200 shadow-[0_4px_12px_rgba(45,91,255,0.2)]">
+<span class="material-symbols-outlined text-lg">add</span> New Lead
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">person_search</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Leads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">verified_user</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Policies</span>
+</a>
+<!-- System Logs conceptually falls under Analytics/System context, highligting Analytics as active as nearest match -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT bg-[#171f33] text-[#b8c3ff] border-r-2 border-[#2d5bff] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">payments</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Commissions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform text-tertiary">auto_awesome</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold text-tertiary">AI Workbench</span>
+</a>
+</div>
+<div class="px-3 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">help</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">logout</span>
+<span class="font-inter text-xs uppercase tracking-widest font-semibold">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden pt-16 md:pt-0 bg-surface">
+<!-- Top App Bar (Desktop Context) -->
+<div class="hidden md:flex justify-between items-center px-8 py-4 bg-surface-container-low border-b border-outline-variant/15 shrink-0">
+<div>
+<h2 class="text-xl font-bold tracking-tight text-on-surface">System Audit Logs</h2>
+<p class="text-sm text-on-surface-variant mt-0.5">Deep-level technical diagnostics and tracing.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant/30 text-sm text-on-surface placeholder:text-on-surface-variant/50 rounded-DEFAULT pl-9 pr-4 py-1.5 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container w-64 transition-all font-mono text-xs" placeholder="Search Trace IDs or Keywords..." type="text"/>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest rounded-DEFAULT p-1 border border-outline-variant/30">
+<button class="px-3 py-1 text-xs font-medium rounded bg-surface-container-high text-on-surface shadow-sm">Live</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-on-surface-variant hover:text-on-surface transition-colors">15m</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-on-surface-variant hover:text-on-surface transition-colors">1h</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
+<!-- Latency Graph & Quick Stats -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-4 shrink-0">
+<div class="lg:col-span-3 bg-surface-container p-5 rounded-lg border border-outline-variant/15 flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<h3 class="text-sm font-semibold text-on-surface uppercase tracking-wider">API Response Latency</h3>
+<p class="text-xs text-on-surface-variant mt-1">p99 across all external providers</p>
+</div>
+<div class="flex items-center gap-2 text-xs font-mono">
+<span class="flex items-center gap-1 text-tertiary"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Meta: 142ms</span>
+<span class="flex items-center gap-1 text-primary-container"><span class="w-2 h-2 rounded-full bg-primary-container"></span> Twilio: 89ms</span>
+</div>
+</div>
+<!-- Faux Graph Area -->
+<div class="h-24 w-full flex items-end gap-1 relative z-10 opacity-80">
+<!-- Simulated bars -->
+<div class="w-full h-full bg-gradient-to-t from-primary-container/20 to-transparent absolute bottom-0 left-0"></div>
+<div class="flex-1 h-[40%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[35%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[55%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[80%] bg-surface-container-high rounded-t-sm border-t border-error/70"></div>
+<div class="flex-1 h-[45%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[60%] bg-surface-container-high rounded-t-sm border-t border-tertiary/70"></div>
+<div class="flex-1 h-[30%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[40%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+<div class="flex-1 h-[75%] bg-surface-container-high rounded-t-sm border-t border-tertiary/70"></div>
+<div class="flex-1 h-[50%] bg-surface-container-high rounded-t-sm border-t border-primary-container/50"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/15 flex flex-col justify-center">
+<h3 class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">Error Rate (1h)</h3>
+<div class="text-3xl font-bold text-on-surface tracking-tight mb-1">0.42%</div>
+<div class="flex items-center text-xs text-error gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +0.1% vs prev hour
+                    </div>
+<div class="mt-4 pt-4 border-t border-outline-variant/15 flex justify-between items-center text-xs font-mono">
+<span class="text-on-surface-variant">Active Traces</span>
+<span class="text-primary">1,204</span>
+</div>
+</div>
+</div>
+<!-- Filters & Log Table -->
+<div class="bg-surface-container-low rounded-lg border border-outline-variant/15 flex flex-col flex-1 overflow-hidden">
+<!-- Filters Bar -->
+<div class="p-4 border-b border-outline-variant/15 flex flex-wrap gap-4 items-center bg-surface-container-high/50">
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Level:</span>
+<select class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface rounded py-1 pl-2 pr-6 focus:ring-1 focus:ring-primary-container focus:border-primary-container font-mono">
+<option>All Levels</option>
+<option class="text-error">Error</option>
+<option class="text-[#f59e0b]">Warning</option>
+<option class="text-primary">Info</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Provider:</span>
+<select class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface rounded py-1 pl-2 pr-6 focus:ring-1 focus:ring-primary-container focus:border-primary-container font-mono">
+<option>All Providers</option>
+<option>Twilio</option>
+<option>Meta</option>
+<option>Emma</option>
+<option>System</option>
+</select>
+</div>
+<div class="flex items-center gap-2 ml-auto">
+<button class="text-xs flex items-center gap-1 text-on-surface hover:text-primary transition-colors px-2 py-1 rounded bg-surface-container border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px]">download</span> Export CSV
+                        </button>
+</div>
+</div>
+<!-- Log Data Density -->
+<div class="flex-1 overflow-y-auto font-mono text-[11px] leading-tight bg-[#060e20]">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-high border-b border-outline-variant/20 shadow-sm z-10 text-xs text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="py-2 px-4 font-medium">Timestamp</th>
+<th class="py-2 px-4 font-medium">Level</th>
+<th class="py-2 px-4 font-medium">Provider</th>
+<th class="py-2 px-4 font-medium">Trace ID</th>
+<th class="py-2 px-4 font-medium w-1/2">Message / Payload</th>
+<th class="py-2 px-4 font-medium text-right">Duration</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 text-on-surface/90">
+<!-- Error Row -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-error/5">
+<td class="py-2 px-4 text-on-surface-variant">2023-10-27T14:32:01.102Z</td>
+<td class="py-2 px-4"><span class="px-1.5 py-0.5 rounded-sm bg-error/20 text-error border border-error/30 uppercase text-[10px] font-bold">Error</span></td>
+<td class="py-2 px-4 text-primary-fixed-dim">Twilio</td>
+<td class="py-2 px-4 text-on-surface-variant">req_9A8B7C6D</td>
+<td class="py-2 px-4 truncate max-w-md">Failed to dispatch SMS. Webhook timeout after 5000ms. Code: 20001</td>
+<td class="py-2 px-4 text-right text-error">5012ms</td>
+</tr>
+<!-- Warning Row -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4 text-on-surface-variant">2023-10-27T14:31:45.991Z</td>
+<td class="py-2 px-4"><span class="px-1.5 py-0.5 rounded-sm bg-[#f59e0b]/20 text-[#fbbf24] border border-[#f59e0b]/30 uppercase text-[10px] font-bold">Warn</span></td>
+<td class="py-2 px-4 text-tertiary">Meta</td>
+<td class="py-2 px-4 text-on-surface-variant">req_3F2E1D0C</td>
+<td class="py-2 px-4 truncate max-w-md">Rate limit approaching for endpoint /v17.0/messages. Remaining: 42</td>
+<td class="py-2 px-4 text-right">142ms</td>
+</tr>
+<!-- Info Rows -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4 text-on-surface-variant">2023-10-27T14:31:12.004Z</td>
+<td class="py-2 px-4"><span class="px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 uppercase text-[10px] font-bold">Info</span></td>
+<td class="py-2 px-4 text-on-surface">System</td>
+<td class="py-2 px-4 text-on-surface-variant">sys_auth_token_refresh</td>
+<td class="py-2 px-4 truncate max-w-md">Cron job executed: JWT token rotation completed successfully.</td>
+<td class="py-2 px-4 text-right">45ms</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4 text-on-surface-variant">2023-10-27T14:30:05.551Z</td>
+<td class="py-2 px-4"><span class="px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 uppercase text-[10px] font-bold">Info</span></td>
+<td class="py-2 px-4 text-secondary-fixed">Emma</td>
+<td class="py-2 px-4 text-on-surface-variant">req_1A2B3C4D</td>
+<td class="py-2 px-4 truncate max-w-md">Contact sync initiated for batch id 89912. Total records: 250</td>
+<td class="py-2 px-4 text-right">890ms</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4 text-on-surface-variant">2023-10-27T14:29:45.112Z</td>
+<td class="py-2 px-4"><span class="px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary border border-primary/20 uppercase text-[10px] font-bold">Info</span></td>
+<td class="py-2 px-4 text-primary-fixed-dim">Twilio</td>
+<td class="py-2 px-4 text-on-surface-variant">req_7H6G5F4E</td>
+<td class="py-2 px-4 truncate max-w-md">Incoming webhook: StatusCallback event='delivered' To='+15550198'</td>
+<td class="py-2 px-4 text-right">32ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>

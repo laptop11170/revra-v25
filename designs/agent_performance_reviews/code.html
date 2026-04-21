@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Performance Review - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container h-screen overflow-hidden flex">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full flex flex-col py-6 border-r border-outline-variant/15 bg-surface-container-low z-50 w-64">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-[0_0_12px_rgba(45,91,255,0.4)]">
+<img alt="RevRa Intelligence Logo" class="w-5 h-5 object-cover opacity-90 rounded-sm" data-alt="Abstract geometric glowing pulse icon representing artificial intelligence on a deep blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCymxZvYVkLype41Lm0M1WlGjL0jX28h8fJs6qGvV2Y0erhxAwsV7aybzMR3px0pJUm0nYQvnj4W7Iv9tDo0FOkzGx-OvjIw2CSY7ryCUG1vYBNk6iDR2VclYHs_tAVzHiC8gQsyXOeroavMWfCNH3UjjBYYgax9WwaDYuQy-KLfRn9xXH4-2lE6uol2nuoFOFMHNGfUjwW1WkJv0Jtny2FiN48swWwZYW7msuXZRjkUuJ0VjtTlgycJ2CID2PeVd_BTpfBgWXAEg"/>
+</div>
+<div>
+<h2 class="text-lg font-black text-on-surface tracking-[-0.02em] leading-tight">RevRa CRM</h2>
+<p class="text-[10px] uppercase font-bold text-tertiary tracking-widest mt-0.5">Intelligent Pulse</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-label text-sm font-medium py-2.5 rounded-lg hover:bg-inverse-primary transition-colors duration-200 flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">add</span>
+                New Lead
+            </button>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto px-2 space-y-1">
+<!-- Inactive -->
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="gavel">gavel</span>
+                Compliance
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
+                Integrations
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+                Leads
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="emoji_events">emoji_events</span>
+                Gamification
+            </a>
+<!-- Active: Performance -->
+<a class="bg-surface-container-highest text-primary rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out relative" href="#">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+<span class="material-symbols-outlined text-[20px]" data-icon="monitoring" data-weight="fill" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+                Performance
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="library_books">library_books</span>
+                Knowledge
+            </a>
+</div>
+<!-- Footer Navigation -->
+<div class="px-2 pt-4 mt-4 border-t border-outline-variant/15 space-y-1">
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="webhook">webhook</span>
+                Webhooks
+            </a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg px-4 py-3 flex items-center gap-3 font-label text-sm font-medium transition-all duration-300 ease-in-out hover:text-on-surface" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="key">key</span>
+                API Keys
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas (Right of SideNav) -->
+<div class="flex-1 ml-64 flex flex-col h-full overflow-hidden relative">
+<!-- TopNavBar Component (Embedded within the main area to respect layout) -->
+<header class="w-full z-40 flex items-center justify-between px-8 h-16 bg-surface-container-low shrink-0 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-6">
+<!-- Text Links (Hidden on small screens based on rule, but we are desktop primarily here) -->
+<nav class="hidden md:flex gap-6 font-label text-sm tracking-tight text-on-surface">
+<a class="text-on-surface/60 hover:text-on-surface transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface/60 hover:text-on-surface transition-colors duration-200" href="#">Deals</a>
+<a class="text-on-surface/60 hover:text-on-surface transition-colors duration-200" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-on-surface/60 hover:text-on-surface hover:bg-surface-container transition-colors duration-200 relative scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)]"></span>
+</button>
+<button class="p-2 rounded-full text-tertiary hover:text-tertiary-fixed-dim hover:bg-surface-container transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+<button class="p-2 rounded-full text-on-surface/60 hover:text-on-surface hover:bg-surface-container transition-colors duration-200 scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-px h-6 bg-outline-variant/30 mx-2"></div>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant/30 cursor-pointer hover:opacity-80 transition-opacity" data-alt="Professional headshot of a confident manager in a tailored navy suit against a soft grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgDK72jUKUraOvpuCgrpZbT689G1Vle1y1haYRu_rRZ-zmvN5c00WL6b7y25XfMCVKqP0ck-AsiaBFpizMjn9VfsU3jYXWVa1udNAh72EOpQVxlV9ggR_Nun-H5St__oWAsvCTawERp4wDp7FBR_tKtbUCeJvi1wcB1fsLpCT8emm-84aUM5rkPU0-gsKY7xN6U2G_X4R7j0saJtYRyQL9SrVte2zd-D01RtzNd-zCkN378xbN2KnXf-Mi8oo5Y1ZqqqaxTTtehA"/>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<main class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- 1:1 Header -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 bg-surface-container-low p-6 rounded-lg">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-tertiary-container/20 text-tertiary px-2.5 py-1 rounded text-xs font-label font-bold tracking-wide uppercase border border-tertiary/20 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_6px_rgba(210,187,255,0.8)]"></span>
+                                Live Coaching
+                            </span>
+<span class="text-sm text-on-surface-variant font-label">Q3 Review Cycle</span>
+</div>
+<h1 class="text-3xl font-headline font-extrabold tracking-[-0.02em] text-on-surface">Agent Performance Review</h1>
+</div>
+<!-- Agent Target Chip -->
+<div class="flex items-center gap-4 bg-surface px-5 py-3 rounded-lg border border-outline-variant/15 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+<img alt="Agent Avatar" class="w-12 h-12 rounded-full border-2 border-surface-container-low" data-alt="Professional headshot of a young female sales representative smiling slightly against a modern office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6z6pOV5SEMpfy9q248cyPoAU_3bEzoP2EYMeWC3Gd6UvGW_fc8Jeb3Kl5JfxHfNK-kG4oa6M0PsGWsgjBjwImU8XSWX0UmFjurxNOm8llEKbDS5oQD9frk_YbeAbc1raecjgEgsz6WLGPm1SKTfgHFq_xmUhb3vSC1GndHuM-VwVECEV311tbOM85vORaV0NcsFnS2xUwt-Ar2FwbRxVGRd_3Zsdxk3OU7lIpjIhB7c8G1gGs3nqZaMn7l7FP5ZTZi6c4GYxgwA"/>
+<div>
+<h3 class="font-headline text-base font-bold text-on-surface leading-tight">Sarah Jenkins</h3>
+<p class="text-sm text-on-surface-variant">Enterprise Account Executive</p>
+</div>
+<div class="ml-4 flex flex-col items-end border-l border-outline-variant/30 pl-4">
+<span class="text-xs text-on-surface-variant mb-0.5">Quota Attainment</span>
+<span class="text-lg font-headline font-bold text-primary">112%</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Trends Charting (Col Span 8) -->
+<section class="md:col-span-8 bg-surface-container rounded-lg p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-lg font-headline font-bold text-on-surface">30-Day Performance Trends</h2>
+<button class="text-sm text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 font-label">
+                                Export Data <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-low rounded-lg p-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="text-sm text-on-surface-variant font-label mb-1">Close Rate</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-on-surface tracking-tight">28.4%</span>
+<span class="text-xs font-medium text-secondary flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 3.2%</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="text-sm text-on-surface-variant font-label mb-1">Avg Call Duration</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-on-surface tracking-tight">6m 12s</span>
+<span class="text-xs font-medium text-outline flex items-center"><span class="material-symbols-outlined text-[14px]">horizontal_rule</span> 0%</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 relative overflow-hidden group border border-tertiary/20">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent opacity-50"></div>
+<div class="text-sm text-on-surface-variant font-label mb-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-tertiary">psychology</span> AI Sentiment
+                                </div>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-headline font-bold text-tertiary tracking-tight">Highly Empathetic</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 mt-3 rounded-full overflow-hidden">
+<div class="bg-tertiary w-[85%] h-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Abstract Bar Chart Representation -->
+<div class="flex-1 mt-auto bg-surface-container-low rounded-lg p-4 flex items-end justify-between h-48 gap-2">
+<!-- Bars simulating trend data -->
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[40%] hover:bg-primary/40 transition-colors relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">W1</div></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[55%] hover:bg-primary/40 transition-colors"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[35%] hover:bg-primary/40 transition-colors"></div>
+<div class="w-full bg-primary/30 rounded-t-sm h-[70%] hover:bg-primary/50 transition-colors border-t-2 border-primary relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">W2</div></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[45%] hover:bg-primary/40 transition-colors"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[60%] hover:bg-primary/40 transition-colors"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[50%] hover:bg-primary/40 transition-colors relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">W3</div></div>
+<div class="w-full bg-tertiary/40 rounded-t-sm h-[85%] hover:bg-tertiary/60 transition-colors border-t-2 border-tertiary relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none z-10">
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded mb-1">Peak AI Score</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[65%] hover:bg-primary/40 transition-colors"></div>
+<div class="w-full bg-surface-container-highest rounded-t-sm h-[75%] hover:bg-primary/40 transition-colors relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">W4</div></div>
+</div>
+</section>
+<!-- Coaching Moments Feed (Col Span 4) -->
+<section class="md:col-span-4 bg-surface-container-low rounded-lg p-1 flex flex-col">
+<div class="p-5 pb-3 flex justify-between items-center sticky top-0 bg-surface-container-low/95 backdrop-blur z-10 rounded-t-lg">
+<h2 class="text-base font-headline font-bold text-on-surface">Coaching Moments</h2>
+<span class="bg-surface-container px-2 py-1 rounded text-xs font-medium text-on-surface-variant">Recent</span>
+</div>
+<div class="flex-1 overflow-y-auto px-5 pb-5 space-y-4">
+<!-- Feed Item 1: Needs Work -->
+<div class="bg-surface-container rounded-lg p-4 hover:bg-surface-container-highest transition-colors group">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[18px] text-error">warning</span>
+<span class="text-xs font-bold uppercase tracking-wider text-error">Discovery Gap</span>
+<span class="text-[10px] text-on-surface-variant ml-auto">2 days ago</span>
+</div>
+<p class="text-sm text-on-surface mb-3 leading-relaxed">Missed key qualification questions regarding budget timelines during the Acme Corp initial call.</p>
+<button class="text-xs font-label text-primary group-hover:text-primary-fixed-dim transition-colors flex items-center gap-1">Review Call Recording <span class="material-symbols-outlined text-[14px]">play_circle</span></button>
+</div>
+<!-- Feed Item 2: AI Insight (Royal Purple) -->
+<div class="bg-surface-container rounded-lg p-4 border border-tertiary/15 hover:bg-surface-container-highest transition-colors relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary"></div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-wider text-tertiary">AI Insight</span>
+<span class="text-[10px] text-on-surface-variant ml-auto">4 days ago</span>
+</div>
+<p class="text-sm text-on-surface mb-3 leading-relaxed">Talk-to-listen ratio improved to 42/58 on technical pitches. Correlates with higher engagement scores.</p>
+</div>
+<!-- Feed Item 3: Positive -->
+<div class="bg-surface-container rounded-lg p-4 hover:bg-surface-container-highest transition-colors group">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary">Strong Close</span>
+<span class="text-[10px] text-on-surface-variant ml-auto">1 week ago</span>
+</div>
+<p class="text-sm text-on-surface mb-3 leading-relaxed">Excellent objection handling regarding integration limitations with GlobalTech.</p>
+</div>
+</div>
+</section>
+<!-- Structured Feedback Form (Col Span 12, Bottom span) -->
+<section class="md:col-span-12 bg-surface-variant/40 backdrop-blur-[20px] rounded-lg p-6 border border-outline-variant/15 shadow-[0_12px_40px_rgba(0,0,0,0.3)] mt-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+</div>
+<h2 class="text-xl font-headline font-bold text-on-surface">Log Structured Feedback</h2>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Focus Area Dropdown -->
+<div class="md:col-span-4">
+<label class="block text-xs font-label font-medium text-on-surface-variant mb-2 uppercase tracking-wide">Focus Area</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface py-3 pl-4 pr-10 appearance-none focus:ring-2 focus:ring-primary focus:outline-none transition-shadow">
+<option>Discovery &amp; Qualification</option>
+<option>Objection Handling</option>
+<option>Product Demonstration</option>
+<option>Closing Techniques</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Sentiment Tag -->
+<div class="md:col-span-8 flex items-end gap-3 pb-1">
+<span class="block text-xs font-label font-medium text-on-surface-variant uppercase tracking-wide mr-2 mb-2">Tone:</span>
+<button class="px-4 py-2 rounded-full bg-surface-container text-sm font-medium text-on-surface hover:bg-surface-container-highest transition-colors border border-outline-variant/30" type="button">Constructive</button>
+<button class="px-4 py-2 rounded-full bg-tertiary-container/20 text-sm font-medium text-tertiary border border-tertiary/40 hover:bg-tertiary-container/30 transition-colors" type="button">Praise</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-sm font-medium text-on-surface hover:bg-surface-container-highest transition-colors border border-outline-variant/30" type="button">Correction</button>
+</div>
+<!-- Text Area -->
+<div class="md:col-span-12">
+<label class="block text-xs font-label font-medium text-on-surface-variant mb-2 uppercase tracking-wide">Actionable Notes</label>
+<textarea class="w-full bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface p-4 focus:ring-2 focus:ring-primary focus:outline-none transition-shadow placeholder:text-on-surface-variant/40 resize-none" placeholder="Detail specific behaviors observed and recommended next steps..." rows="3"></textarea>
+</div>
+<!-- Submit Action -->
+<div class="md:col-span-12 flex justify-end items-center mt-2">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-label font-medium text-sm px-6 py-3 rounded-lg hover:shadow-[0_0_20px_rgba(45,91,255,0.4)] transition-all duration-300 transform active:scale-95 flex items-center gap-2" type="button">
+                                    Commit to Record <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</form>
+</section>
+</div>
+</div>
+<!-- Bottom spacing for scroll -->
+<div class="h-12"></div>
+</main>
+</div>
+</body></html>

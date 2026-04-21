@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bulk Lead Management - RevRa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#002387",
+                      "on-error-container": "#ffdad6",
+                      "surface-bright": "#31394d",
+                      "surface-variant": "#2d3449",
+                      "on-tertiary": "#3f008e",
+                      "on-secondary": "#162972",
+                      "on-secondary-container": "#a1b1ff",
+                      "surface-container-lowest": "#060e20",
+                      "primary": "#b8c3ff",
+                      "primary-fixed-dim": "#b8c3ff",
+                      "on-secondary-fixed": "#001355",
+                      "secondary-container": "#30418a",
+                      "outline-variant": "#434656",
+                      "primary-container": "#2d5bff",
+                      "on-tertiary-fixed-variant": "#5a00c6",
+                      "surface-container": "#171f33",
+                      "surface": "#0b1326",
+                      "inverse-surface": "#dae2fd",
+                      "secondary-fixed": "#dde1ff",
+                      "on-tertiary-container": "#f6ecff",
+                      "on-surface-variant": "#c4c5d9",
+                      "on-primary-fixed": "#001355",
+                      "tertiary-fixed-dim": "#d2bbff",
+                      "surface-tint": "#b8c3ff",
+                      "outline": "#8e90a2",
+                      "error": "#ffb4ab",
+                      "on-error": "#690005",
+                      "surface-dim": "#0b1326",
+                      "secondary-fixed-dim": "#b8c3ff",
+                      "secondary": "#b8c3ff",
+                      "on-secondary-fixed-variant": "#30418a",
+                      "primary-fixed": "#dde1ff",
+                      "on-primary-fixed-variant": "#0035bd",
+                      "surface-container-highest": "#2d3449",
+                      "background": "#0b1326",
+                      "on-tertiary-fixed": "#25005a",
+                      "error-container": "#93000a",
+                      "on-surface": "#dae2fd",
+                      "inverse-on-surface": "#283044",
+                      "tertiary-container": "#8342f4",
+                      "surface-container-high": "#222a3d",
+                      "tertiary-fixed": "#eaddff",
+                      "tertiary": "#d2bbff",
+                      "on-background": "#dae2fd",
+                      "inverse-primary": "#104af0",
+                      "surface-container-low": "#131b2e",
+                      "on-primary-container": "#efefff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Inter"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-[#131b2e] dark:bg-[#131b2e] font-['Inter'] font-medium text-sm h-screen w-72 fixed left-0 top-0 overflow-y-auto hidden md:flex flex-col shadow-2xl">
+<div class="flex flex-col gap-2 py-6 pr-4 shadow-2xl h-full">
+<div class="px-6 pb-6">
+<div class="text-[#dae2fd] font-bold tracking-tight text-xl mb-1">The Pulse</div>
+<div class="text-on-surface-variant text-xs">AI-Driven CRM</div>
+</div>
+<div class="px-4 pb-4">
+<button class="w-full bg-primary-container text-on-primary-container py-2.5 rounded-DEFAULT flex items-center justify-center gap-2 font-medium hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Lead
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="flex flex-col gap-1">
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+                            Overview
+                        </a>
+</li>
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
+                            Appointments
+                        </a>
+</li>
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg text-tertiary" data-icon="psychology">psychology</span>
+                            Emma AI
+                        </a>
+</li>
+<li>
+<a class="bg-[#171f33] text-[#2d5bff] rounded-lg border-l-4 border-[#2d5bff] ml-2 pl-4 py-3 flex items-center gap-3 scale-100 hover:scale-[1.02] transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dynamic_feed">dynamic_feed</span>
+                            Bulk Actions
+                        </a>
+</li>
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="group_work">group_work</span>
+                            Lead Pool
+                        </a>
+</li>
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="query_stats">query_stats</span>
+                            Analytics
+                        </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto">
+<ul class="flex flex-col gap-1">
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="account_circle">account_circle</span>
+                            Profile
+                        </a>
+</li>
+<li>
+<a class="text-[#dae2fd]/60 pl-6 py-3 hover:text-[#dae2fd] hover:bg-[#2d3449] transition-colors duration-200 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help_outline">help_outline</span>
+                            Support
+                        </a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Mobile only for full nav, but keeping header for structure) -->
+<header class="bg-[#0b1326] dark:bg-[#0b1326] text-[#2d5bff] dark:text-[#b8c3ff] font-['Inter'] antialiased tracking-tight docked full-width top-0 sticky z-50 md:hidden border-b border-[#434656]/15 flex justify-between items-center px-8 py-3 w-full">
+<div class="text-2xl font-black text-[#dae2fd] tracking-tighter uppercase">RevRa</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#2d3449]/50 transition-all duration-300 p-1 rounded">menu</span>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 overflow-y-auto p-6 lg:p-10 flex flex-col gap-6">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-on-surface mb-2">Bulk Lead Management</h1>
+<p class="text-on-surface-variant text-sm">Select multiple leads to perform mass actions, reassignments, or campaign enrollments.</p>
+</div>
+<div class="flex gap-3 items-center">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-primary-container text-on-surface placeholder:text-outline/70" placeholder="Search leads..." type="text"/>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface px-4 py-2 rounded-DEFAULT text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+</div>
+</div>
+<!-- Active Batch Process (Progress Bar) -->
+<div class="bg-surface-container-low rounded-lg p-4 flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-tertiary-container w-[45%] rounded-r-full relative">
+<div class="absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/20"></div>
+</div>
+</div>
+<div class="flex justify-between items-center mt-1">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary animate-spin-slow" data-icon="sync">sync</span>
+<div>
+<div class="text-sm font-semibold text-on-surface">Enrolling in 'Q3 Nurture Campaign'</div>
+<div class="text-xs text-on-surface-variant">Processing 450 of 1,000 leads...</div>
+</div>
+</div>
+<button class="text-error hover:bg-error/10 p-1.5 rounded-DEFAULT transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="cancel">cancel</span>
+</button>
+</div>
+</div>
+<!-- Main Workspace: Table + Drawer Layout -->
+<div class="flex-1 flex gap-6 overflow-hidden min-h-[500px]">
+<!-- High-Density Table Area -->
+<div class="flex-1 bg-surface-container-low rounded-xl flex flex-col overflow-hidden">
+<!-- Table Header Actions -->
+<div class="bg-surface-container flex items-center justify-between px-4 py-3 border-b border-outline-variant/15">
+<div class="flex items-center gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface-container" type="checkbox"/>
+<span class="text-sm font-medium text-on-surface">Select All (1,204)</span>
+</label>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="text-sm text-primary font-medium">12 selected</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded transition-colors">
+<span class="material-symbols-outlined text-sm">view_column</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container z-10">
+<tr>
+<th class="px-4 py-3 w-12"></th>
+<th class="px-4 py-3 text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Lead Name</th>
+<th class="px-4 py-3 text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Company</th>
+<th class="px-4 py-3 text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Status</th>
+<th class="px-4 py-3 text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Score</th>
+<th class="px-4 py-3 text-xs font-semibold tracking-wider text-on-surface-variant uppercase">Last Active</th>
+</tr>
+</thead>
+<tbody class="text-sm text-on-surface">
+<!-- Row 1 (Selected) -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-bright/30 transition-colors bg-primary-container/5">
+<td class="px-4 py-3">
+<input checked="" class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium">Eleanor Shellstrop</td>
+<td class="px-4 py-3 text-on-surface-variant">TechCorp Inc.</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-tertiary/10 text-tertiary">MQL</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-tertiary/30 flex items-center justify-center text-xs font-bold text-tertiary">92</div>
+</div>
+</td>
+<td class="px-4 py-3 text-on-surface-variant">2 hours ago</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-bright/30 transition-colors">
+<td class="px-4 py-3">
+<input class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium">Chidi Anagonye</td>
+<td class="px-4 py-3 text-on-surface-variant">Ethics Ltd.</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-surface-container-highest text-on-surface">Cold</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs font-bold text-on-surface-variant">45</div>
+</div>
+</td>
+<td class="px-4 py-3 text-on-surface-variant">3 days ago</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-bright/30 transition-colors">
+<td class="px-4 py-3">
+<input class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium">Tahani Al-Jamil</td>
+<td class="px-4 py-3 text-on-surface-variant">Global Events Co.</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-container/20 text-primary">SQL</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-xs font-bold text-primary">88</div>
+</div>
+</td>
+<td class="px-4 py-3 text-on-surface-variant">1 day ago</td>
+</tr>
+<!-- Row 4 (Selected) -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-bright/30 transition-colors bg-primary-container/5">
+<td class="px-4 py-3">
+<input checked="" class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium">Jason Mendoza</td>
+<td class="px-4 py-3 text-on-surface-variant">DJ Enterprises</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-surface-container-highest text-on-surface">New</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs font-bold text-on-surface-variant">12</div>
+</div>
+</td>
+<td class="px-4 py-3 text-on-surface-variant">Just now</td>
+</tr>
+<!-- Row 5 -->
+<tr class="border-b border-outline-variant/10 hover:bg-surface-bright/30 transition-colors">
+<td class="px-4 py-3">
+<input class="form-checkbox bg-surface-container-lowest border-outline-variant text-primary-container rounded focus:ring-primary-container focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-3 font-medium">Michael</td>
+<td class="px-4 py-3 text-on-surface-variant">Architecture Firm</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-tertiary/10 text-tertiary">MQL</span>
+</td>
+<td class="px-4 py-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-tertiary/30 flex items-center justify-center text-xs font-bold text-tertiary">75</div>
+</div>
+</td>
+<td class="px-4 py-3 text-on-surface-variant">5 hours ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Mass Action Drawer (Right Sidebar) -->
+<div class="w-80 bg-surface-container-low rounded-xl flex flex-col overflow-hidden hidden xl:flex border border-outline-variant/10">
+<div class="p-5 border-b border-outline-variant/15 bg-gradient-to-br from-surface-container-low to-surface-container">
+<div class="flex items-center justify-between mb-1">
+<h2 class="text-lg font-bold text-on-surface">Mass Actions</h2>
+<span class="bg-primary-container/20 text-primary text-xs font-bold px-2 py-1 rounded-full">12 Selected</span>
+</div>
+<p class="text-xs text-on-surface-variant">Apply changes to multiple leads instantly.</p>
+</div>
+<div class="flex-1 overflow-y-auto p-5 flex flex-col gap-6">
+<!-- Action Group: Assignment -->
+<div class="flex flex-col gap-3">
+<h3 class="text-xs font-bold uppercase tracking-wider text-outline">Assignment</h3>
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant/20 hover:border-outline-variant/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container p-2 rounded text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Reassign Leads</div>
+<div class="text-xs text-on-surface-variant">Transfer ownership</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Group: Organization -->
+<div class="flex flex-col gap-3">
+<h3 class="text-xs font-bold uppercase tracking-wider text-outline">Organization</h3>
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant/20 hover:border-outline-variant/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container p-2 rounded text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="sell">sell</span>
+</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Manage Tags</div>
+<div class="text-xs text-on-surface-variant">Add or remove tags</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant/20 hover:border-outline-variant/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="bg-surface-container p-2 rounded text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="update">update</span>
+</div>
+<div>
+<div class="text-sm font-medium text-on-surface">Update Status</div>
+<div class="text-xs text-on-surface-variant">Change lifecycle stage</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Group: Automation (AI) -->
+<div class="flex flex-col gap-3">
+<h3 class="text-xs font-bold uppercase tracking-wider text-tertiary">Intelligence</h3>
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-tertiary/20 hover:border-tertiary/50 transition-colors cursor-pointer group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary/5 to-transparent pointer-events-none"></div>
+<div class="flex items-center gap-3 relative z-10">
+<div class="bg-surface-container p-2 rounded text-tertiary group-hover:text-tertiary-fixed transition-colors shadow-[0_0_15px_rgba(131,66,244,0.3)]">
+<span class="material-symbols-outlined text-sm" data-icon="psychology">psychology</span>
+</div>
+<div>
+<div class="text-sm font-medium text-on-surface flex items-center gap-1">
+                                            Auto-Enroll Campaign
+                                            <span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_rgba(210,187,255,0.8)]"></span>
+</div>
+<div class="text-xs text-on-surface-variant">AI best-fit sequence</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant/15 bg-surface-container">
+<button class="w-full bg-surface-container-highest text-on-surface py-2 rounded-DEFAULT text-sm font-medium hover:bg-surface-bright transition-colors">
+                            Clear Selection
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

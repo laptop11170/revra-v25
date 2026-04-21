@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa AI Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#b8c3ff",
+                    "outline": "#8e90a2",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-surface": "#dae2fd",
+                    "on-tertiary-fixed": "#25005a",
+                    "error-container": "#93000a",
+                    "background": "#0b1326",
+                    "surface-container-highest": "#2d3449",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "primary-fixed": "#dde1ff",
+                    "surface-dim": "#0b1326",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "secondary": "#b8c3ff",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "on-error": "#690005",
+                    "surface-container-high": "#222a3d",
+                    "tertiary-container": "#8342f4",
+                    "inverse-on-surface": "#283044",
+                    "on-primary-container": "#efefff",
+                    "surface-container-low": "#131b2e",
+                    "inverse-primary": "#104af0",
+                    "on-background": "#dae2fd",
+                    "tertiary-fixed": "#eaddff",
+                    "tertiary": "#d2bbff",
+                    "on-secondary-container": "#a1b1ff",
+                    "on-secondary": "#162972",
+                    "surface-variant": "#2d3449",
+                    "on-tertiary": "#3f008e",
+                    "surface-bright": "#31394d",
+                    "on-primary": "#002387",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "surface-container-lowest": "#060e20",
+                    "primary": "#b8c3ff",
+                    "surface-container": "#171f33",
+                    "surface": "#0b1326",
+                    "inverse-surface": "#dae2fd",
+                    "primary-container": "#2d5bff",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "secondary-container": "#30418a",
+                    "outline-variant": "#434656",
+                    "on-secondary-fixed": "#001355",
+                    "on-primary-fixed": "#001355",
+                    "on-surface-variant": "#c4c5d9",
+                    "on-tertiary-container": "#f6ecff",
+                    "secondary-fixed": "#dde1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for chat area */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2d3449; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #434656; }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden flex antialiased">
+<!-- Left SideNavBar (From JSON) -->
+<nav class="bg-[#131b2e] text-[#8342f4] font-['Inter'] font-medium text-sm flex flex-col h-screen p-4 space-y-2 docked left-0 w-64 hidden md:flex shrink-0">
+<!-- Header -->
+<div class="mb-8 px-2 pt-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="RevRa Intelligence" class="w-full h-full object-cover opacity-80" data-alt="abstract flowing purple and blue neon lines on dark background representing artificial intelligence and data streams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBCI1rKBHJl6Gvx4UoeDLc_a_wYB2tqr6DBCaGnRqZZ76NnNQpQEHa6QfMoyse0Ffp3tGsFJVchtsdjQCji-y5IKCU23ZPuklv_Jv61CM-IYx4eRCnRlaaaayyTFsuMM110Ddbm45RuVhfDRDR0qYkTIcP6W1B76viTteJdcl0PbRrR4S7Dw98nhBRh3u9hlBHy7mtbS_w2ryS3bk5fG6pFEdvT5N7XexZda7NdqSddVwkDCVpZBw5by8o4NScUBjmQsHgpgcLXw"/>
+</div>
+<div>
+<div class="text-lg font-black text-[#dae2fd] tracking-tight">RevRa AI</div>
+<div class="text-xs text-[#dae2fd]/50">The Intelligent Pulse</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-tertiary-container text-on-tertiary-container hover:bg-[#9255f5] transition-colors rounded-lg py-3 px-4 mb-6 flex items-center justify-center gap-2 font-semibold shadow-[0_4px_24px_rgba(131,66,244,0.15)]">
+<span class="material-symbols-outlined icon-fill text-[20px]">add_circle</span>
+            New AI Command
+        </button>
+<!-- Tabs -->
+<div class="flex-1 space-y-1">
+<!-- Active Tab: Command Center -->
+<a class="bg-[#2d3449] text-[#2d5bff] border-l-4 border-[#2d5bff] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-r-lg group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">terminal</span>
+                Command Center
+            </a>
+<!-- Inactive Tabs -->
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg group border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">hub</span>
+                Lead Manager
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg group border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">auto_awesome_motion</span>
+                Templates
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg group border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">analytics</span>
+                Performance
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg group border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">group</span>
+                Network
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="pt-4 mt-auto space-y-1">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+                Support
+            </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] transition-all duration-300 ease-in-out flex items-center px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">account_circle</span>
+                Account
+            </a>
+</div>
+</nav>
+<!-- Main Canvas: AI Chat Interface -->
+<main class="flex-1 flex flex-col relative h-full bg-surface">
+<!-- Subtle Context Header -->
+<header class="h-16 flex items-center justify-between px-8 shrink-0 z-10 bg-gradient-to-b from-surface to-transparent">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_rgba(210,187,255,0.6)]"></div>
+<h1 class="text-on-surface font-semibold tracking-tight">Active Strategy Session</h1>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm">
+<button class="hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">history</span> History
+                </button>
+<button class="hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">tune</span> Settings
+                </button>
+</div>
+</header>
+<!-- Streaming Chat Area -->
+<div class="flex-1 overflow-y-auto px-8 pb-32 pt-4 flex flex-col gap-8 scroll-smooth relative z-0">
+<!-- System/Time Marker -->
+<div class="text-center text-xs text-on-surface-variant/50 font-medium my-2">Today, 09:41 AM</div>
+<!-- User Message -->
+<div class="flex justify-end w-full">
+<div class="bg-surface-container-high rounded-lg rounded-tr-sm p-4 max-w-[80%] lg:max-w-[60%] text-sm leading-relaxed text-on-surface shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+                    Analyze my pipeline for Q3. Identify any enterprise deals stuck in the 'Proposal' stage and suggest a follow-up strategy based on past successful wins in the tech sector.
+                </div>
+</div>
+<!-- AI Response (Text + Thinking) -->
+<div class="flex justify-start w-full gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-tertiary text-[18px]">temp_preferences_custom</span>
+</div>
+<div class="flex flex-col gap-3 max-w-[85%] lg:max-w-[70%]">
+<div class="text-sm leading-relaxed text-on-surface text-opacity-90">
+                        Scanning your Q3 pipeline across 42 active opportunities. I've found <strong class="text-tertiary font-semibold">3 enterprise deals</strong> currently stalled in the 'Proposal' stage for over 14 days. 
+                        <br/><br/>
+                        Historically, tech sector deals closed 28% faster when we introduced a technical validation workshop before final pricing. Here are the flagged accounts and a recommended approach:
+                    </div>
+</div>
+</div>
+<!-- AI Response (Interactive Lead Cards) -->
+<div class="flex justify-start w-full gap-4">
+<div class="w-8 h-8 shrink-0"></div> <!-- Spacer for alignment -->
+<div class="flex flex-col gap-4 w-full max-w-[85%] lg:max-w-[70%]">
+<!-- Card 1 -->
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:bg-surface-container cursor-default">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center text-primary-container font-bold text-lg">
+                                AC
+                            </div>
+<div>
+<h3 class="text-on-surface font-semibold text-sm">Acme Corp - Cloud Migration</h3>
+<div class="flex items-center gap-3 mt-1 text-xs">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_balance_wallet</span> $125k
+                                    </span>
+<span class="w-1 h-1 rounded-full bg-surface-container-highest"></span>
+<span class="text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Stalled 18 days
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-2 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors text-xs font-medium">View Deal</button>
+<button class="px-3 py-2 rounded-lg bg-tertiary-container/20 text-tertiary hover:bg-tertiary-container/30 transition-colors text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit_document</span> Draft Workshop Email
+                            </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:bg-surface-container cursor-default">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center text-primary-container font-bold text-lg">
+                                NX
+                            </div>
+<div>
+<h3 class="text-on-surface font-semibold text-sm">Nexus Dynamics - Security Audit</h3>
+<div class="flex items-center gap-3 mt-1 text-xs">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_balance_wallet</span> $85k
+                                    </span>
+<span class="w-1 h-1 rounded-full bg-surface-container-highest"></span>
+<span class="text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Stalled 15 days
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-2 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors text-xs font-medium">View Deal</button>
+<button class="px-3 py-2 rounded-lg bg-tertiary-container/20 text-tertiary hover:bg-tertiary-container/30 transition-colors text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit_document</span> Draft Workshop Email
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Generating state indicator -->
+<div class="flex justify-start w-full gap-4 mt-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[18px] animate-spin">sync</span>
+</div>
+<div class="flex items-center text-sm text-tertiary-fixed-dim italic">
+                    Generating customized workshop agendas...
+                </div>
+</div>
+</div>
+<!-- Sticky Input Area (Glassmorphism) -->
+<div class="absolute bottom-0 left-0 w-full p-6 pt-12 bg-gradient-to-t from-surface via-surface/90 to-transparent z-20 pointer-events-none">
+<div class="max-w-4xl mx-auto pointer-events-auto">
+<div class="bg-surface-variant/60 backdrop-blur-[24px] rounded-lg p-3 flex items-end gap-3 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors shrink-0 mb-1">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<div class="flex-1 relative">
+<textarea class="w-full bg-transparent border-none text-on-surface text-sm placeholder-on-surface-variant/50 resize-none focus:ring-0 px-2 py-2 max-h-32 min-h-[44px]" placeholder="Ask RevRa to analyze, draft, or command..." rows="1"></textarea>
+</div>
+<div class="flex gap-2 shrink-0 mb-1">
+<button class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Voice Command">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-gradient-to-r from-primary-container to-[#104af0] text-on-primary-container font-medium text-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
+                            Send <span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+<!-- Mini prompt suggestions -->
+<div class="flex gap-2 mt-3 overflow-x-auto pb-2 scrollbar-hide text-xs">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">Draft follow-up email</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">Summarize recent calls</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">Update deal probabilities</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Context & Assets -->
+<aside class="w-80 bg-surface-container-lowest border-l-0 shrink-0 hidden lg:flex flex-col h-screen overflow-y-auto">
+<div class="p-6">
+<h2 class="text-sm font-semibold tracking-wide text-on-surface mb-6 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">psychology</span>
+                Intelligence Hub
+            </h2>
+<!-- Section: Recent Strategies -->
+<div class="mb-8">
+<div class="text-xs font-medium text-on-surface-variant mb-3 px-1">Recent Strategies</div>
+<div class="space-y-2">
+<button class="w-full text-left bg-surface-container-low hover:bg-surface-container p-3 rounded-lg transition-colors group">
+<div class="text-sm font-medium text-on-surface mb-1 group-hover:text-primary transition-colors">Q2 Churn Mitigation</div>
+<div class="text-xs text-on-surface-variant truncate">Analyzed 15 accounts at risk...</div>
+</button>
+<button class="w-full text-left bg-surface-container-low hover:bg-surface-container p-3 rounded-lg transition-colors group">
+<div class="text-sm font-medium text-on-surface mb-1 group-hover:text-primary transition-colors">Enterprise Outreach</div>
+<div class="text-xs text-on-surface-variant truncate">Generated personalized sequences...</div>
+</button>
+</div>
+</div>
+<!-- Section: Saved Prompts -->
+<div>
+<div class="text-xs font-medium text-on-surface-variant mb-3 px-1 flex items-center justify-between">
+                    Saved Prompts
+                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-on-surface">add</span>
+</div>
+<div class="space-y-2">
+<div class="bg-surface p-3 rounded-lg flex items-start gap-3 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5 group-hover:scale-110 transition-transform">bolt</span>
+<div>
+<div class="text-sm text-on-surface font-medium">Meeting Prep Brief</div>
+<div class="text-xs text-on-surface-variant/70 mt-1 line-clamp-2">Summarize the last 3 touchpoints and extract pain points for [Account].</div>
+</div>
+</div>
+<div class="bg-surface p-3 rounded-lg flex items-start gap-3 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5 group-hover:scale-110 transition-transform">calculate</span>
+<div>
+<div class="text-sm text-on-surface font-medium">ROI Calculator Gen</div>
+<div class="text-xs text-on-surface-variant/70 mt-1 line-clamp-2">Create a custom ROI projection based on current volume of [Metric].</div>
+</div>
+</div>
+<div class="bg-surface p-3 rounded-lg flex items-start gap-3 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5 group-hover:scale-110 transition-transform">mail</span>
+<div>
+<div class="text-sm text-on-surface font-medium">C-Suite Cold Tone</div>
+<div class="text-xs text-on-surface-variant/70 mt-1 line-clamp-2">Draft an outreach email to CTO focusing on security compliance.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Data widget -->
+<div class="mt-8 bg-gradient-to-br from-surface-container to-surface-container-low p-4 rounded-lg border border-surface-variant/30">
+<div class="flex items-center gap-2 text-xs font-medium text-tertiary mb-3">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span> Context Active
+                </div>
+<div class="text-xs text-on-surface-variant space-y-2">
+<div class="flex justify-between"><span>Pipeline View:</span> <span class="text-on-surface">Q3 FY24</span></div>
+<div class="flex justify-between"><span>Filter applied:</span> <span class="text-on-surface">Enterprise</span></div>
+<div class="flex justify-between"><span>Data freshness:</span> <span class="text-on-surface">Live Sync</span></div>
+</div>
+</div>
+</div>
+</aside>
+</body></html>

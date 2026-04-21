@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appointment Detail - RevRa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#002387",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#31394d",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary": "#3f008e",
+                        "on-secondary": "#162972",
+                        "on-secondary-container": "#a1b1ff",
+                        "surface-container-lowest": "#060e20",
+                        "primary": "#b8c3ff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-secondary-fixed": "#001355",
+                        "secondary-container": "#30418a",
+                        "outline-variant": "#434656",
+                        "primary-container": "#2d5bff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-container": "#171f33",
+                        "surface": "#0b1326",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-fixed": "#dde1ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-primary-fixed": "#001355",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-tint": "#b8c3ff",
+                        "outline": "#8e90a2",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "secondary": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "primary-fixed": "#dde1ff",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "surface-container-highest": "#2d3449",
+                        "background": "#0b1326",
+                        "on-tertiary-fixed": "#25005a",
+                        "error-container": "#93000a",
+                        "on-surface": "#dae2fd",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-container": "#8342f4",
+                        "surface-container-high": "#222a3d",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary": "#d2bbff",
+                        "on-background": "#dae2fd",
+                        "inverse-primary": "#104af0",
+                        "surface-container-low": "#131b2e",
+                        "on-primary-container": "#efefff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Nav shell is suppressed as this is a focused, sub-page (Details) -->
+<main class="flex-1 overflow-y-auto">
+<!-- Top App Bar (Contextual) -->
+<header class="sticky top-0 z-40 bg-surface-container-low/90 backdrop-blur-md px-8 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div>
+<h1 class="text-xl font-bold tracking-tight">Meeting Details</h1>
+<p class="text-sm text-on-surface-variant">Scheduled for Today</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container rounded-DEFAULT text-sm font-medium hover:bg-surface-container-high transition-colors text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">edit</span>
+                    Edit
+                </button>
+<button class="px-5 py-2 bg-primary-container text-on-primary-container rounded-DEFAULT text-sm font-medium hover:bg-inverse-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">videocam</span>
+                    Join Meeting
+                </button>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto space-y-6">
+<!-- Hero Card: Appointment Overview -->
+<section class="bg-surface-container-low rounded-lg p-8 relative overflow-hidden">
+<!-- Subtle Gradient Accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 relative z-10">
+<div class="space-y-4">
+<div class="flex items-center gap-3 text-tertiary font-medium text-sm">
+<span class="material-symbols-outlined text-base">psychology</span>
+<span>High Priority Discovery</span>
+</div>
+<h2 class="text-3xl font-extrabold tracking-tight text-inverse-surface">Product Demo &amp; Strategy Session</h2>
+<div class="flex flex-wrap items-center gap-6 pt-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined">schedule</span>
+<span>2:00 PM - 3:00 PM PST</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined">event</span>
+<span>Thursday, Oct 26, 2023</span>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">link</span>
+<a class="hover:underline" href="#">meet.google.com/abc-defg-hij</a>
+</div>
+</div>
+</div>
+<!-- Attendee Snapshot -->
+<div class="bg-surface-container rounded-DEFAULT p-4 flex items-center gap-4 min-w-[280px]">
+<img alt="Sarah Jenkins Profile" class="w-14 h-14 rounded-full object-cover border-2 border-outline-variant/30" data-alt="professional headshot of a confident woman with short dark hair in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD50NDAcEtnSgzs7J1POTDTYg8HaSJ1dTLOYh2Etd82QBCECQiWTLesJosyCNjpPDMFSEBLLcIKlCW7ok52AXnS3_xBMFDVReN0yF2Evn2MNZmO2f9Sz0mKOJRdZJQPp8TUNrUx4VR5SJihOZFrczJLHeGki4ETPEAHUgYTE3WCrJhYwofKUaiTROTf_tX2jUTPYl6zzn47AOpAHT7KFxq8ZyE8zuJPzwUuQXEXGRU5AfLGwXebc0Cf5-DdXWE00YgekIRDGEehhg"/>
+<div>
+<p class="font-bold text-lg leading-tight text-on-surface">Sarah Jenkins</p>
+<p class="text-sm text-on-surface-variant">VP of Operations, TechFlow</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (Wider): AI Insights & Content -->
+<div class="lg:col-span-2 space-y-6">
+<!-- AI Pre-Meeting Brief -->
+<section class="bg-surface-container-low rounded-lg border border-tertiary-container/20 overflow-hidden shadow-[0_8px_32px_rgba(131,66,244,0.05)]">
+<div class="bg-surface-container-high px-6 py-4 flex items-center gap-3 border-b border-surface-container">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-semibold text-lg text-inverse-surface">Emma AI Pre-Meeting Brief</h3>
+</div>
+<div class="p-6 space-y-6">
+<!-- Talking Points -->
+<div>
+<h4 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-3">Key Talking Points</h4>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 p-3 bg-surface-container rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary mt-0.5">chat_bubble</span>
+<p class="text-sm leading-relaxed text-on-surface">TechFlow's recent Q3 earnings mentioned an aggressive push towards automation. Frame our solution around <strong>operational cost reduction</strong>.</p>
+</li>
+<li class="flex items-start gap-3 p-3 bg-surface-container rounded-DEFAULT">
+<span class="material-symbols-outlined text-tertiary mt-0.5">insights</span>
+<p class="text-sm leading-relaxed text-on-surface">Sarah has viewed the "Analytics Dashboard" feature page 4 times this week. Highlight our custom reporting capabilities early in the demo.</p>
+</li>
+</ul>
+</div>
+<!-- Anticipated Objections -->
+<div>
+<h4 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-3 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                                    Anticipated Objections
+                                </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container rounded-DEFAULT p-4 border border-outline-variant/20">
+<p class="font-medium text-sm text-on-surface mb-1">Integration Timeline</p>
+<p class="text-xs text-on-surface-variant">Counter: Emphasize our dedicated onboarding team and guaranteed 14-day go-live plan.</p>
+</div>
+<div class="bg-surface-container rounded-DEFAULT p-4 border border-outline-variant/20">
+<p class="font-medium text-sm text-on-surface mb-1">Pricing vs Competitor</p>
+<p class="text-xs text-on-surface-variant">Counter: Focus on ROI and the included AI features that competitors charge extra for.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Agenda / Checklist -->
+<section class="bg-surface-container-low rounded-lg p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-semibold text-lg text-inverse-surface">Agenda &amp; Checklist</h3>
+<button class="text-primary text-sm hover:underline">Add Item</button>
+</div>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-3 bg-surface-container rounded-DEFAULT cursor-pointer hover:bg-surface-bright transition-colors group">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-outline-variant bg-surface-container-lowest focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-inverse-surface transition-colors">Introductions &amp; Current Pain Points</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container rounded-DEFAULT cursor-pointer hover:bg-surface-bright transition-colors group">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-outline-variant bg-surface-container-lowest focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-inverse-surface transition-colors">Platform Walkthrough (Focus on Analytics)</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container rounded-DEFAULT cursor-pointer hover:bg-surface-bright transition-colors group">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-outline-variant bg-surface-container-lowest focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-inverse-surface transition-colors">Discuss Q4 Pricing Incentives</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-surface-container rounded-DEFAULT cursor-pointer hover:bg-surface-bright transition-colors group">
+<input class="form-checkbox h-5 w-5 text-primary rounded border-outline-variant bg-surface-container-lowest focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+<span class="text-sm text-on-surface group-hover:text-inverse-surface transition-colors">Determine Next Steps / Secondary Meeting</span>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Context & History -->
+<div class="space-y-6">
+<!-- Lead Context -->
+<section class="bg-surface-container-low rounded-lg p-6">
+<h3 class="font-semibold text-sm uppercase tracking-wider text-on-surface-variant mb-4">Lead Context</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-surface-container pb-3">
+<span class="text-sm text-on-surface-variant">Company Size</span>
+<span class="text-sm font-medium text-on-surface">500-1000</span>
+</div>
+<div class="flex justify-between items-center border-b border-surface-container pb-3">
+<span class="text-sm text-on-surface-variant">Industry</span>
+<span class="text-sm font-medium text-on-surface">Enterprise SaaS</span>
+</div>
+<div class="flex justify-between items-center border-b border-surface-container pb-3">
+<span class="text-sm text-on-surface-variant">Lead Score</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span> <!-- Allowed generic color for status indicator if needed, but trying to stick to theme. Let's use primary for high score -->
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-sm font-bold text-primary ml-1">92/100</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface-variant">Deal Value</span>
+<span class="text-sm font-medium text-on-surface">$45,000 ARR</span>
+</div>
+</div>
+</section>
+<!-- Activity History -->
+<section class="bg-surface-container-low rounded-lg p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-semibold text-sm uppercase tracking-wider text-on-surface-variant">Recent Activity</h3>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">history</span>
+</div>
+<div class="relative border-l border-surface-container ml-3 space-y-6">
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-low"></div>
+<p class="text-xs text-on-surface-variant mb-0.5">Yesterday, 4:30 PM</p>
+<p class="text-sm font-medium text-on-surface">Opened Pricing PDF</p>
+<p class="text-xs text-on-surface-variant mt-1">Viewed for 4m 12s</p>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container-high ring-4 ring-surface-container-low"></div>
+<p class="text-xs text-on-surface-variant mb-0.5">Oct 24</p>
+<p class="text-sm font-medium text-on-surface">Email Replied</p>
+<p class="text-xs text-on-surface-variant mt-1">"Looking forward to the demo."</p>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container-high ring-4 ring-surface-container-low"></div>
+<p class="text-xs text-on-surface-variant mb-0.5">Oct 20</p>
+<p class="text-sm font-medium text-on-surface">Initial Discovery Call</p>
+<p class="text-xs text-on-surface-variant mt-1">Completed. Notes attached.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Performance Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "primary": "#b8c3ff",
+                    "on-primary-fixed": "#001355",
+                    "inverse-on-surface": "#283044",
+                    "on-surface": "#dae2fd",
+                    "surface": "#0b1326",
+                    "on-tertiary-fixed": "#25005a",
+                    "secondary-fixed": "#dde1ff",
+                    "secondary-container": "#30418a",
+                    "on-primary-container": "#efefff",
+                    "surface-container": "#171f33",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#b8c3ff",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary": "#3f008e",
+                    "tertiary": "#d2bbff",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "surface-container-highest": "#2d3449",
+                    "on-tertiary-container": "#f6ecff",
+                    "on-secondary": "#162972",
+                    "outline": "#8e90a2",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-background": "#dae2fd",
+                    "inverse-surface": "#dae2fd",
+                    "surface-variant": "#2d3449",
+                    "secondary": "#b8c3ff",
+                    "surface-container-lowest": "#060e20",
+                    "surface-container-high": "#222a3d",
+                    "outline-variant": "#434656",
+                    "on-secondary-fixed": "#001355",
+                    "background": "#0b1326",
+                    "on-primary": "#002387",
+                    "inverse-primary": "#104af0",
+                    "on-surface-variant": "#c4c5d9",
+                    "tertiary-fixed": "#eaddff",
+                    "tertiary-container": "#8342f4",
+                    "primary-container": "#2d5bff",
+                    "on-secondary-container": "#a1b1ff",
+                    "error-container": "#93000a",
+                    "surface-bright": "#31394d",
+                    "surface-dim": "#0b1326",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.75rem",
+                    "xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-[#0b1326] dark:bg-slate-950 docked h-screen left-0 w-64 flex flex-col h-full border-none py-6 shrink-0 hidden md:flex">
+<div class="px-6 mb-8 flex items-center gap-3">
+<img alt="RevRa Logo" class="w-8 h-8 rounded-full object-cover" data-alt="Abstract geometric glowing blue logo on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs2Va7bdvxW21OyUzMfIePsV3Q9BaBJ3C5THmSrigqk9ngPCjkaN7JlM4oRCE801OgUgUF6HycAlbjy-IJPN8pTpFzYKIjjgae_U5qsmRwuUhEbgdunD4r1e_T0RF2isTM1oX76in29dtg8ETqN_eKcuWOUHDWNcpN-pgGy5YZVvdj-Qj5v5hOdr8ual8FTkNpZtMCEORh4oLNuBe5KCRJVwhmG1ZmImAWqyOKMrFbYlbIP1WPhD2GeEeEKLmSV30GayFwOjuC-A"/>
+<div>
+<h1 class="text-lg font-black text-[#dae2fd]">RevRa</h1>
+<p class="font-inter text-xs uppercase tracking-widest font-semibold text-[#2d5bff]">Intelligence CRM</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-2.5 rounded-DEFAULT flex items-center justify-center gap-2 hover:bg-[#2d5bff]/90 transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Lead
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-inter text-sm font-medium tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-inter text-sm font-medium tracking-tight">Leads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-inter text-sm font-medium tracking-tight">Policies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT bg-[#171f33] text-[#b8c3ff] border-r-2 border-[#2d5bff] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-inter text-sm font-medium tracking-tight">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-inter text-sm font-medium tracking-tight">Commissions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; color: var(--color-tertiary)">auto_awesome</span>
+<span class="font-inter text-sm font-medium tracking-tight text-tertiary">AI Workbench</span>
+</a>
+</div>
+<div class="mt-auto px-4 flex flex-col gap-1 pt-6">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-inter text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-[#dae2fd]/50 hover:bg-[#131b2e] hover:text-[#dae2fd] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-inter text-sm font-medium">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-[#131b2e] dark:bg-slate-900/80 backdrop-blur-xl docked full-width top-0 z-50 bg-[#131b2e] border-none flat no shadows flex justify-between items-center w-full px-6 py-3 shrink-0">
+<div class="flex items-center gap-4">
+<div class="text-xl font-bold tracking-tighter text-[#dae2fd] md:hidden">RevRa CRM</div>
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full py-1.5 pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:ring-1 focus:ring-primary-container w-64 transition-all bg-surface-container-lowest outline-none" placeholder="Search agents, deals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-tertiary-container/20 text-tertiary px-3 py-1.5 rounded-full text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    AI: Optimal
+                </div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full text-[#dae2fd]/70 hover:bg-[#2d3449] transition-colors duration-200 scale-95 active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full text-[#dae2fd]/70 hover:bg-[#2d3449] transition-colors duration-200 scale-95 active:opacity-80 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Agent Avatar" class="w-full h-full object-cover" data-alt="Professional headshot of a man in business casual attire on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCsI6FfS3lgiHlgEkXmf7orD66n8rhMEb_WJneKaMVEoUx3JsNCCjPlxwCQ9hRAhknh_Qd3YJ9v_83XsQzL-pIn8j0bk-HX4ABXbULO2lGzaupFnPt_cTQHsWtT54I16DbBftnWMza8e-jL9gi853yJcmzD_x61PnGAIK6_4-fmAaXj0-ehfuYUGbcbOZQNetE00FUWJ9q5Hct0W_dVfqgENbRLJrfovtar70CKmgsghJGA7CGQZUs5H1XFq_n_v2Kev8zxzsLzg"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-6 md:p-8">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Page Header & Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface flex items-center gap-3">
+<span class="material-symbols-outlined text-[32px] text-tertiary" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                            Performance Leaderboard
+                        </h2>
+<p class="text-on-surface-variant text-sm mt-1">Monthly Ranking • Real-time AI Tracking</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1 rounded-DEFAULT">
+<button class="px-4 py-1.5 rounded bg-surface-container-highest text-on-surface text-sm font-medium shadow-sm transition-all">Overall</button>
+<button class="px-4 py-1.5 rounded text-on-surface-variant text-sm font-medium hover:bg-surface-container-highest/50 transition-all">ACA</button>
+<button class="px-4 py-1.5 rounded text-on-surface-variant text-sm font-medium hover:bg-surface-container-highest/50 transition-all">Medicare</button>
+</div>
+</div>
+<!-- Podium Section -->
+<div class="flex flex-col md:flex-row justify-center items-end gap-4 md:gap-6 pt-12 pb-8 h-auto md:h-80">
+<!-- 2nd Place -->
+<div class="relative bg-surface-container-low rounded-t-xl rounded-b-DEFAULT p-4 flex flex-col items-center w-full md:w-48 h-56 mt-auto border-t-4 border-slate-400/50">
+<div class="absolute -top-10">
+<div class="relative">
+<img alt="Sarah Jenkins" class="w-20 h-20 rounded-full border-4 border-surface-container-low object-cover" data-alt="Professional headshot of a smiling woman with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfdCjBPxrgsvN2O510GotjwSQYc0rcIflyTsKpKPds4LrFqj7oNulaw6AakehPys9stYast8D-YtFlDCfn47BmVCLpZfPB-5ngPKhxwV76d0WbJAiY5rAkhrVmpRhEQiCI6iPaGihORFjzQ3v-xXbz6EK93LwhwwktjVWSwn5jNh3--bDDoOPOUg23lojKdv_TSTUtXxFYQ4lDDr0xSxdnudiAUnct7-q5_J35BOxjV91LxivuOirLctaBenElGIr_b3eOCR3nIw"/>
+<div class="absolute -bottom-2 -right-2 bg-slate-400 text-slate-900 w-8 h-8 rounded-full flex items-center justify-center font-bold border-2 border-surface-container-low">2</div>
+</div>
+</div>
+<div class="mt-12 text-center w-full">
+<h3 class="font-semibold text-on-surface truncate">Sarah Jenkins</h3>
+<p class="text-xs text-on-surface-variant mb-3">Senior Agent</p>
+<div class="bg-surface-container-lowest py-2 rounded-DEFAULT">
+<p class="text-lg font-bold text-secondary tracking-tight">142</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant">Closed Deals</p>
+</div>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="relative bg-gradient-to-b from-surface-container-highest to-surface-container-low rounded-t-xl rounded-b-DEFAULT p-4 flex flex-col items-center w-full md:w-56 h-72 border-t-4 border-tertiary shadow-[0_-10px_40px_-15px_rgba(210,187,255,0.2)] z-10">
+<div class="absolute -top-12">
+<div class="relative">
+<img alt="Marcus Cole" class="w-24 h-24 rounded-full border-4 border-surface-container-highest object-cover shadow-lg" data-alt="Professional headshot of a confident man in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAepRmI6R40yF98Dy7IQolHAPC44JTp0MGPb87Ngm1HbdGt-QUGzKUfT_DudrKmubX9e9Pff8YeW41spCtxvTK4ebEcj_40s0Ig-96cJ2_c1HAWp6IdTMMue1zZ0IG8PaXhcuUFTNT6UpVSSymeLDqA2lf1_IPhTDzvF2B09dTUjimsTs9yo4F5EENf3Yo2Sr6hWNK7cObgeVsFExlJhkkAdXA8WqwA9BX8sIt49-yIKEMmVnT7zTu-IByubL2sxPKNdz3IocUTSQ"/>
+<div class="absolute -bottom-2 -right-2 bg-tertiary text-on-tertiary w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg border-2 border-surface-container-highest shadow-[0_0_15px_rgba(210,187,255,0.5)]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<div class="mt-14 text-center w-full">
+<h3 class="font-bold text-lg text-on-surface truncate">Marcus Cole</h3>
+<p class="text-xs text-tertiary font-medium mb-4 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                Top Performer
+                            </p>
+<div class="bg-surface-container-lowest py-3 rounded-DEFAULT mb-2">
+<p class="text-2xl font-black text-tertiary tracking-tight">187</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant">Closed Deals</p>
+</div>
+<div class="flex justify-between px-2 text-xs text-on-surface-variant">
+<span>Win Rate</span>
+<span class="text-on-surface font-medium">84%</span>
+</div>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="relative bg-surface-container-low rounded-t-xl rounded-b-DEFAULT p-4 flex flex-col items-center w-full md:w-48 h-48 mt-auto border-t-4 border-amber-700/50">
+<div class="absolute -top-10">
+<div class="relative">
+<img alt="Elena Rodriguez" class="w-20 h-20 rounded-full border-4 border-surface-container-low object-cover" data-alt="Professional headshot of a woman with curly hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGujCQrF9Wop6QBbM5OW2qLBOkT57DOj4Aq-9qlBA4clHBfePFZHZxnqzeBg58CNWJy9HgqJihBq73XASh642D5DciHqJnkiA7yoiAc9bR0VJEjQ1SwPpqE6_CyZysdnQmMKNe3z5lXMh7Vjb5OzOfcaFSEeyYAjqRSllTk8XYgeJuw076hhHl46QKPYTkHgqNk4MLg7NCEs5snEuP_3Ooh7dmaQnGGDJu317vyZcbBeUY9OwjXSzA0hHAlc9iFxB590obMSB0Gg"/>
+<div class="absolute -bottom-2 -right-2 bg-amber-700 text-amber-100 w-8 h-8 rounded-full flex items-center justify-center font-bold border-2 border-surface-container-low">3</div>
+</div>
+</div>
+<div class="mt-12 text-center w-full">
+<h3 class="font-semibold text-on-surface truncate">Elena Rodriguez</h3>
+<p class="text-xs text-on-surface-variant mb-3">Agent</p>
+<div class="bg-surface-container-lowest py-2 rounded-DEFAULT">
+<p class="text-lg font-bold text-secondary tracking-tight">129</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant">Closed Deals</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Full List Data Table -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+<th class="px-6 py-4 rounded-tl-lg">Rank</th>
+<th class="px-6 py-4">Agent</th>
+<th class="px-6 py-4 text-right">Closed Deals</th>
+<th class="px-6 py-4 text-right">Win Rate</th>
+<th class="px-6 py-4 text-right">Revenue</th>
+<th class="px-6 py-4 rounded-tr-lg">AI Efficiency</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-surface/50">
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface-variant w-16 text-center">4</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-8 h-8 rounded-full object-cover" data-alt="Headshot of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN2ECWdVKsR-MqGBnU7DxAnbNKLGmtyxEJ2aE6F-mz-2oUdPz_sC3T21p6qFcl1KUe24ccM_tw3oPBlNUCufO8HRpMFROFOrTBtCkXTqEI_SagZgqXfEtONcVDWIlYyT7zJRcHtH1UEM8Zq-7X8AxRc6Y58K-v6Gbag5toI6vs6iK9ZAnZamV-S2js6LAMAXCk2HP9W3VxAKBkvtwiWlCWPkvW4D9ds4hcz-hfGCj_G6jiEr_xv6Ka_nfqFv7g0Ra-vxnERy58Ig"/>
+<div>
+<div class="font-medium text-on-surface">David Chen</div>
+<div class="text-xs text-on-surface-variant">Medicare</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-semibold text-on-surface">115</td>
+<td class="px-6 py-4 text-right text-on-surface">78%</td>
+<td class="px-6 py-4 text-right font-medium text-primary">$425K</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 82%"></div>
+</div>
+<span class="text-xs text-tertiary font-medium">82%</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface-variant w-16 text-center">5</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-8 h-8 rounded-full object-cover" data-alt="Headshot of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwT1S-rCRbYDdF38iGWMsL0VCzmtA2jSpVi-5mAXbzkB8mzbkTPc6c1WP7WmzmuqrQhVGDV6l0MlBx_CYVa5BdKuPmCW0SdpIzhK4DoUz9vo-c9IOFFjNj2yWw7iH4LdpvlYOGskoK1niJ_KyvQMty4lShgH3lC4-3PzBaProGk2EihjAvnEJZsuWrm-JtGWngDrKOMQRt95FzO3hQdOZl9skS6wx75f1LQ9wsD-M-ramoPi04EAcIxIsq1HFLa6HM59t7Cm9N6Q"/>
+<div>
+<div class="font-medium text-on-surface">Emily Davis</div>
+<div class="text-xs text-on-surface-variant">ACA</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-semibold text-on-surface">108</td>
+<td class="px-6 py-4 text-right text-on-surface">72%</td>
+<td class="px-6 py-4 text-right font-medium text-primary">$390K</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 90%"></div>
+</div>
+<span class="text-xs text-tertiary font-medium">90%</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright/30 transition-colors group">
+<td class="px-6 py-4 font-bold text-on-surface-variant w-16 text-center">6</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-8 h-8 rounded-full object-cover" data-alt="Headshot of a man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV1NUfaVdWr-olEVKTT8R89QFBK8cg438b4-glIQ2smVbE6VdQbvDFbKxNHwsmnftzes24iaow5zMjnUb8lx4x9JvhbJtZ6_woPX6he0z0iioQ6DZXslBG_3ynsnRgaKVApAS6qGB_8pdya_nucco1misWfogCpm9yZXdGzIS89vyGPD9-E9GiYTZZ5oV3H9hGmFhlvzXr73RqLWwTCrAGr3qinsQ4fgWOIUEY4GrmkKjZT4-iyaXjz47xVnPpUNPv01lrroPYRg"/>
+<div>
+<div class="font-medium text-on-surface">Michael Torres</div>
+<div class="text-xs text-on-surface-variant">Mixed</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-semibold text-on-surface">95</td>
+<td class="px-6 py-4 text-right text-on-surface">68%</td>
+<td class="px-6 py-4 text-right font-medium text-primary">$310K</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 65%"></div>
+</div>
+<span class="text-xs text-tertiary font-medium">65%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lead Share &amp; Collaboration - RevRa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0b1326",
+                        "on-surface": "#dae2fd",
+                        "inverse-on-surface": "#283044",
+                        "secondary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-primary-fixed": "#001355",
+                        "primary": "#b8c3ff",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "tertiary": "#d2bbff",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#3f008e",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-error": "#690005",
+                        "on-primary-container": "#efefff",
+                        "secondary-container": "#30418a",
+                        "surface-tint": "#b8c3ff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "surface-container": "#171f33",
+                        "error": "#ffb4ab",
+                        "on-background": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "secondary": "#b8c3ff",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "on-tertiary-container": "#f6ecff",
+                        "outline": "#8e90a2",
+                        "on-secondary": "#162972",
+                        "tertiary-fixed": "#eaddff",
+                        "tertiary-container": "#8342f4",
+                        "primary-container": "#2d5bff",
+                        "on-secondary-container": "#a1b1ff",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#c4c5d9",
+                        "inverse-primary": "#104af0",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "surface-container-high": "#222a3d",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "on-primary": "#002387",
+                        "background": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem", /* Mandated 8px DEFAULT */
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full py-6 px-4 w-64 border-r-0 bg-[#131b2e] dark:bg-[#131b2e] shadow-[inset_-1px_0_0_0_rgba(67,70,86,0.15)] z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-primary-container flex items-center justify-center text-on-primary-container font-black text-xl tracking-tighter shadow-[0_0_15px_rgba(45,91,255,0.4)]">
+                R
+            </div>
+<div>
+<h1 class="text-xl font-black tracking-tighter text-[#dae2fd]">RevRa CRM</h1>
+<p class="text-xs text-on-surface-variant font-medium tracking-wide">The Intelligent Pulse</p>
+</div>
+</div>
+<button class="mb-8 w-full bg-primary-container hover:bg-inverse-primary text-on-primary-container font-semibold py-3 px-4 rounded-DEFAULT transition-colors flex items-center justify-center gap-2 shadow-[0_4px_14px_0_rgba(45,91,255,0.39)]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">add</span>
+            New Deal
+        </button>
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-[#434656] hover:text-[#dae2fd] hover:bg-[#171f33] transition-all scale-95 active:scale-100 duration-150" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-medium text-sm tracking-tight">Command Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT bg-[#171f33] text-[#b8c3ff] font-semibold transition-all scale-95 active:scale-100 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<span class="font-medium text-sm tracking-tight">Lead Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-[#434656] hover:text-[#dae2fd] hover:bg-[#171f33] transition-all scale-95 active:scale-100 duration-150" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium text-sm tracking-tight">Templates</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-[#434656] hover:text-[#dae2fd] hover:bg-[#171f33] transition-all scale-95 active:scale-100 duration-150" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-medium text-sm tracking-tight">Performance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-[#434656] hover:text-[#dae2fd] hover:bg-[#171f33] transition-all scale-95 active:scale-100 duration-150" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-medium text-sm tracking-tight">Network</span>
+</a>
+</div>
+<div class="mt-auto px-4">
+<div class="flex items-center gap-3 p-3 rounded-DEFAULT bg-surface-container-lowest border border-outline-variant/15">
+<img alt="Agent Profile Picture" class="w-10 h-10 rounded-DEFAULT object-cover ring-2 ring-primary-container/20" data-alt="close up professional headshot of male agent in dark suit against studio backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqEVHxwOR-bJitfABlk7WGnb2gMf8osTsQ_qnJHyXbO1sUCPwd_1AC7aRwCose6kOZ_cy9UPByrN9qHSCup-LRqoYoveUtBWxobVZMPeB2SJ8GX8ez9NkyOA9bI9kfctIHe1NwBk4pErGk876SlrxfJYJV9P6ik7NHbVXRSVbxEvYAb_Gmhff06Rm4Ulal5qse6bgKubLjiSVZ_eDCU5gsC1miNXPo8x-8MWeqqzOU5dqmzgPSiTfYYDDYAOYUfOjgc4_rSoCxFw"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-on-surface truncate">Marcus Vane</p>
+<p class="text-xs text-on-surface-variant truncate">Principal Broker</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 min-w-0 bg-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-64 flex justify-between items-center px-8 h-16 bg-[#0b1326]/60 backdrop-blur-xl border-b border-[#434656]/15 z-40">
+<div class="flex items-center gap-4 flex-1">
+<button class="md:hidden text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<div class="hidden md:flex relative w-full max-w-md focus-within:ring-2 focus-within:ring-[#8342f4]/30 rounded-DEFAULT transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-DEFAULT py-2 pl-10 pr-4 text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary-container/50 focus:bg-surface-container-low transition-colors" placeholder="Search leads, deals, or commands..." type="text"/>
+<div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<kbd class="px-2 py-0.5 rounded text-[10px] font-medium bg-surface-container border border-outline-variant/20 text-on-surface-variant">⌘</kbd>
+<kbd class="px-2 py-0.5 rounded text-[10px] font-medium bg-surface-container border border-outline-variant/20 text-on-surface-variant">K</kbd>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="relative p-2 text-[#dae2fd]/60 hover:text-[#dae2fd] transition-all rounded-DEFAULT hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+<button class="p-2 text-tertiary hover:text-tertiary-fixed-dim transition-all rounded-DEFAULT hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+<button class="p-2 text-[#dae2fd]/60 hover:text-[#dae2fd] transition-all rounded-DEFAULT hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<button class="hidden lg:flex items-center gap-2 bg-primary-container hover:bg-inverse-primary text-on-primary-container text-sm font-semibold py-2 px-4 rounded-DEFAULT transition-colors shadow-[0_2px_8px_0_rgba(45,91,255,0.25)]">
+                    Create Lead
+                </button>
+<img alt="User Avatar" class="w-8 h-8 rounded-DEFAULT object-cover md:hidden ring-1 ring-outline-variant/30" data-alt="close up professional headshot of male agent in dark suit against studio backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXATbm3xvK98mkzhQn_yCQUXF4YksuaL9mwxPbx9WmqKa52SkHb5PIIplLFs0mTogQPgzE6EcsV01AaRlFbv9-XVciBNzMjo3I9Vxhn3XewX_FGnJzIcKoaLBrJJZOJe1zDYx1pbyOA84UXE0fBouEcw3qYmWFDUgV_2SWpO9EeFy2-TkS4kTLAkSJZN9IoMnpk4TnIViH_79Od4D5e37D037tZK0XtqjAMB3hdPXSCZBD2oq2DYJDXjArCjDtHjby2eOVxdnBJQ"/>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 mt-16 p-6 lg:p-10 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium mb-2">
+<a class="hover:text-primary transition-colors" href="#">Lead Manager</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Alexandria Estate Portfolio</span>
+</div>
+<h2 class="text-3xl lg:text-4xl font-headline font-bold tracking-tight text-on-surface">Share &amp; Collaboration</h2>
+<p class="text-on-surface-variant mt-2 text-sm max-w-2xl">Manage workspace permissions and external collaborator access for this lead packet. Changes are tracked automatically.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-surface-container-low hover:bg-surface-container border border-outline-variant/20 text-on-surface text-sm font-semibold py-2.5 px-4 rounded-DEFAULT transition-all">
+<span class="material-symbols-outlined text-[18px]">link</span>
+                        Copy Link
+                    </button>
+<button class="flex items-center gap-2 bg-primary-container hover:bg-inverse-primary text-on-primary-container text-sm font-semibold py-2.5 px-5 rounded-DEFAULT transition-all shadow-[0_4px_14px_0_rgba(45,91,255,0.39)] bg-gradient-to-r from-primary to-primary-container">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Share Lead
+                    </button>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Col: Active Collaborators -->
+<div class="lg:col-span-2 space-y-6">
+<!-- AI Insights Card -->
+<div class="bg-surface-container-low rounded-DEFAULT p-6 border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-tertiary-container/10 rounded-full blur-[60px] group-hover:bg-tertiary-container/20 transition-all duration-700"></div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="w-10 h-10 rounded-DEFAULT bg-tertiary-container/20 flex items-center justify-center text-tertiary shrink-0 border border-tertiary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-tertiary font-semibold text-sm mb-1">RevRa Intelligence</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">Sarah Jenkins has viewed the financial disclosures 3 times in the last 24 hours. Consider upgrading her access to Edit to expedite the document review process.</p>
+<button class="text-sm font-semibold text-tertiary hover:text-tertiary-fixed-dim transition-colors flex items-center gap-1">
+                                    Upgrade Permissions <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Collaborator List -->
+<div class="bg-surface-container rounded-DEFAULT border border-outline-variant/15 overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-container-lowest bg-surface-container-high flex justify-between items-center">
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-wider">Active Collaborators</h3>
+<span class="text-xs font-medium text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded-DEFAULT border border-outline-variant/20">4 Active</span>
+</div>
+<div class="flex flex-col">
+<!-- Owner -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-bright/30 transition-colors">
+<div class="flex items-center gap-4">
+<img alt="Owner Avatar" class="w-10 h-10 rounded-DEFAULT object-cover ring-2 ring-primary-container/30" data-alt="close up professional headshot of male agent in dark suit against studio backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4UoRig6nHTVsM6P8IysXBHxnREmRL8o3w387_JjzcZX9NW03Hu6ssEzv6DTV2xMP8T1yjOHKZUk_ltWqqr_tN20MlmJqqt7z_8iMzkimzDonPK0czwBYM6RhmpfcRDeAqXdUx19zCYXaWHM08Goaf1DG_wL9BdfKQrFtutcZp8aseFmVldgtI_zk95P2tZOkbiM2KlNkvhIa3YwCZ30pXz6u5MXXV6N0WvoOSKekBWGKK0G7saObWA-M46rkx4kR9Ma5NzSJBA"/>
+<div>
+<div class="flex items-center gap-2">
+<p class="text-sm font-semibold text-on-surface">Marcus Vane (You)</p>
+<span class="text-[10px] font-bold text-primary-container bg-primary-container/10 px-1.5 py-0.5 rounded border border-primary-container/20">OWNER</span>
+</div>
+<p class="text-xs text-on-surface-variant">marcus@revra.com</p>
+</div>
+</div>
+<div class="text-sm font-medium text-on-surface-variant">
+                                    Full Access
+                                </div>
+</div>
+<!-- Collaborator 1 -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-bright/30 transition-colors border-t border-surface-container-lowest">
+<div class="flex items-center gap-4">
+<img alt="Collaborator Avatar" class="w-10 h-10 rounded-DEFAULT object-cover" data-alt="professional headshot of female attorney with glasses in modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbIySAKv2UkrHnhFrCrqcxRGopvtoQw6emjIP7zJO2vCB1IDPjHYfIEG6obA1vgw6yTXty0JTzdB8c-k8YM2qIBiTuTITyTxiMPz7H2A9MZs9v1hk4q6ZW941CidazhkIRxaZpi_xFEqn2FB12Ytke0mAT1uxIEHBVVRqv9fjwnUaobtg7lsAld3zC2_g_lSfeEs8ovkewRkZPit-hndfDAmBE83TEt4vOzzv1UFWY6dqfeEYicNr0SCZK2FCBm4M5CdPd6_gPKw"/>
+<div>
+<p class="text-sm font-semibold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">s.jenkins@legal-partners.net</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex flex-col items-end">
+<span class="text-xs text-on-surface-variant flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active Now</span>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 text-on-surface text-sm py-1.5 px-3 rounded-DEFAULT hover:border-outline-variant/60 transition-colors">
+                                            Can View <span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Collaborator 2 -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-bright/30 transition-colors border-t border-surface-container-lowest">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-DEFAULT bg-secondary-container/30 flex items-center justify-center text-secondary font-bold text-sm border border-secondary/20">
+                                        DT
+                                     </div>
+<div>
+<p class="text-sm font-semibold text-on-surface">David Thompson</p>
+<p class="text-xs text-on-surface-variant">david.t@clientdomain.com</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex flex-col items-end">
+<span class="text-xs text-on-surface-variant">Expires in 48h</span>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 text-on-surface text-sm py-1.5 px-3 rounded-DEFAULT hover:border-outline-variant/60 transition-colors">
+                                            Can Edit <span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Collaborator 3 (Pending) -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-bright/30 transition-colors border-t border-surface-container-lowest opacity-75">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm border border-outline-variant/30 border-dashed">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="text-sm font-semibold text-on-surface">elena.rodriguez@invest.co</p>
+<span class="text-[10px] font-bold text-surface-tint bg-surface-variant px-1.5 py-0.5 rounded border border-outline-variant/20">PENDING</span>
+</div>
+<p class="text-xs text-on-surface-variant">Invited 2 hours ago</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant text-sm py-1.5 px-3 rounded-DEFAULT hover:border-outline-variant/60 transition-colors">
+                                            Can View <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Col: Settings & Security -->
+<div class="space-y-6">
+<!-- General Settings -->
+<div class="bg-surface-container-low rounded-DEFAULT border border-outline-variant/10 p-5">
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">security</span>
+                            Link Settings
+                        </h3>
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-4 p-3 rounded-DEFAULT bg-surface-container-lowest border border-outline-variant/10">
+<div>
+<p class="text-sm font-semibold text-on-surface">Anyone with the link</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Allow public access via URL</p>
+</div>
+<button class="w-10 h-6 bg-surface-variant rounded-full relative transition-colors border border-outline-variant/30">
+<span class="absolute left-1 top-1 w-4 h-4 bg-on-surface-variant rounded-full transition-transform"></span>
+</button>
+</div>
+<div class="flex items-start justify-between gap-4 p-3 rounded-DEFAULT bg-surface-container-lowest border border-primary-container/30 ring-1 ring-primary-container/10">
+<div>
+<p class="text-sm font-semibold text-on-surface">Restricted Access</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Only added people can open</p>
+</div>
+<button class="w-10 h-6 bg-primary-container rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-4 h-4 bg-on-primary-container rounded-full transition-transform"></span>
+</button>
+</div>
+</div>
+</div>
+<!-- Security Policies -->
+<div class="bg-surface-container-low rounded-DEFAULT border border-outline-variant/10 p-5">
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">policy</span>
+                            Data Policies
+                        </h3>
+<div class="space-y-3">
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="mt-0.5 relative flex items-center justify-center w-5 h-5 rounded border border-primary-container bg-primary-container/20">
+<span class="material-symbols-outlined text-[14px] text-primary font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface group-hover:text-primary transition-colors">Prevent downloading</p>
+<p class="text-xs text-on-surface-variant">Viewers cannot download or print files</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="mt-0.5 relative flex items-center justify-center w-5 h-5 rounded border border-outline-variant bg-surface-container-lowest">
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface group-hover:text-primary transition-colors">Require 2FA</p>
+<p class="text-xs text-on-surface-variant">External users must verify identity</p>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="mt-0.5 relative flex items-center justify-center w-5 h-5 rounded border border-primary-container bg-primary-container/20">
+<span class="material-symbols-outlined text-[14px] text-primary font-bold">check</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface group-hover:text-primary transition-colors">Watermark Documents</p>
+<p class="text-xs text-on-surface-variant">Apply viewer email as watermark</p>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

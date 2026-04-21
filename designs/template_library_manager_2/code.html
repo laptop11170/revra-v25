@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa CRM - Template Library</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0b1326",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3f008e",
+                        "tertiary-fixed": "#eaddff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "secondary-container": "#30418a",
+                        "on-secondary": "#162972",
+                        "on-background": "#dae2fd",
+                        "surface-variant": "#2d3449",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#31394d",
+                        "secondary": "#b8c3ff",
+                        "secondary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface": "#dae2fd",
+                        "surface-dim": "#0b1326",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "tertiary-container": "#8342f4",
+                        "on-surface-variant": "#c4c5d9",
+                        "outline": "#8e90a2",
+                        "surface-tint": "#b8c3ff",
+                        "on-primary-fixed": "#001355",
+                        "background": "#0b1326",
+                        "inverse-primary": "#104af0",
+                        "primary-container": "#2d5bff",
+                        "primary-fixed": "#dde1ff",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-primary-container": "#efefff",
+                        "outline-variant": "#434656",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "on-primary": "#002387"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden">
+<!-- Shared Component: SideNavBar -->
+<nav class="bg-[#131b2e] dark:bg-slate-900 font-['Inter'] text-sm font-medium docked left-0 h-full rounded-r-lg border-r border-[#434656]/15 flat no shadows fixed left-0 top-0 h-full w-64 flex flex-col p-4 z-40">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2 mt-2">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-container to-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white font-bold" style="font-variation-settings: 'FILL' 1;">pulse_alert</span>
+</div>
+<div>
+<h2 class="text-on-surface font-bold tracking-tight">Pulse Engine</h2>
+<p class="text-on-surface-variant text-xs">AI Operations</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 space-y-1">
+<!-- Command Center (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span>Command Center</span>
+</a>
+<!-- Templates (Active) -->
+<a class="flex items-center gap-3 px-3 py-2.5 bg-[#2d3449] text-[#8342f4] rounded-lg shadow-[0_0_15px_rgba(131,66,244,0.3)] translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">library_books</span>
+<span class="font-semibold">Templates</span>
+</a>
+<!-- Import Logs (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Import Logs</span>
+</a>
+<!-- Billing (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Billing</span>
+</a>
+<!-- Analytics (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span>Analytics</span>
+</a>
+<!-- Team (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Team</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="mt-auto mb-4">
+<button class="w-full bg-surface-container-highest hover:bg-surface-bright text-tertiary font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Boost Credits
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="space-y-1 pt-4 border-t border-outline-variant/15">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">contact_support</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#dae2fd] opacity-60 hover:opacity-100 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area Wrapper -->
+<div class="flex-1 flex flex-col ml-64 h-full relative z-10">
+<!-- Shared Component: TopNavBar -->
+<header class="bg-[#0b1326] dark:bg-slate-950 font-['Inter'] antialiased tracking-tight docked full-width top-0 flat no shadows bg-[#131b2e] dark:bg-slate-900 flex justify-between items-center w-full px-6 py-3">
+<!-- Left Area: Brand/Navigation -->
+<div class="flex items-center gap-8">
+<div class="text-xl font-black tracking-tighter text-[#b8c3ff] dark:text-blue-200">RevRa AI</div>
+<nav class="flex items-center gap-6">
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-colors px-2 py-1 rounded" href="#">Dashboard</a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-colors px-2 py-1 rounded" href="#">Leads</a>
+<a class="text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 transition-colors px-2 py-1 rounded" href="#">Deals</a>
+</nav>
+</div>
+<!-- Right Area: Actions -->
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container font-semibold px-4 py-2 rounded-lg hover:bg-[#171f33] dark:hover:bg-slate-800 transition-colors scale-95 active:scale-90 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Deal
+                </button>
+<div class="flex items-center gap-2 border-l border-outline-variant/15 pl-4">
+<button class="p-2 text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-[#dae2fd] opacity-70 hover:bg-[#171f33] dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant/30 overflow-hidden ml-2">
+<!-- Profile placeholder -->
+<div class="w-full h-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">U</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-8 bg-surface">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-on-surface mb-1">Template Library</h1>
+<p class="text-on-surface-variant text-sm">Manage, analyze, and optimize your outreach communications.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg font-medium transition-colors border border-outline-variant/15 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 shadow-[0_4px_12px_rgba(45,91,255,0.15)] hover:shadow-[0_4px_16px_rgba(45,91,255,0.25)]">
+<span class="material-symbols-outlined text-sm">edit_document</span>
+                        Create Template
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6 h-[calc(100%-80px)] min-h-[600px]">
+<!-- Left: Categories & Navigation (2 cols) -->
+<div class="col-span-2 space-y-2">
+<h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-4 pl-2">Categories</h3>
+<button class="w-full text-left px-3 py-2 rounded-lg bg-surface-container-highest text-primary font-medium flex items-center justify-between">
+<span>All Templates</span>
+<span class="bg-surface-container-low text-xs py-0.5 px-2 rounded-full">42</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-between">
+<span>Medicare AEP</span>
+<span class="bg-surface-container text-xs py-0.5 px-2 rounded-full">18</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-between">
+<span>ACA Open Enrollment</span>
+<span class="bg-surface-container text-xs py-0.5 px-2 rounded-full">12</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-between">
+<span>Final Expense</span>
+<span class="bg-surface-container text-xs py-0.5 px-2 rounded-full">8</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-between">
+<span>Lead Nurture</span>
+<span class="bg-surface-container text-xs py-0.5 px-2 rounded-full">4</span>
+</button>
+</div>
+<!-- Center: Template List (6 cols) -->
+<div class="col-span-6 bg-surface-container-low rounded-lg p-1 overflow-y-auto">
+<div class="space-y-1">
+<!-- Card 1 -->
+<div class="bg-surface-container hover:bg-surface-bright transition-colors rounded-lg p-4 cursor-pointer relative group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-sm text-primary">sms</span>
+<h4 class="font-semibold text-on-surface text-base">Initial Follow-up (Medicare)</h4>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1">Hi [Name], I saw you requested info on Medicare Advantage plans. Do you have 5 mins today?</p>
+</div>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg bg-surface-container-highest"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg bg-surface-container-highest"><span class="material-symbols-outlined text-sm">edit</span></button>
+</div>
+</div>
+<div class="flex items-center gap-6 mt-4">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Open Rate</span>
+<span class="text-sm font-semibold text-emerald-400">92.4%</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant/15 pl-6">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Response</span>
+<span class="text-sm font-semibold text-primary">34.1%</span>
+</div>
+<div class="ml-auto flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded text-xs text-tertiary">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                                    AI Optimized
+                                </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container hover:bg-surface-bright transition-colors rounded-lg p-4 cursor-pointer relative group">
+<div class="flex justify-between items-start mb-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-sm text-secondary">mail</span>
+<h4 class="font-semibold text-on-surface text-base">ACA Deadline Reminder</h4>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1">Subject: Don't miss the deadline! Secure your health coverage for 2024.</p>
+</div>
+</div>
+<div class="flex items-center gap-6 mt-4">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Open Rate</span>
+<span class="text-sm font-semibold text-on-surface">45.2%</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant/15 pl-6">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Response</span>
+<span class="text-sm font-semibold text-on-surface">12.8%</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container hover:bg-surface-bright transition-colors rounded-lg p-4 cursor-pointer relative group border border-outline-variant/10">
+<div class="flex justify-between items-start mb-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-sm text-primary">sms</span>
+<h4 class="font-semibold text-on-surface text-base">Re-engagement (Cold Leads)</h4>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-1">Are you still looking for life insurance quotes? Reply YES or NO.</p>
+</div>
+</div>
+<div class="flex items-center gap-6 mt-4">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Open Rate</span>
+<span class="text-sm font-semibold text-on-surface">88.0%</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant/15 pl-6">
+<span class="text-xs text-on-surface-variant uppercase tracking-wide">Response</span>
+<span class="text-sm font-semibold text-error">4.2%</span>
+</div>
+<div class="ml-auto flex items-center gap-1 text-xs text-error">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                    Needs Review
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: AI Draft & Preview (4 cols) -->
+<div class="col-span-4 flex flex-col gap-4">
+<!-- AI Assistant Card -->
+<div class="bg-surface-variant/40 backdrop-blur-[20px] rounded-lg p-5 border border-tertiary-container/30 flex-1 flex flex-col relative overflow-hidden">
+<!-- Decorative glow -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-tertiary-container/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-semibold text-tertiary">RevRa Draft Assistant</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-3 mb-4 border border-outline-variant/15">
+<textarea class="w-full bg-transparent text-sm text-on-surface placeholder-on-surface-variant/50 border-none focus:ring-0 resize-none h-24" placeholder="Describe the template you want to create... e.g., 'A friendly text to a Medicare lead who missed our scheduled call.'"></textarea>
+</div>
+<div class="flex justify-between items-center mb-6">
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded text-xs font-medium bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-colors">Make it shorter</button>
+<button class="px-3 py-1 rounded text-xs font-medium bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-colors">More formal</button>
+</div>
+<button class="bg-gradient-to-r from-tertiary-container to-[#6b2fd1] text-white px-4 py-2 rounded-lg font-medium text-sm shadow-[0_4px_15px_rgba(131,66,244,0.3)] hover:shadow-[0_4px_20px_rgba(131,66,244,0.4)] transition-all">
+                                Generate
+                            </button>
+</div>
+<!-- Live Preview -->
+<div class="mt-auto">
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Live Preview (SMS)</h4>
+<div class="bg-surface-container p-4 rounded-lg rounded-tl-sm relative ml-2 mt-2">
+<!-- Tail -->
+<div class="absolute -left-2 top-0 w-4 h-4 bg-surface-container" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
+<p class="text-sm text-on-surface leading-relaxed">
+                                    Hi [Lead.FirstName], sorry we missed each other at [Meeting.Time]. I still have your customized Medicare options ready to review. When is a good time to reconnect today or tomorrow? - [Agent.Name]
+                                </p>
+</div>
+<div class="flex justify-end mt-3">
+<button class="text-primary hover:text-primary-container text-sm font-medium flex items-center gap-1 transition-colors">
+                                    Save as Template
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

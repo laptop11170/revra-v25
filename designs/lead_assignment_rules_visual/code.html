@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visual Lead Assignment Rules Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col md:flex-row">
+<!-- TopNavBar (Web) -->
+<nav class="hidden md:flex fixed top-0 w-full z-50 items-center justify-between px-6 h-16 bg-[#131b2e] border-b border-transparent shadow-sm shadow-surface-container-lowest">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold text-[#dae2fd] tracking-[-0.02em]">RevRa AI</div>
+<div class="flex items-center gap-6">
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Deals</a>
+<a class="text-[#dae2fd]/60 hover:text-[#dae2fd] font-['Inter'] text-sm tracking-tight transition-colors duration-200" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface/70 hover:text-on-surface transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface/70 hover:text-on-surface transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+<button class="text-on-surface/70 hover:text-on-surface transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-surface-container-high ml-2" data-alt="close up of a professional man in a dark suit smiling subtly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsTpbrCNo6V3BO0ONVjTDvIH5bP2sQ1Pua1_it4KWAfn0N9CdIlJrpFRDozmgOa_Nnu172afWUgvwLLDIRF9nBUUeyZoRGFbTFq5MODbxAyWhQeox8wCIkWRaL38PexKOlBZ7cR9kX8onrWjP43UbF9gKajaKQOyy5WNTvxtOFBrvW6YOL887dmNK9-lFzGLfbCqQXYmlW7IzqEPkWiY4OYsJSguTtjceXXLthgwI3XzFPz8A80vvmcasPsoJjc2-9PR78p1fKtQ"/>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131b2e] py-6 z-40 border-r border-transparent shadow-sm shadow-surface-container-lowest justify-between">
+<div class="px-4">
+<div class="mb-8 px-2">
+<div class="text-xs font-semibold text-on-surface/50 uppercase tracking-wider mb-2">Workspace</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">R</div>
+<div>
+<div class="text-sm font-bold text-on-surface">RevRa CRM</div>
+<div class="text-xs text-on-surface/60">Intelligent Pulse</div>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container rounded-DEFAULT py-2.5 px-4 flex items-center justify-center gap-2 font-medium text-sm mb-6 hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                New Lead
+            </button>
+<nav class="space-y-1">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                    Compliance
+                </a>
+<a class="bg-[#2d3449] text-[#b8c3ff] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+                    Integrations
+                </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                    Leads
+                </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+                    Gamification
+                </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                    Performance
+                </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+                    Knowledge
+                </a>
+</nav>
+</div>
+<div class="px-4">
+<div class="text-xs font-semibold text-on-surface/50 uppercase tracking-wider mb-2 px-2">Settings</div>
+<nav class="space-y-1">
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="webhook">webhook</span>
+                    Webhooks
+                </a>
+<a class="text-[#dae2fd]/50 hover:bg-[#171f33] hover:text-[#dae2fd] rounded-lg mx-2 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+                    API Keys
+                </a>
+</nav>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 mt-16 p-8 relative overflow-hidden">
+<!-- Header -->
+<header class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold tracking-[-0.02em] text-on-surface mb-2">Lead Assignment Rules</h1>
+<p class="text-on-surface-variant text-sm">Design intelligent routing logic to distribute incoming leads efficiently.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-high text-on-surface px-4 py-2 rounded-DEFAULT text-sm font-medium hover:bg-surface-container-highest transition-colors flex items-center gap-2 border border-outline-variant/15">
+<span class="material-symbols-outlined text-[18px]" data-icon="history">history</span>
+                    Version History
+                </button>
+<button class="bg-primary-container text-on-primary-container px-5 py-2 rounded-DEFAULT text-sm font-medium hover:bg-primary-container/90 transition-colors flex items-center gap-2 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+                    Save Flow
+                </button>
+</div>
+</header>
+<!-- Builder Canvas Area -->
+<div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-12rem)]">
+<!-- Left Sidebar: Nodes/Elements -->
+<div class="w-full lg:w-72 bg-surface-container-low rounded-xl p-4 flex flex-col gap-4 border border-outline-variant/10 shadow-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-DEFAULT pl-9 pr-3 py-2 text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container/50 transition-colors" placeholder="Search conditions..." type="text"/>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-6 scrollbar-hide">
+<!-- Category 1 -->
+<div>
+<h3 class="text-xs font-semibold text-on-surface/50 uppercase tracking-wider mb-3">Triggers</h3>
+<div class="space-y-2">
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="flash_on">flash_on</span>
+</div>
+<span class="text-sm font-medium">New Lead Created</span>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="update">update</span>
+</div>
+<span class="text-sm font-medium">Lead Status Changed</span>
+</div>
+</div>
+</div>
+<!-- Category 2 -->
+<div>
+<h3 class="text-xs font-semibold text-on-surface/50 uppercase tracking-wider mb-3">Conditions</h3>
+<div class="space-y-2">
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="rule">rule</span>
+</div>
+<span class="text-sm font-medium">Field Value Match</span>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+</div>
+<span class="text-sm font-medium">Geographic Region</span>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary-container/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="text-sm font-medium text-tertiary-fixed-dim">AI Lead Score &gt; X</span>
+</div>
+</div>
+</div>
+<!-- Category 3 -->
+<div>
+<h3 class="text-xs font-semibold text-on-surface/50 uppercase tracking-wider mb-3">Actions</h3>
+<div class="space-y-2">
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="person_add">person_add</span>
+</div>
+<span class="text-sm font-medium">Assign to Agent</span>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant/15 cursor-grab hover:bg-surface-container-highest transition-colors flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="group">group</span>
+</div>
+<span class="text-sm font-medium">Round Robin Group</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Canvas Board -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl border border-outline-variant/10 relative overflow-hidden flex flex-col">
+<!-- Canvas Grid Background -->
+<div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, rgba(67, 70, 86, 0.2) 1px, transparent 0); background-size: 24px 24px;"></div>
+<!-- Canvas Toolbar -->
+<div class="h-12 border-b border-outline-variant/10 flex items-center justify-between px-4 bg-surface-container-lowest/80 backdrop-blur-md z-10">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-on-surface-variant">Flow: Medicare Routing Logic</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-tertiary-container/20 text-tertiary-fixed-dim border border-tertiary-container/30">ACTIVE</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="zoom_in">zoom_in</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="zoom_out">zoom_out</span>
+</button>
+<div class="w-px h-4 bg-outline-variant/30 mx-1"></div>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="fit_screen">fit_screen</span>
+</button>
+</div>
+</div>
+<!-- Canvas Area (Drag & Drop Zone) -->
+<div class="flex-1 relative p-8 overflow-auto">
+<!-- Flow Container -->
+<div class="max-w-3xl mx-auto flex flex-col items-center gap-6 pb-20 relative z-10">
+<!-- Trigger Node -->
+<div class="w-80 bg-surface-container-low rounded-xl border border-outline-variant/20 shadow-lg shadow-black/20 overflow-hidden relative group">
+<div class="h-1.5 w-full bg-tertiary-container"></div>
+<div class="p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2 text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[18px]" data-icon="flash_on">flash_on</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Trigger</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="text-base font-medium text-on-surface">New Lead Created</div>
+<div class="text-xs text-on-surface-variant mt-1">Source: All Web Forms</div>
+</div>
+</div>
+<!-- Connector Line -->
+<div class="w-0.5 h-6 bg-outline-variant/40"></div>
+<!-- Condition Node (If Coverage Type = Medicare) -->
+<div class="w-96 bg-surface-container-low rounded-xl border border-outline-variant/20 shadow-lg shadow-black/20 overflow-hidden relative group">
+<div class="h-1.5 w-full bg-secondary-container"></div>
+<div class="p-4 border-b border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2 text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[18px]" data-icon="call_split">call_split</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Condition</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-3">
+<div class="bg-surface-container px-3 py-1.5 rounded border border-outline-variant/20 text-sm text-on-surface">Coverage Type</div>
+<span class="text-on-surface-variant text-sm font-medium">equals</span>
+<div class="bg-surface-container-highest px-3 py-1.5 rounded border border-outline-variant/30 text-sm font-medium text-secondary-fixed-dim">Medicare</div>
+</div>
+</div>
+<div class="flex bg-surface-container/50">
+<div class="flex-1 p-2 text-center text-xs font-medium text-on-surface-variant border-r border-outline-variant/10 hover:bg-surface-container-highest/50 cursor-pointer transition-colors">
+                                    TRUE
+                                </div>
+<div class="flex-1 p-2 text-center text-xs font-medium text-on-surface-variant hover:bg-surface-container-highest/50 cursor-pointer transition-colors">
+                                    FALSE
+                                </div>
+</div>
+</div>
+<!-- Split Path Layout -->
+<div class="flex gap-20 relative">
+<!-- Horizontal connecting line -->
+<div class="absolute top-0 left-[25%] right-[25%] h-0.5 bg-outline-variant/40 -translate-y-full"></div>
+<!-- Vertical drops -->
+<div class="absolute top-0 left-[25%] w-0.5 h-6 bg-outline-variant/40 -translate-y-full"></div>
+<div class="absolute top-0 right-[25%] w-0.5 h-6 bg-outline-variant/40 -translate-y-full"></div>
+<!-- True Path (Assign to Group A) -->
+<div class="flex flex-col items-center pt-6 relative">
+<div class="w-80 bg-surface-container-low rounded-xl border border-primary-container/30 shadow-lg shadow-black/20 overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent pointer-events-none"></div>
+<div class="h-1.5 w-full bg-primary-container"></div>
+<div class="p-4 relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Action</span>
+</div>
+<div class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant/20 text-[10px] text-on-surface-variant">Round Robin</div>
+</div>
+<div class="text-base font-medium text-on-surface mb-2">Assign to Group A</div>
+<!-- Mini list of agents in group -->
+<div class="flex -space-x-2 mt-3">
+<img alt="Agent avatar" class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="portrait of smiling woman with dark hair against neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBYC-D95OXw3112NqLLDbKlRyC0kv-ZXUiQ3qlmDLFgj7Gv4copdnTmpdIIBmmQVlGRPlnRK3sgnoujIoQl0ieBnivoJeUA0a7PMH47Ky1TRpqEMOjbXYVX0X5Nn8vbP4YX0ZytTYKtAOYFZtmWd44ZpIRKCXWOenR_c5WQ5Cbo7Batg-muq1v-RZEF-RQo-oufhlor9csEJaFn63AEC6aWvu_L-3nMXWZnec_LcQaFW3LXGgqXyoPIYKheY7eEeXahxbltaUVyw"/>
+<img alt="Agent avatar" class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="portrait of a young man with short hair looking at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhAyx1QZaVNQ3swB0T6IsW8QHsEbyEVVOaJ7PjiT_Fpyr1wp1JG61l0ima0IZcrKQJcQWm3W437O69pGt2i1sYOeemhsceyUEja61a8zNrLGF8mLoaVQ_pdYwrnqphM9VDO8BDLC6mr_SF0RMXOjrYnmcYuFY_XkWgmZK91NiR9eNjln9pfasE_QBXXa_g01OWxpgfIswaCuUCChoCoMaIQwmccRle5Y6kNhDFdYB46D2YNp9k2hkmsHWEp22U1flIbkh_z2yVIA"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-container-low bg-surface-container flex items-center justify-center text-[10px] font-medium text-on-surface-variant">+3</div>
+</div>
+</div>
+</div>
+</div>
+<!-- False Path (Fallback) -->
+<div class="flex flex-col items-center pt-6 relative">
+<div class="w-80 bg-surface-container-low rounded-xl border border-outline-variant/20 shadow-lg shadow-black/20 overflow-hidden relative group opacity-80">
+<div class="h-1.5 w-full bg-outline-variant"></div>
+<div class="p-4">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Action</span>
+</div>
+</div>
+<div class="text-base font-medium text-on-surface">Assign to Default Queue</div>
+<div class="text-xs text-on-surface-variant mt-1">General Inquiries</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add Node Button (Bottom) -->
+<div class="mt-8 relative group cursor-pointer">
+<div class="absolute -inset-2 bg-primary-container/10 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center text-on-surface-variant group-hover:text-primary-fixed-dim group-hover:border-primary-container/50 transition-colors relative z-10 shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Properties Panel (Contextual) -->
+<div class="w-full lg:w-80 bg-surface-container-low rounded-xl p-5 flex flex-col border border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant/10">
+<h2 class="text-base font-semibold text-on-surface">Node Properties</h2>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Properties Content (Assuming the Round Robin node is selected) -->
+<div class="flex-1 overflow-y-auto space-y-6 scrollbar-hide">
+<div>
+<label class="block text-xs font-semibold text-on-surface/60 uppercase tracking-wider mb-2">Action Name</label>
+<input class="w-full bg-surface-container border border-outline-variant/20 rounded-DEFAULT px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary-container/50 transition-colors" type="text" value="Assign to Group A"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface/60 uppercase tracking-wider mb-2">Assignment Logic</label>
+<select class="w-full bg-surface-container border border-outline-variant/20 rounded-DEFAULT px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary-container/50 transition-colors appearance-none">
+<option value="round_robin">Round Robin (Even Distribution)</option>
+<option value="weighted">Weighted Distribution</option>
+<option value="performance">Performance-Based (AI)</option>
+</select>
+</div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block text-xs font-semibold text-on-surface/60 uppercase tracking-wider">Target Group</label>
+<a class="text-xs text-primary-fixed-dim hover:text-primary transition-colors" href="#">Edit Group</a>
+</div>
+<div class="bg-surface-container rounded-DEFAULT border border-outline-variant/20 p-3">
+<div class="flex items-center justify-between mb-3">
+<span class="text-sm font-medium text-on-surface">Group A (Medicare Specialists)</span>
+<span class="bg-surface-container-highest px-2 py-0.5 rounded text-[10px] text-on-surface-variant">5 Agents</span>
+</div>
+<!-- Agent List in Properties -->
+<div class="space-y-2 mt-3 pt-3 border-t border-outline-variant/10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500/80"></div>
+<span class="text-xs text-on-surface">Sarah J.</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">Capacity: 4/10</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500/80"></div>
+<span class="text-xs text-on-surface">Michael T.</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">Capacity: 7/10</span>
+</div>
+<div class="flex items-center justify-between opacity-50">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error/80"></div>
+<span class="text-xs text-on-surface">Jessica R.</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">Offline</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Suggestion Callout -->
+<div class="bg-tertiary-container/10 border border-tertiary-container/20 rounded-DEFAULT p-3 relative overflow-hidden group mt-4">
+<div class="absolute top-0 right-0 w-16 h-16 bg-tertiary/10 blur-xl rounded-full"></div>
+<div class="flex items-start gap-3 relative z-10">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<h4 class="text-xs font-semibold text-tertiary-fixed-dim mb-1">AI Recommendation</h4>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Consider enabling <strong>Performance-Based</strong> routing. Michael T. has a 14% higher conversion rate for Medicare leads in the last 30 days.</p>
+<button class="mt-2 text-[10px] font-medium text-tertiary-fixed-dim hover:text-tertiary transition-colors uppercase tracking-wide">Apply Suggestion</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

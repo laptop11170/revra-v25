@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Advanced Webhook Configuration - RevRa CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-tertiary": "#3f008e",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-container": "#efefff",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#eaddff",
+                        "outline": "#8e90a2",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "on-primary-fixed": "#001355",
+                        "on-primary": "#002387",
+                        "background": "#0b1326",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "outline-variant": "#434656",
+                        "on-secondary-fixed": "#001355",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#8342f4",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-secondary-container": "#a1b1ff",
+                        "inverse-on-surface": "#283044",
+                        "surface-variant": "#2d3449",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#b8c3ff",
+                        "on-tertiary-container": "#f6ecff",
+                        "on-error": "#690005",
+                        "surface": "#0b1326",
+                        "on-secondary": "#162972",
+                        "secondary-container": "#30418a",
+                        "secondary": "#b8c3ff",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "on-surface": "#dae2fd",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "tertiary": "#d2bbff",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "primary": "#b8c3ff",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col py-6 border-r border-outline-variant/15 w-64 bg-surface-container-low z-40">
+<div class="px-6 mb-8">
+<h1 class="text-lg font-black text-on-surface tracking-[-0.02em]">RevRa CRM</h1>
+<p class="text-xs text-on-surface/60 font-medium">Intelligent Pulse</p>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-medium text-sm py-2 px-4 rounded-DEFAULT hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Lead
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+<span class="font-['Inter'] text-sm font-medium">Compliance</span>
+</a>
+<a class="bg-surface-variant text-primary-fixed-dim rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-['Inter'] text-sm font-medium">Integrations</span>
+</a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span class="font-['Inter'] text-sm font-medium">Leads</span>
+</a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">emoji_events</span>
+<span class="font-['Inter'] text-sm font-medium">Gamification</span>
+</a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="font-['Inter'] text-sm font-medium">Performance</span>
+</a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">library_books</span>
+<span class="font-['Inter'] text-sm font-medium">Knowledge</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/15 space-y-1">
+<div class="px-6 py-2 text-xs font-semibold text-on-surface/40 tracking-wider">DEVELOPER</div>
+<a class="bg-surface-variant text-primary-fixed-dim rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">webhook</span>
+<span class="font-['Inter'] text-sm font-medium">Webhooks</span>
+</a>
+<a class="text-on-surface/50 hover:bg-surface-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">key</span>
+<span class="font-['Inter'] text-sm font-medium">API Keys</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (Mobile) -->
+<nav class="md:hidden fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-surface-container-low border-b border-outline-variant/15">
+<div class="text-xl font-bold text-on-surface tracking-[-0.02em]">RevRa AI</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface/60 hover:text-on-surface transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="text-on-surface/60 hover:text-on-surface transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 pt-20 md:pt-8 px-4 md:px-8 pb-12 w-full max-w-7xl mx-auto">
+<!-- Header -->
+<header class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">hub</span>
+<span class="text-sm font-medium text-tertiary">Developer Settings</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface mb-1">Webhook Configuration</h2>
+<p class="text-on-surface-variant text-sm">Manage outbound event notifications and payload delivery.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-medium text-sm py-2 px-4 rounded-DEFAULT hover:bg-primary-container/90 transition-colors flex items-center gap-2 self-start md:self-auto">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Create Endpoint
+            </button>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Webhook List -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Metrics Bar -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-surface-container rounded-lg p-4 flex flex-col relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-secondary-container/20 rounded-full blur-xl"></div>
+<span class="text-xs text-on-surface-variant font-medium tracking-wide uppercase mb-1">Active Endpoints</span>
+<span class="text-2xl font-bold text-on-surface tracking-tight">4</span>
+</div>
+<div class="bg-surface-container rounded-lg p-4 flex flex-col relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-primary-container/20 rounded-full blur-xl"></div>
+<span class="text-xs text-on-surface-variant font-medium tracking-wide uppercase mb-1">Events (24h)</span>
+<span class="text-2xl font-bold text-on-surface tracking-tight">1,248</span>
+</div>
+<div class="bg-surface-container rounded-lg p-4 flex flex-col relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-error/10 rounded-full blur-xl"></div>
+<span class="text-xs text-on-surface-variant font-medium tracking-wide uppercase mb-1">Failed Deliveries</span>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-error tracking-tight">3</span>
+<span class="text-xs text-error/80 font-medium">0.24%</span>
+</div>
+</div>
+</div>
+<!-- Webhooks List -->
+<div class="bg-surface-container-low rounded-lg p-1">
+<!-- Item 1 -->
+<div class="bg-surface-container rounded-DEFAULT p-4 mb-1 hover:bg-surface-bright transition-colors cursor-pointer group border-l-2 border-primary-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h3 class="text-base font-semibold text-on-surface">Zendesk Ticketing Sync</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary-container/10 text-primary-fixed-dim uppercase tracking-wider">Active</span>
+</div>
+<p class="text-sm font-mono text-on-surface-variant truncate">https://api.zendesk.com/v2/receivers/webhooks/98234</p>
+</div>
+<div class="flex items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
+<span class="text-xs text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">Lead Created</span>
+<div class="flex items-center gap-1 text-xs text-[#81c995]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>2 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container rounded-DEFAULT p-4 mb-1 hover:bg-surface-bright transition-colors cursor-pointer group border-l-2 border-tertiary-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h3 class="text-base font-semibold text-on-surface">Compliance Archive</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-tertiary-container/10 text-tertiary uppercase tracking-wider">Active</span>
+</div>
+<p class="text-sm font-mono text-on-surface-variant truncate">https://secure-vault.revra.internal/v1/ingest</p>
+</div>
+<div class="flex items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
+<span class="text-xs text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">Policy Bound</span>
+<div class="flex items-center gap-1 text-xs text-[#81c995]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>15 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container rounded-DEFAULT p-4 mb-1 hover:bg-surface-bright transition-colors cursor-pointer group border-l-2 border-error">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h3 class="text-base font-semibold text-on-surface">Legacy ERP Forwarder</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error/10 text-error uppercase tracking-wider">Failing</span>
+</div>
+<p class="text-sm font-mono text-on-surface-variant truncate">https://erp.acmecorp.net/api/webhook/crm</p>
+</div>
+<div class="flex items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
+<span class="text-xs text-on-surface-variant bg-surface-container-highest px-2 py-1 rounded">Contact Updated</span>
+<div class="flex items-center gap-1 text-xs text-error">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>Connection Timeout</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Inspector & Actions -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-surface-container rounded-lg p-5">
+<h3 class="text-sm font-bold text-on-surface mb-4 uppercase tracking-wider">Endpoint Operations</h3>
+<div class="space-y-3">
+<button class="w-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-medium text-sm py-2 px-4 rounded-DEFAULT transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed-dim">play_arrow</span>
+                                Test Selected Webhook
+                            </div>
+<span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</button>
+<button class="w-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-medium text-sm py-2 px-4 rounded-DEFAULT transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">vpn_key</span>
+                                Rotate Secret Key
+                            </div>
+</button>
+</div>
+</div>
+<!-- Payload Log Viewer -->
+<div class="bg-surface-container rounded-lg flex-1 flex flex-col overflow-hidden border border-outline-variant/10">
+<div class="bg-surface-container-high px-4 py-3 flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">terminal</span>
+<h3 class="text-xs font-bold text-on-surface uppercase tracking-wider">Latest Payload</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-[10px] font-mono text-on-surface-variant">504 GATEWAY_TIMEOUT</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 flex-1 font-mono text-[11px] text-on-surface-variant overflow-y-auto leading-relaxed">
+<pre class="whitespace-pre-wrap text-error/80 mb-4"><code>[ERROR] POST https://erp.acmecorp.net/api/webhook/crm
+Failed to connect to erp.acmecorp.net port 443: Timed out</code></pre>
+<pre class="whitespace-pre-wrap"><code>{
+  "event_id": "evt_9a8b7c6d5e4f3g2h1",
+  "event_type": "contact.updated",
+  "timestamp": "2023-10-27T14:32:01Z",
+  "data": {
+    "contact": {
+      "id": "con_12345",
+      "first_name": "Sarah",
+      "last_name": "Connor",
+      "email": "s.connor@cyberdyne.sys",
+      "status": "engaged",
+      "ai_insight_score": <span class="text-tertiary">92.4</span>
+    },
+    "previous_attributes": {
+      "status": "new"
+    }
+  }
+}</code></pre>
+</div>
+<div class="bg-surface-container-high p-2 flex justify-end gap-2 border-t border-outline-variant/10">
+<button class="text-xs text-on-surface-variant hover:text-on-surface px-2 py-1 rounded transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                        </button>
+<button class="text-xs text-on-surface-variant hover:text-on-surface px-2 py-1 rounded transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">replay</span> Retry
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

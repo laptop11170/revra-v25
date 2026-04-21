@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa CRM - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#171f33",
+                        "surface": "#0b1326",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c4c5d9",
+                        "surface-container-low": "#131b2e",
+                        "on-secondary-container": "#a1b1ff",
+                        "on-secondary-fixed": "#001355",
+                        "secondary-fixed": "#dde1ff",
+                        "primary": "#b8c3ff",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#30418a",
+                        "primary-container": "#2d5bff",
+                        "on-primary-fixed": "#001355",
+                        "on-background": "#dae2fd",
+                        "outline-variant": "#434656",
+                        "outline": "#8e90a2",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-highest": "#2d3449",
+                        "secondary": "#b8c3ff",
+                        "error-container": "#93000a",
+                        "on-surface": "#dae2fd",
+                        "secondary-container": "#30418a",
+                        "inverse-surface": "#dae2fd",
+                        "surface-bright": "#31394d",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed-variant": "#0035bd",
+                        "background": "#0b1326",
+                        "on-primary": "#002387",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-secondary": "#162972",
+                        "primary-fixed": "#dde1ff",
+                        "tertiary-container": "#8342f4",
+                        "tertiary": "#d2bbff",
+                        "on-tertiary": "#3f008e",
+                        "on-primary-container": "#efefff",
+                        "on-tertiary-container": "#f6ecff",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-fixed": "#eaddff",
+                        "surface-tint": "#b8c3ff",
+                        "surface-dim": "#0b1326",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#25005a",
+                        "inverse-primary": "#104af0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(67, 70, 86, 0.15);
+        }
+
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(131, 66, 244, 0.15) 0%, rgba(11, 19, 38, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .input-etched {
+            background-color: #060e20;
+            border: 1px solid rgba(67, 70, 86, 0.15);
+            color: #dae2fd;
+        }
+        
+        .input-etched:focus {
+            outline: none;
+            border-color: #2d5bff;
+            box-shadow: 0 0 0 1px #2d5bff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-hidden font-body text-on-surface bg-surface">
+<!-- Ambient AI Glow Background -->
+<div class="ambient-glow -top-40 -right-40"></div>
+<div class="ambient-glow -bottom-60 -left-40" style="background: radial-gradient(circle, rgba(45, 91, 255, 0.1) 0%, rgba(11, 19, 38, 0) 70%);"></div>
+<div class="w-full max-w-md px-6 relative z-10">
+<!-- Header / Logo -->
+<div class="text-center mb-10">
+<h1 class="text-3xl font-black text-on-surface tracking-tighter mb-2 font-headline">RevRa</h1>
+<p class="text-sm font-medium text-on-surface-variant">Modern Agent CRM</p>
+</div>
+<!-- Glassmorphic Login Card -->
+<div class="glass-panel rounded-xl p-8 shadow-2xl shadow-surface-container-lowest/50">
+<div class="mb-8">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface mb-1 font-headline">Welcome back</h2>
+<p class="text-sm text-on-surface-variant font-body">Sign in to access your intelligent workspace.</p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<!-- Email Field -->
+<div>
+<label class="block text-sm font-medium text-on-surface-variant mb-2 font-label" for="email">Email address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-xl" data-icon="mail">mail</span>
+</div>
+<input autocomplete="email" class="input-etched block w-full pl-10 pr-3 py-3 rounded-lg text-sm placeholder-outline/50 transition-colors duration-200" id="email" name="email" placeholder="agent@revra.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block text-sm font-medium text-on-surface-variant font-label" for="password">Password</label>
+<a class="text-xs font-medium text-primary hover:text-primary-fixed-dim transition-colors duration-200" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-xl" data-icon="lock">lock</span>
+</div>
+<input autocomplete="current-password" class="input-etched block w-full pl-10 pr-3 py-3 rounded-lg text-sm placeholder-outline/50 transition-colors duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-outline-variant bg-surface-container-lowest text-primary-container focus:ring-primary-container focus:ring-offset-surface" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-on-surface-variant font-label" for="remember-me">Remember me</label>
+</div>
+<!-- Submit Button -->
+<div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-on-primary-container bg-primary-container hover:bg-primary-container/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-container focus:ring-offset-surface transition-colors duration-200" type="submit">
+                        Sign In
+                    </button>
+</div>
+</form>
+<!-- Contextual Hint -->
+<div class="mt-6 flex items-center justify-center space-x-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="auto_awesome">auto_awesome</span>
+<span>Powered by RevRa Intelligence</span>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 text-center">
+<p class="text-sm text-on-surface-variant">
+                Don't have an account? 
+                <a class="font-medium text-primary hover:text-primary-fixed-dim transition-colors duration-200" href="#">Request access</a>
+</p>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RevRa - Subscription Management</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Design System -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#2d5bff",
+                    "inverse-primary": "#104af0",
+                    "on-secondary-fixed": "#001355",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "surface-variant": "#2d3449",
+                    "surface-container-highest": "#2d3449",
+                    "surface": "#0b1326",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-primary-fixed-variant": "#0035bd",
+                    "on-primary-fixed": "#001355",
+                    "background": "#0b1326",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#d2bbff",
+                    "on-primary": "#002387",
+                    "surface-container": "#171f33",
+                    "primary": "#b8c3ff",
+                    "inverse-on-surface": "#283044",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "secondary": "#b8c3ff",
+                    "on-tertiary-fixed": "#25005a",
+                    "on-secondary-container": "#a1b1ff",
+                    "on-surface-variant": "#c4c5d9",
+                    "surface-container-high": "#222a3d",
+                    "surface-bright": "#31394d",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "surface-dim": "#0b1326",
+                    "primary-fixed": "#dde1ff",
+                    "inverse-surface": "#dae2fd",
+                    "tertiary-fixed": "#eaddff",
+                    "on-tertiary": "#3f008e",
+                    "on-tertiary-container": "#f6ecff",
+                    "on-error": "#690005",
+                    "on-primary-container": "#efefff",
+                    "outline-variant": "#434656",
+                    "on-secondary-fixed-variant": "#30418a",
+                    "outline": "#8e90a2",
+                    "tertiary-container": "#8342f4",
+                    "surface-container-lowest": "#060e20",
+                    "on-surface": "#dae2fd",
+                    "on-background": "#dae2fd",
+                    "surface-container-low": "#131b2e",
+                    "secondary-container": "#30418a",
+                    "secondary-fixed": "#dde1ff",
+                    "error-container": "#93000a",
+                    "on-secondary": "#162972",
+                    "surface-tint": "#b8c3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.5rem",
+                    "xl": "0.5rem",
+                    "full": "9999px",
+                    "sm": "0.5rem",
+                    "md": "0.5rem",
+                    "2xl": "0.5rem",
+                    "3xl": "0.5rem"
+            },
+            "spacing": {},
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(23, 31, 51, 0.7) 0%, rgba(34, 42, 61, 0.4) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(184, 195, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden min-h-screen">
+<!-- TopAppBar -->
+<!-- Executing precise JSON styles: bg-[#0b1326] text-[#2d5bff] font-['Inter'] text-sm tracking-tight text-[#dae2fd] text-2xl font-black tracking-tighter text-[#dae2fd] docked full-width top-0 bg-[#131b2e] border-none flat no shadows tonal-layering flex justify-between items-center w-full px-6 py-3 h-16 z-50 -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#0b1326] text-[#dae2fd] font-['Inter'] text-sm tracking-tight flex justify-between items-center px-6 py-3 h-16 border-none">
+<!-- Search Bar (on_left) -->
+<div class="flex items-center bg-surface-container-low rounded-[8px] px-3 py-1.5 w-64 text-on-surface-variant focus-within:ring-1 focus-within:ring-primary-container transition-all">
+<span class="material-symbols-outlined text-sm mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-sm w-full placeholder-on-surface-variant/50 focus:ring-0 p-0" placeholder="Search..." type="text"/>
+</div>
+<!-- Brand Logo -->
+<div class="absolute left-1/2 transform -translate-x-1/2">
+<span class="text-2xl font-black tracking-tighter text-[#dae2fd]">RevRa</span>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-4">
+<button class="text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 p-2 rounded-full scale-95 active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 p-2 rounded-full scale-95 active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#dae2fd]/70 hover:bg-[#171f33] transition-all duration-200 p-1 rounded-full scale-95 active:opacity-80 flex items-center justify-center">
+<img alt="Super Admin Avatar" class="w-7 h-7 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjaF_h-fpPfcosErLhkqtykhF52mnjwbpCND7YqTIo6QLLsKIMfwhlu9yXW4Jp_Pjmu2OK6vThBanJSW83Gzc6u0jRtgb0SEoJ4DwI8LSVnGAqg8RR1o4NIIhgiUqUmjrVPngV-szM1yEzeYnyQ79c3KJ0AUsm7CxjfN6miy8enM9p1vDuiyV7d2Lzb9rUcbywuMrWcsLX-XCdi6I_LkFwLbXeEhJ--nPyK-mQL5ZiYx3t34PsrhoBRDN4y2qJKgxNexDc-m9o5A"/>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<!-- Executing precise JSON styles: bg-[#131b2e] text-[#2d5bff] font-['Inter'] font-medium text-sm text-[#b8c3ff] font-bold rounded-r-lg h-screen bg-[#171f33] flat no shadows fixed left-0 top-0 h-full w-64 flex flex-col p-4 space-y-2 z-40 -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-4 space-y-2 z-40 pt-20 bg-[#131b2e] font-['Inter'] font-medium text-sm rounded-r-lg">
+<!-- Header -->
+<div class="mb-6 px-2 flex items-center space-x-3">
+<img alt="RevRa Intelligence" class="w-10 h-10 rounded-[8px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtQd4EmI3wrZ_-G7Ho1OPPSrXK1fXNSEFML2nKgk67eYpgITHPttH7LFYT1xlYi1VOo4QNceHwuHA3m7lEo6M65SUzHLL7T-4hmNmjYJaWuo7Ada_LQatIWh2sBdbTF3HMy_t2DAfvX5781Ixh5xphwbWoLbdz45Yhgv8C1UC_TDQ7SWRUBdrBYXiabloacXKPvqyrb-Hjjb2FuTWWoFacOPYWRUPQd59gf56roAfk5XpK8kfZrn_a4KNBCDq9USKzSzCy4-tq0Q"/>
+<div>
+<div class="text-[#b8c3ff] font-bold text-base">The Pulse</div>
+<div class="text-[#dae2fd]/50 text-xs">AI Performance Level</div>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 flex flex-col space-y-1">
+<!-- Inactive -->
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">history</span>
+<span>Import History</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">account_balance_wallet</span>
+<span>Billing &amp; Credits</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">notifications_active</span>
+<span>Notifications</span>
+</a>
+<!-- Active Tab: Subscriptions (Matches Intent) -->
+<a class="flex items-center space-x-3 px-3 py-2 bg-[#171f33] text-[#2d5bff] rounded-[8px] shadow-[0_0_15px_rgba(45,91,255,0.15)] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">loyalty</span>
+<span>Subscriptions</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">settings_input_component</span>
+<span>Global Settings</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="mt-auto mb-4">
+<button class="w-full bg-[#171f33] hover:bg-[#171f33]/80 text-[#2d5bff] py-2 rounded-[8px] transition-colors duration-300 flex items-center justify-center space-x-2 border border-[#2d5bff]/20">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+<span>Purchase Credits</span>
+</button>
+</div>
+<!-- Footer Nav -->
+<div class="flex flex-col space-y-1 pt-4 border-t border-surface-container/50">
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-[#dae2fd]/50 hover:text-[#dae2fd] hover:bg-[#171f33]/80 transition-colors duration-300 rounded-[8px] group" href="#">
+<span class="material-symbols-outlined text-lg group-active:translate-x-1 transition-transform">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-20 p-8 max-w-7xl mx-auto">
+<!-- Platform KPI Strip -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="glass-panel rounded-[8px] p-4 flex items-center space-x-4">
+<div class="bg-primary-container/20 p-2 rounded-[8px] text-primary-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Total MRR</div>
+<div class="text-2xl font-bold text-on-surface">$248,500</div>
+</div>
+</div>
+<div class="glass-panel rounded-[8px] p-4 flex items-center space-x-4">
+<div class="bg-tertiary-container/20 p-2 rounded-[8px] text-tertiary">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Active Workspaces</div>
+<div class="text-2xl font-bold text-on-surface">1,245</div>
+</div>
+</div>
+<div class="glass-panel rounded-[8px] p-4 flex items-center space-x-4">
+<div class="bg-secondary-container/20 p-2 rounded-[8px] text-secondary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Total Users</div>
+<div class="text-2xl font-bold text-on-surface">84,290</div>
+</div>
+</div>
+<div class="glass-panel rounded-[8px] p-4 flex items-center space-x-4">
+<div class="bg-error/20 p-2 rounded-[8px] text-error">
+<span class="material-symbols-outlined">trending_down</span>
+</div>
+<div>
+<div class="text-on-surface-variant text-xs uppercase tracking-wider mb-1">Churn Rate</div>
+<div class="text-2xl font-bold text-on-surface">1.2%</div>
+</div>
+</div>
+</div>
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-on-surface mb-2">Subscription Management</h1>
+<p class="text-on-surface-variant text-sm">Manage global tier configurations and monitor revenue flow.</p>
+</div>
+<button class="bg-primary-container hover:bg-inverse-primary text-[#ffffff] px-5 py-2.5 rounded-[8px] text-sm font-medium transition-colors shadow-[0_0_20px_rgba(45,91,255,0.2)] flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Create New Plan</span>
+</button>
+</div>
+<!-- Bento Grid: Tiers -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+<!-- Starter Tier -->
+<div class="glass-panel rounded-[8px] p-6 flex flex-col hover:bg-surface-container transition-colors duration-300 relative overflow-hidden group">
+<div class="mb-4">
+<h3 class="text-on-surface font-semibold text-lg">Starter</h3>
+</div>
+<div class="mb-6 flex items-baseline space-x-1">
+<span class="text-3xl font-bold text-on-surface tracking-tight">$49</span>
+<span class="text-on-surface-variant text-sm">/ wk</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Lead Limit</span>
+<span class="text-sm font-medium text-on-surface">500</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Active Workspaces</span>
+<span class="text-sm font-medium text-on-surface">1</span>
+</div>
+</div>
+<button class="mt-6 w-full py-2 bg-surface-container-high rounded-[8px] text-primary hover:bg-surface-bright transition-colors text-sm font-medium border border-primary/20">Edit Tier</button>
+</div>
+<!-- Growth Tier -->
+<div class="glass-panel rounded-[8px] p-6 flex flex-col hover:bg-surface-container transition-colors duration-300 relative overflow-hidden group">
+<div class="mb-4">
+<h3 class="text-on-surface font-semibold text-lg">Growth</h3>
+</div>
+<div class="mb-6 flex items-baseline space-x-1">
+<span class="text-3xl font-bold text-on-surface tracking-tight">$149</span>
+<span class="text-on-surface-variant text-sm">/ wk</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Lead Limit</span>
+<span class="text-sm font-medium text-on-surface">2,500</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Active Workspaces</span>
+<span class="text-sm font-medium text-on-surface">3</span>
+</div>
+</div>
+<button class="mt-6 w-full py-2 bg-surface-container-high rounded-[8px] text-primary hover:bg-surface-bright transition-colors text-sm font-medium border border-primary/20">Edit Tier</button>
+</div>
+<!-- Scale Tier (Highlighted) -->
+<div class="glass-panel rounded-[8px] p-6 flex flex-col relative overflow-hidden ring-2 ring-primary-container shadow-[0_0_40px_rgba(45,91,255,0.2)] transform scale-105 z-10 bg-surface-container-high">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container"></div>
+<div class="mb-4 flex justify-between items-center">
+<h3 class="text-on-surface font-semibold text-lg">Scale</h3>
+<span class="text-[10px] uppercase tracking-wider bg-primary-container text-[#ffffff] px-2 py-1 rounded-[8px] font-bold">Most Popular</span>
+</div>
+<div class="mb-6 flex items-baseline space-x-1">
+<span class="text-4xl font-black text-primary tracking-tight">$499</span>
+<span class="text-on-surface-variant text-sm">/ wk</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex justify-between items-center bg-surface-container-lowest/80 rounded-[8px] p-3 border border-primary/20">
+<span class="text-sm text-on-surface-variant">Lead Limit</span>
+<span class="text-sm font-bold text-on-surface">10,000</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest/80 rounded-[8px] p-3 border border-primary/20">
+<span class="text-sm text-on-surface-variant">Active Workspaces</span>
+<span class="text-sm font-bold text-on-surface">10</span>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-gradient-to-r from-primary-container to-inverse-primary text-[#ffffff] rounded-[8px] hover:shadow-[0_0_15px_rgba(45,91,255,0.4)] transition-all text-sm font-bold">Edit Tier</button>
+</div>
+<!-- Enterprise Tier -->
+<div class="glass-panel rounded-[8px] p-6 flex flex-col hover:bg-surface-container transition-colors duration-300 relative overflow-hidden group">
+<div class="mb-4">
+<h3 class="text-on-surface font-semibold text-lg">Enterprise</h3>
+</div>
+<div class="mb-6 flex items-baseline space-x-1">
+<span class="text-3xl font-bold text-on-surface tracking-tight">Custom</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Lead Limit</span>
+<span class="text-sm font-medium text-on-surface">Unlimited</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-lowest/50 rounded-[8px] p-3 border border-outline-variant/20">
+<span class="text-sm text-on-surface-variant">Active Workspaces</span>
+<span class="text-sm font-medium text-on-surface">Unlimited</span>
+</div>
+</div>
+<button class="mt-6 w-full py-2 bg-surface-container-high rounded-[8px] text-primary hover:bg-surface-bright transition-colors text-sm font-medium border border-primary/20">Edit Tier</button>
+</div>
+</div>
+<!-- Global Billing Health Chart Section -->
+<div class="glass-panel rounded-[8px] p-8 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-xl font-semibold text-on-surface mb-1">Global Billing Health</h2>
+<p class="text-sm text-on-surface-variant">Monthly Recurring Revenue (MRR) Growth Trajectory</p>
+</div>
+<div class="bg-tertiary-container/30 text-tertiary px-4 py-2 rounded-[8px] flex items-center space-x-2 border border-tertiary/20">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="text-sm font-semibold">AI Insight: Growth accelerating at 8.4% MoM</span>
+</div>
+</div>
+<!-- Mock Chart Area -->
+<div class="relative h-72 w-full bg-[#060e20]/50 rounded-[8px] flex items-end overflow-hidden pt-4 px-2 border border-outline-variant/10">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none py-6 px-6 opacity-20">
+<div class="border-t border-on-surface-variant w-full border-dashed"></div>
+<div class="border-t border-on-surface-variant w-full border-dashed"></div>
+<div class="border-t border-on-surface-variant w-full border-dashed"></div>
+<div class="border-t border-on-surface-variant w-full border-dashed"></div>
+<div class="border-t border-on-surface-variant w-full border-dashed"></div>
+</div>
+<!-- SVG Area Chart Mockup -->
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="mrrGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2d5bff" stop-opacity="0.5"></stop>
+<stop offset="50%" stop-color="#8342f4" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#2d5bff" stop-opacity="0.0"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="3"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<path d="M0,250 L0,220 C150,230 250,180 400,190 C550,200 650,110 800,120 C900,130 950,50 1000,40 L1000,250 Z" fill="url(#mrrGradient)"></path>
+<path d="M0,220 C150,230 250,180 400,190 C550,200 650,110 800,120 C900,130 950,50 1000,40" fill="none" filter="url(#glow)" stroke="#2d5bff" stroke-linecap="round" stroke-width="4"></path>
+<!-- Data Points -->
+<circle cx="400" cy="190" fill="#0b1326" r="6" stroke="#8342f4" stroke-width="3"></circle>
+<circle cx="800" cy="120" fill="#0b1326" filter="url(#glow)" r="8" stroke="#2d5bff" stroke-width="3"></circle>
+<circle cx="1000" cy="40" fill="#0b1326" r="6" stroke="#2d5bff" stroke-width="3"></circle>
+</svg>
+<!-- Tooltip Mockup -->
+<div class="absolute top-[100px] left-[780px] bg-surface-container-highest rounded-[8px] shadow-2xl px-4 py-3 text-sm border border-primary/30 transform -translate-x-1/2 -translate-y-full backdrop-blur-md">
+<div class="text-on-surface font-bold mb-1 text-lg">$248,500</div>
+<div class="text-on-surface-variant text-xs font-medium">Nov 2023 <span class="text-tertiary ml-1">+8.4%</span></div>
+<div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-surface-container-highest border-b border-r border-primary/30 rotate-45"></div>
+</div>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between items-center mt-4 px-4 text-xs font-medium text-on-surface-variant">
+<span>Jun</span>
+<span>Jul</span>
+<span>Aug</span>
+<span>Sep</span>
+<span>Oct</span>
+<span class="text-primary bg-primary/10 px-2 py-1 rounded-[8px]">Nov</span>
+<span>Dec</span>
+</div>
+</div>
+</main>
+</body></html>
