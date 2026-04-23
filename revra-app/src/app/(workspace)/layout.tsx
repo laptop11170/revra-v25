@@ -2,6 +2,7 @@
 
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
+import { FloatingAIBar } from "@/components/ai/FloatingAIBar";
 
 export default function WorkspaceLayout({
   children,
@@ -15,6 +16,7 @@ export default function WorkspaceLayout({
         <TopNav />
         <div className="flex-1 p-6 overflow-y-auto">{children}</div>
       </main>
+      <FloatingAIBar />
     </div>
   );
 }

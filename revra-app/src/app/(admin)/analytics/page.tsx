@@ -1,12 +1,22 @@
 "use client";
 
+import { useAdminAnalytics } from '@/hooks/useAdmin';
+
 export default function AdminAnalyticsPage() {
-  const topAgents = [
-    { name: 'Alex Mercer', workspace: 'San Diego', leads: 142, closed: 28, revenue: 14200 },
-    { name: 'Sarah Jenkins', workspace: 'San Diego', leads: 118, closed: 22, revenue: 11000 },
-    { name: 'Emily Chen', workspace: 'Texas', leads: 95, closed: 18, revenue: 9000 },
-    { name: 'Marcus Torres', workspace: 'San Diego', leads: 87, closed: 15, revenue: 7500 },
+  const { data: analyticsData } = useAdminAnalytics();
+  const analytics = (analyticsData as any)?.data;
+
+  const funnel = analytics?.funnel || {};
+  const stages = [
+    { key: 'captured', label: 'Captured', color: 'bg-primary-container' },
+    { key: 'qualified', label: 'Qualified', color: 'bg-blue-400' },
+    { key: 'contacted', label: 'Contacted', color: 'bg-secondary-container' },
+    { key: 'converted', label: 'Converted', color: 'bg-emerald-500' },
+    { key: 'lapsed', label: 'Lapsed', color: 'bg-error' },
   ];
+
+  const funnelData = stages.map(s => ({ label: s.label, count: funnel[s.key] || 0, color: s.color }));
+  const maxCount = Math.max(...funnelData.map(d => d.count), 1);
 
   return (
     <div className="max-w-5xl">
@@ -19,17 +29,14 @@ export default function AdminAnalyticsPage() {
       <div className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 mb-6">
         <h3 className="text-sm font-bold uppercase text-on-surface tracking-wide mb-6">Lead Funnel</h3>
         <div className="space-y-4">
-          {[
-            { stage: 'Captured', count: 4829, color: 'bg-primary-container' },
-            { stage: 'Qualified', count: 2140, color: 'bg-tertiary-container' },
-            { stage: 'Quoted', count: 890, color: 'bg-secondary-container' },
-            { stage: 'Converted', count: 342, color: 'bg-emerald-500' },
-            { stage: 'Lapsed', count: 89, color: 'bg-error' },
-          ].map((item, i) => (
-            <div key={item.stage} className="flex items-center gap-4">
-              <div className="w-24 text-sm text-on-surface-variant">{item.stage}</div>
+          {funnelData.map((item) => (
+            <div key={item.label} className="flex items-center gap-4">
+              <div className="w-36 text-sm text-on-surface-variant">{item.label}</div>
               <div className="flex-1 bg-surface-container-highest rounded-full h-6 overflow-hidden">
-                <div className={`h-full ${item.color} rounded-full flex items-center justify-end pr-3`} style={{ width: `${(item.count / 4829) * 100}%` }}>
+                <div
+                  className={`h-full ${item.color} rounded-full flex items-center justify-end pr-3`}
+                  style={{ width: `${(item.count / maxCount) * 100}%` }}
+                >
                   <span className="text-xs font-bold text-on-surface">{item.count}</span>
                 </div>
               </div>
@@ -55,15 +62,18 @@ export default function AdminAnalyticsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-outline-variant/5 text-sm text-on-surface">
-              {topAgents.map((agent, i) => (
+              {(analytics?.topAgents || []).map((agent: any, i: number) => (
                 <tr key={i} className="hover:bg-surface-bright transition-colors">
-                  <td className="py-3 px-4 font-medium">{agent.name}</td>
-                  <td className="py-3 px-4 text-on-surface-variant">{agent.workspace}</td>
-                  <td className="py-3 px-4">{agent.leads}</td>
-                  <td className="py-3 px-4">{agent.closed}</td>
-                  <td className="py-3 px-4 font-medium text-emerald-400">${agent.revenue.toLocaleString()}</td>
+                  <td className="py-3 px-4 font-medium">{agent.name || '—'}</td>
+                  <td className="py-3 px-4 text-on-surface-variant">{agent.workspace || '—'}</td>
+                  <td className="py-3 px-4">{agent.leads ?? 0}</td>
+                  <td className="py-3 px-4">{agent.closed ?? 0}</td>
+                  <td className="py-3 px-4 font-medium text-emerald-400">${(agent.revenue ?? 0).toLocaleString()}</td>
                 </tr>
               ))}
+              {!(analytics?.topAgents?.length) && (
+                <tr><td colSpan={5} className="py-8 text-center text-sm text-on-surface-variant">No agent data available.</td></tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -73,15 +83,13 @@ export default function AdminAnalyticsPage() {
       <div className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
         <h3 className="text-sm font-bold uppercase text-on-surface tracking-wide mb-4">Subscription Mix</h3>
         <div className="flex items-end gap-3 h-32">
-          {[
-            { label: 'Starter', value: 3, percent: 25 },
-            { label: 'Growth', value: 6, percent: 50, highlight: true },
-            { label: 'Scale', value: 2, percent: 17 },
-            { label: 'Enterprise', value: 1, percent: 8 },
-          ].map((plan) => (
+          {(analytics?.planMix || []).map((plan: any) => (
             <div key={plan.label} className="flex-1 flex flex-col items-center gap-2">
-              <div className={`w-full rounded-t-lg ${plan.highlight ? 'bg-primary-container' : 'bg-surface-container-high'}`} style={{ height: `${plan.percent}%` }}>
-                <span className="text-xs font-bold text-on-surface flex justify-center mt-2">{plan.value}</span>
+              <div
+                className={`w-full rounded-t-lg ${plan.percent >= 50 ? 'bg-primary-container' : 'bg-surface-container-high'}`}
+                style={{ height: `${Math.max(plan.percent, 10)}%` }}
+              >
+                <span className="text-xs font-bold text-on-surface flex justify-center mt-2">{plan.count}</span>
               </div>
               <span className="text-xs text-on-surface-variant">{plan.label}</span>
             </div>

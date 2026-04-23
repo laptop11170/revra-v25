@@ -1,44 +1,69 @@
 "use client";
 
 import Link from "next/link";
-import { useDataStore } from "@/lib/stores";
+import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores";
-import { useAIStore } from "@/lib/stores";
+import { useLeads } from "@/hooks/useLeads";
+import { useWorkspace } from "@/hooks/useWorkspace";
+import { usePipelineStages } from "@/hooks/useWorkspace";
 
 export default function DashboardPage() {
+  const router = useRouter();
   const session = useAuthStore((s) => s.session);
-  const leads = useDataStore((s) => s.leads);
-  const stages = useDataStore((s) => s.stages);
-  const aiCredits = useAIStore((s) => s.aiCredits);
-  const appointments = useDataStore((s) => s.appointments);
+  const { data: leads = [], isLoading: leadsLoading } = useLeads();
+  const { data: workspace } = useWorkspace();
+  const { data: stages = [] } = usePipelineStages();
 
-  const myLeads = leads.filter(
-    (l) =>
-      l.workspaceId === session?.workspaceId &&
-      !l.deletedAt &&
-      (session?.role === "admin" || l.assignedAgentId === session?.userId)
-  );
+  const aiCredits = workspace?.ai_credits ?? 0;
 
-  const hotLeads = myLeads.filter((l) => l.score >= 80).length;
-  const newLeads = myLeads.filter((l) => l.pipeline.stageId === "stage-1").length;
-  const totalLeads = myLeads.length;
+  // Filter: only "bound" stage for revenue chart
+  const boundStage = stages.find((s: any) => s.slug === "bound");
+  const overdueStageIds = stages
+    .filter((s: any) => s.position < 8)
+    .map((s: any) => s.id);
 
-  const today = new Date().setHours(0, 0, 0, 0);
-  const todayAppointments = appointments.filter(
-    (a) =>
-      a.scheduledAt >= today &&
-      a.scheduledAt < today + 86400000 &&
-      a.agentId === session?.userId
-  );
+  const hotLeads = leads.filter((l: any) => l.score >= 80).length;
+  const totalLeads = leads.length;
 
-  const overdueLeads = myLeads.filter((l) => {
-    const stage = stages.find((s) => s.id === l.pipeline.stageId);
-    if (!stage || stage.position >= 8) return false;
+  const overdueLeads = leads.filter((l: any) => {
+    if (!overdueStageIds.includes(l.pipeline?.stageId)) return false;
+    const entered = l.pipeline?.enteredStageAt;
+    if (!entered) return false;
     const daysInStage = Math.floor(
-      (Date.now() - l.pipeline.enteredStageAt) / (1000 * 60 * 60 * 24)
+      (Date.now() - new Date(entered).getTime()) / (1000 * 60 * 60 * 24)
     );
     return daysInStage > 7;
   });
+
+  // Revenue chart: count won leads per month for last 12 months
+  const revenueByMonth = Array.from({ length: 12 }, (_, i) => {
+    const d = new Date();
+    d.setDate(1);
+    d.setMonth(d.getMonth() - (11 - i));
+    const start = d.getTime();
+    const end = start + 32 * 24 * 60 * 60 * 1000;
+    return leads.filter((l: any) => {
+      if (l.outcome !== "won" || l.pipeline?.stageId !== boundStage?.id) return false;
+      const updated = l.updatedAt ? new Date(l.updatedAt).getTime() : 0;
+      return updated >= start && updated < end;
+    }).length;
+  });
+
+  const maxRevenue = Math.max(...revenueByMonth, 1);
+  const chartBars = revenueByMonth.map((n) =>
+    Math.max(2, Math.round((n / maxRevenue) * 100))
+  );
+  const currentMonthIdx = 11;
+
+  // AI credits progress (hard-coded plan baselines — workspace ai_credits is what matters)
+  const planCredits = { starter: 1000, growth: 5000, scale: 15000, enterprise: 0 };
+  const totalCredits = (workspace?.plan ? (planCredits[workspace.plan as keyof typeof planCredits] ?? 5000) : 5000) + aiCredits;
+  const progressPct = totalCredits > 0 ? 0 : 0; // no real usage tracking yet
+
+  // Weekly burn = 0 (no transaction data from Supabase yet)
+  const weeklyBurnDisplay = 0;
+  const depletionDays = weeklyBurnDisplay > 0 ? Math.round(aiCredits / (weeklyBurnDisplay / 7)) : 999;
+  const depletionDisplay = depletionDays >= 999 ? "—" : `${depletionDays} Days`;
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -53,7 +78,7 @@ export default function DashboardPage() {
 
       {/* Hero / Quick Actions Asymmetric Grid */}
       <div className="grid grid-cols-12 gap-6 mb-8">
-        {/* Wallet & Performance (Bento style) */}
+        {/* AI Compute Wallet */}
         <div className="col-span-12 lg:col-span-4 bg-surface-container rounded-xl p-6 flex flex-col relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-tertiary/10 rounded-full blur-3xl"></div>
           <div className="flex justify-between items-start mb-6 z-10">
@@ -65,19 +90,19 @@ export default function DashboardPage() {
             <span className="text-sm text-on-surface-variant mb-1">credits</span>
           </div>
           <div className="w-full h-2 bg-surface-container-lowest rounded-full mb-6 z-10 overflow-hidden">
-            <div className="h-full bg-tertiary-container rounded-full w-[65%]"></div>
+            <div className="h-full bg-tertiary-container rounded-full" style={{ width: "0%" }}></div>
           </div>
           <div className="grid grid-cols-2 gap-4 mt-auto z-10">
             <div className="bg-surface-container-low p-3 rounded-lg border border-outline-variant/15">
               <span className="text-xs text-on-surface-variant block mb-1">Weekly Burn</span>
               <span className="text-lg font-semibold text-error flex items-center gap-1">
-                <span className="material-symbols-outlined text-[16px]">trending_up</span> 340
+                <span className="material-symbols-outlined text-[16px]">trending_up</span> {weeklyBurnDisplay}
               </span>
             </div>
             <div className="bg-surface-container-low p-3 rounded-lg border border-outline-variant/15">
               <span className="text-xs text-on-surface-variant block mb-1">Est. Depletion</span>
               <span className="text-lg font-semibold text-secondary flex items-center gap-1">
-                14 Days
+                {depletionDisplay}
               </span>
             </div>
           </div>
@@ -85,18 +110,18 @@ export default function DashboardPage() {
 
         {/* Action Grid */}
         <div className="col-span-12 lg:col-span-8 grid grid-cols-2 gap-4">
-          <Link
-            href="/leads"
-            className="bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl p-5 flex flex-col justify-between items-start group border border-transparent hover:border-outline-variant/15"
+          <button
+            onClick={() => router.push("/leads?add=true")}
+            className="bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl p-5 flex flex-col justify-between items-start group border border-transparent hover:border-outline-variant/15 text-left"
           >
             <div className="p-3 bg-primary-container/10 rounded-lg text-primary mb-4 group-hover:scale-105 transition-transform">
               <span className="material-symbols-outlined">person_add</span>
             </div>
-            <div className="text-left">
+            <div>
               <span className="block text-sm font-semibold text-on-surface mb-1">New Lead</span>
               <span className="text-xs text-on-surface-variant">Manual entry or scan</span>
             </div>
-          </Link>
+          </button>
 
           <Link
             href="/ai-command-center"
@@ -150,27 +175,30 @@ export default function DashboardPage() {
                 Last 30 Days <span className="material-symbols-outlined text-[14px]">expand_more</span>
               </button>
             </div>
-            <div className="flex-1 flex items-end gap-2 relative">
-              <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-primary-container/10 to-transparent rounded-b-lg"></div>
-              {[20, 35, 25, 50, 40, 65, 55, 80, 70, 90, 100, 40].map((height, i) => (
-                <div
-                  key={i}
-                  className={`w-1/12 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-t-sm z-10 ${
-                    i === 10 ? "bg-primary-container shadow-[0_0_15px_rgba(45,91,255,0.3)] relative" : ""
-                  }`}
-                  style={{ height: `${height}%` }}
-                >
-                  {i === 9 && (
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-primary">$12k</div>
-                  )}
-                  {i === 10 && (
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-container-high px-2 py-1 rounded text-xs font-bold text-on-surface whitespace-nowrap">
-                      $18.5k
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            {leadsLoading ? (
+              <div className="flex-1 flex items-center justify-center text-on-surface-variant">
+                <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span> Loading…
+              </div>
+            ) : (
+              <div className="flex-1 flex items-end gap-2 relative">
+                <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-primary-container/10 to-transparent rounded-b-lg"></div>
+                {chartBars.map((height, i) => (
+                  <div
+                    key={i}
+                    className={`w-1/12 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-t-sm z-10 ${
+                      i === currentMonthIdx ? "bg-primary-container shadow-[0_0_15px_rgba(45,91,255,0.3)] relative" : ""
+                    }`}
+                    style={{ height: `${height}%` }}
+                  >
+                    {revenueByMonth[i] > 0 && (
+                      <div className={`absolute -top-5 left-1/2 -translate-x-1/2 text-xs font-bold ${i === currentMonthIdx ? "text-on-surface bg-surface-container-high px-1.5 py-0.5 rounded" : "text-on-surface-variant"}`}>
+                        {revenueByMonth[i]}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -204,23 +232,29 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex flex-col gap-4 z-10">
-            {overdueLeads.slice(0, 2).map((lead) => (
-              <div key={lead.id} className="bg-surface-container p-4 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer group">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-sm font-semibold text-on-surface">{lead.fullName}</span>
-                  <span className="text-[10px] uppercase font-bold text-error bg-error/10 px-2 py-0.5 rounded">Overdue</span>
+            {leadsLoading ? (
+              <div className="text-center text-on-surface-variant text-sm">Loading leads…</div>
+            ) : overdueLeads.length === 0 ? (
+              <div className="text-center text-on-surface-variant text-sm">No overdue leads</div>
+            ) : (
+              overdueLeads.slice(0, 2).map((lead: any) => (
+                <div key={lead.id} className="bg-surface-container p-4 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer group">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-sm font-semibold text-on-surface">{lead.fullName}</span>
+                    <span className="text-[10px] uppercase font-bold text-error bg-error/10 px-2 py-0.5 rounded">Overdue</span>
+                  </div>
+                  <p className="text-xs text-on-surface-variant mb-3">
+                    {lead.coverageType} &bull; Score: {lead.score}
+                  </p>
+                  <Link
+                    href={`/leads/${lead.id}`}
+                    className="text-xs text-tertiary font-medium group-hover:underline"
+                  >
+                    View Lead &rarr;
+                  </Link>
                 </div>
-                <p className="text-xs text-on-surface-variant mb-3">
-                  {lead.coverageType} • Score: {lead.score}
-                </p>
-                <Link
-                  href={`/leads/${lead.id}`}
-                  className="text-xs text-tertiary font-medium group-hover:underline"
-                >
-                  View Lead →
-                </Link>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </div>

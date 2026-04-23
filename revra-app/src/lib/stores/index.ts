@@ -27,8 +27,8 @@ interface AuthState {
   isLoading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<boolean>;
-  logout: () => void;
-  checkSession: () => void;
+  logout: () => Promise<void>;
+  checkSession: () => Promise<void>;
   getCurrentUser: () => User | null;
   getCurrentWorkspace: () => Workspace | null;
 }
@@ -36,59 +36,90 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
-      session: null,
-      isLoading: false,
-      error: null,
+    session: null,
+    isLoading: false,
+    error: null,
 
-      login: async (email: string, password: string) => {
-        set({ isLoading: true, error: null });
-        try {
-          const user = USERS.find(
-            (u) => u.email === email && u.password === password
-          );
-          if (!user) {
-            set({ error: 'Invalid email or password', isLoading: false });
-            return false;
-          }
-          const session: Session = {
-            userId: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-            workspaceId: user.workspaceId,
-            expiresAt: Date.now() + 24 * 60 * 60 * 1000,
-          };
-          set({ session, isLoading: false });
-          return true;
-        } catch {
-          set({ error: 'Login failed', isLoading: false });
+    login: async (email: string, password: string) => {
+      set({ isLoading: true, error: null });
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.user) {
+          set({ error: data.error || 'Login failed', isLoading: false });
           return false;
         }
-      },
 
-      logout: () => set({ session: null, error: null }),
+        const user = data.user;
+        const profile = data.profile;
+        const session: Session = {
+          userId: user.id,
+          email: user.email || email,
+          name: profile?.name || user.raw_user_meta_data?.name || email.split('@')[0],
+          role: profile?.role || 'agent',
+          workspaceId: profile?.workspace_id || null,
+          expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        };
+        set({ session, isLoading: false });
+        return true;
+      } catch {
+        set({ error: 'Network error — please try again', isLoading: false });
+        return false;
+      }
+    },
 
-      checkSession: () => {
-        const { session } = get();
-        if (session && session.expiresAt < Date.now()) {
+    logout: async () => {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      set({ session: null, error: null });
+    },
+
+    checkSession: async () => {
+      try {
+        const res = await fetch('/api/auth/session');
+        const data = await res.json();
+        if (data.user) {
+          const profile = data.profile;
+          set({
+            session: {
+              userId: data.user.id,
+              email: data.user.email,
+              name: profile?.name || data.user.raw_user_meta_data?.name || data.user.email?.split('@')[0] || 'User',
+              role: profile?.role || 'agent',
+              workspaceId: profile?.workspace_id || null,
+              expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+            },
+          });
+        } else {
           set({ session: null });
         }
-      },
+      } catch {
+        set({ session: null });
+      }
+    },
 
-      getCurrentUser: () => {
-        const { session } = get();
-        if (!session) return null;
-        return USERS.find((u) => u.id === session.userId) || null;
-      },
+    getCurrentUser: () => {
+      const { session } = get();
+      if (!session) return null;
+      return USERS.find((u) => u.id === session.userId) || null;
+    },
 
-      getCurrentWorkspace: () => {
-        const { session } = get();
-        if (!session || !session.workspaceId) return null;
-        return WORKSPACES.find((w) => w.id === session.workspaceId) || null;
-      },
-    }),
-    { name: 'revra-auth', storage: createJSONStorage(() => localStorage) }
-  )
+    getCurrentWorkspace: () => {
+      const { session } = get();
+      if (!session || !session.workspaceId) return null;
+      return WORKSPACES.find((w) => w.id === session.workspaceId) || null;
+    },
+  }),
+  {
+    name: 'revra-auth',
+    storage: createJSONStorage(() => localStorage),
+    partialize: (state) => ({ session: state.session }),
+  }
+)
 );
 
 // ============================================================
@@ -159,8 +190,12 @@ interface DataState {
   activities: Activity[];
   addActivity: (activity: Omit<Activity, 'id' | 'createdAt'>) => Activity;
 
-  // Subscriptions (read-only in prototype)
-  subscriptions: typeof SUBSCRIPTIONS;
+  // Workspaces
+  createWorkspace: (ws: Omit<Workspace, 'id' | 'createdAt' | 'aiCredits' | 'aiCreditTransactions' | 'integrations'>) => Workspace;
+
+  // Users (admin)
+  createUser: (user: Omit<User, 'id' | 'createdAt'>) => User;
+  updateUser: (id: string, updates: Partial<User>) => void;
 
   // Plans (read-only)
   plans: typeof PLANS;
@@ -451,7 +486,36 @@ export const useDataStore = create<DataState>()(
         return newAct;
       },
 
-      // Subscriptions & Plans (read-only, no state changes)
+      // Workspaces
+      createWorkspace: (ws) => {
+        const newWs: Workspace = {
+          ...ws,
+          id: genId(),
+          aiCredits: ws.plan === 'starter' ? 1000 : ws.plan === 'growth' ? 5000 : 15000,
+          aiCreditTransactions: [],
+          integrations: {},
+          createdAt: Date.now(),
+        };
+        WORKSPACES.push(newWs);
+        return newWs;
+      },
+
+      // Users
+      createUser: (user) => {
+        const newUser: User = {
+          ...user,
+          id: genId(),
+          createdAt: Date.now(),
+        };
+        USERS.push(newUser);
+        return newUser;
+      },
+      updateUser: (id, updates) => {
+        const idx = USERS.findIndex(u => u.id === id);
+        if (idx !== -1) USERS[idx] = { ...USERS[idx], ...updates };
+      },
+
+      // Subscriptions (read-only in prototype)
       subscriptions: SUBSCRIPTIONS,
       plans: PLANS,
 

@@ -239,14 +239,16 @@ export interface WorkflowNode {
   id: string;
   type: WorkflowNodeType;
   label: string;
-  config: WorkflowTrigger | WorkflowCondition | WorkflowAction | WorkflowDelay;
+  config: Record<string, unknown>;
   position: { x: number; y: number };
 }
 
 export interface WorkflowEdge {
   id: string;
-  source: string;
-  target: string;
+  sourceId: string;
+  targetId: string;
+  label?: string;
+  condition?: string;
 }
 
 export interface Workflow {

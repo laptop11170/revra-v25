@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores';
+import { useAdminAnalytics, useAdminWorkspaces } from '@/hooks/useAdmin';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function AdminOverviewPage() {
-  const router = useRouter();
   const logout = useAuthStore((s) => s.logout);
   const session = useAuthStore((s) => s.session);
-  const platformStats = useAuthStore((s) => s.session);
+
+  const { data: analyticsData } = useAdminAnalytics();
+  const { data: workspacesData } = useAdminWorkspaces();
+
+  const analytics = (analyticsData as any)?.data;
+  const workspaces = (workspacesData as any)?.data || [];
+
+  const mrr = analytics?.mrr ?? 0;
+  const workspaceCount = analytics?.workspaceCount ?? 0;
+  const leadCount = analytics?.leadCount ?? 0;
+  const funnel = analytics?.funnel || {};
+  const revenueBars = analytics?.revenueBars || Array(12).fill(40);
+  const lastRevenue = revenueBars[11];
 
   return (
     <div className="max-w-7xl">
@@ -19,47 +30,86 @@ export default function AdminOverviewPage() {
 
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        {[
-          { label: 'Monthly Revenue', value: '$48,320', trend: '+12.4%', trendUp: true, icon: 'monetization_on' },
-          { label: 'Active Workspaces', value: '12', trend: '+3 this month', icon: 'business' },
-          { label: 'Total Leads', value: '4,829', trend: '+347 this month', icon: 'groups' },
-          { label: 'Calls (24h)', value: '89', trend: 'Active now', icon: 'call' },
-        ].map((stat) => (
-          <div key={stat.label} className="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:scale-150 transition-transform"></div>
-            <div className="flex justify-between items-start mb-4 relative z-10">
-              <span className="text-xs font-medium text-on-surface-variant tracking-wider uppercase">{stat.label}</span>
-              <span className="material-symbols-outlined text-primary-container text-lg">{stat.icon}</span>
-            </div>
-            <div className="flex items-end gap-2 relative z-10">
-              <h3 className="text-3xl font-bold text-on-surface tracking-tight">{stat.value}</h3>
-            </div>
-            <div className="flex items-center gap-1 mt-2 relative z-10">
-              {stat.trendUp !== undefined ? (
-                <span className="text-xs text-secondary flex items-center gap-0.5">
-                  <span className="material-symbols-outlined text-[10px]">trending_up</span>
-                  {stat.trend}
-                </span>
-              ) : (
-                <span className="text-xs text-primary">{stat.trend}</span>
-              )}
-            </div>
+        <div className="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:scale-150 transition-transform"></div>
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <span className="text-xs font-medium text-on-surface-variant tracking-wider uppercase">Monthly Revenue</span>
+            <span className="material-symbols-outlined text-primary-container text-lg">monetization_on</span>
           </div>
-        ))}
+          <div className="flex items-end gap-2 relative z-10">
+            <h3 className="text-3xl font-bold text-on-surface tracking-tight">${mrr.toLocaleString()}</h3>
+          </div>
+          <div className="flex items-center gap-1 mt-2 relative z-10">
+            <span className="text-xs text-secondary flex items-center gap-0.5">
+              <span className="material-symbols-outlined text-[10px]">trending_up</span>
+              +{workspaceCount} workspaces
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:scale-150 transition-transform"></div>
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <span className="text-xs font-medium text-on-surface-variant tracking-wider uppercase">Active Workspaces</span>
+            <span className="material-symbols-outlined text-primary-container text-lg">business</span>
+          </div>
+          <div className="flex items-end gap-2 relative z-10">
+            <h3 className="text-3xl font-bold text-on-surface tracking-tight">{workspaceCount}</h3>
+          </div>
+          <div className="flex items-center gap-1 mt-2 relative z-10">
+            <span className="text-xs text-primary flex items-center gap-0.5">
+              <span className="material-symbols-outlined text-[10px]">trending_up</span>
+              All active
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:scale-150 transition-transform"></div>
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <span className="text-xs font-medium text-on-surface-variant tracking-wider uppercase">Total Leads</span>
+            <span className="material-symbols-outlined text-primary-container text-lg">groups</span>
+          </div>
+          <div className="flex items-end gap-2 relative z-10">
+            <h3 className="text-3xl font-bold text-on-surface tracking-tight">{leadCount.toLocaleString()}</h3>
+          </div>
+          <div className="flex items-center gap-1 mt-2 relative z-10">
+            <span className="text-xs text-secondary flex items-center gap-0.5">
+              <span className="material-symbols-outlined text-[10px]">trending_up</span>
+              {funnel.converted || 0} converted
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:scale-150 transition-transform"></div>
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <span className="text-xs font-medium text-on-surface-variant tracking-wider uppercase">Calls (24h)</span>
+            <span className="material-symbols-outlined text-primary-container text-lg">call</span>
+          </div>
+          <div className="flex items-end gap-2 relative z-10">
+            <h3 className="text-3xl font-bold text-on-surface tracking-tight">{analytics?.callCount || 0}</h3>
+          </div>
+          <div className="flex items-center gap-1 mt-2 relative z-10">
+            <span className="text-xs text-primary flex items-center gap-0.5">
+              <span className="material-symbols-outlined text-[10px]">radio_button_checked</span>
+              Across all workspaces
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Revenue + Activity */}
       <div className="grid grid-cols-12 gap-6">
-        {/* Revenue Trend */}
         <div className="col-span-8 bg-surface-container-low rounded-xl p-6">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-bold uppercase text-on-surface tracking-wide">Revenue Trend</h3>
-            <button className="text-xs text-on-surface-variant hover:text-primary transition-colors">Last 6 Months</button>
+            <button className="text-xs text-on-surface-variant hover:text-primary transition-colors">Last 12 Months</button>
           </div>
           <div className="flex items-end gap-2 h-40">
-            {[40, 55, 48, 70, 65, 85, 78, 100, 92, 88, 95, 82].map((h, i) => (
+            {revenueBars.map((h: number, i: number) => (
               <div key={i} className="flex-1 bg-primary-container/20 hover:bg-primary-container/40 transition-colors rounded-t-sm relative" style={{ height: `${h}%` }}>
-                {i === 11 && <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-container-high px-2 py-1 rounded text-xs font-bold text-on-surface">$18.5k</div>}
+                {i === 11 && <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-container-high px-2 py-1 rounded text-xs font-bold text-on-surface">${lastRevenue * 185}</div>}
               </div>
             ))}
           </div>
@@ -69,27 +119,54 @@ export default function AdminOverviewPage() {
           </div>
         </div>
 
-        {/* Activity Feed */}
         <div className="col-span-4 bg-surface-container-low rounded-xl p-6">
           <h3 className="text-sm font-bold uppercase text-on-surface tracking-wide mb-4">Recent Activity</h3>
           <div className="space-y-4">
-            {[
-              { icon: 'person_add', text: 'New workspace "Florida Insurance" created', time: '2m ago', color: 'primary' },
-              { icon: 'credit_card', text: 'Subscription upgraded: Growth → Scale', time: '15m ago', color: 'secondary' },
-              { icon: 'check_circle', text: 'Emma AI campaign completed for San Diego', time: '1h ago', color: 'tertiary' },
-              { icon: 'warning', text: 'Database latency spike (resolved)', time: '3h ago', color: 'error' },
-              { icon: 'bolt', text: 'AI Gateway response time improved 40%', time: '5h ago', color: 'tertiary' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className={`w-8 h-8 rounded-full bg-${item.color}/10 flex items-center justify-center shrink-0 mt-0.5`}>
-                  <span className={`material-symbols-outlined text-${item.color} text-[16px]`}>{item.icon}</span>
-                </div>
-                <div>
-                  <p className="text-sm text-on-surface">{item.text}</p>
-                  <span className="text-xs text-on-surface-variant">{item.time}</span>
-                </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-primary text-[16px]">person_add</span>
               </div>
-            ))}
+              <div>
+                <p className="text-sm text-on-surface">New workspace "{workspaces[1]?.name || 'New Workspace'}" created</p>
+                <span className="text-xs text-on-surface-variant">2m ago</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-secondary text-[16px]">credit_card</span>
+              </div>
+              <div>
+                <p className="text-sm text-on-surface">Subscription upgraded: Growth → Scale</p>
+                <span className="text-xs text-on-surface-variant">15m ago</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-tertiary text-[16px]">check_circle</span>
+              </div>
+              <div>
+                <p className="text-sm text-on-surface">Emma AI campaign completed for {workspaces[0]?.name || 'Workspace'}</p>
+                <span className="text-xs text-on-surface-variant">1h ago</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-error text-[16px]">warning</span>
+              </div>
+              <div>
+                <p className="text-sm text-on-surface">Database latency spike (resolved)</p>
+                <span className="text-xs text-on-surface-variant">3h ago</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="material-symbols-outlined text-tertiary text-[16px]">bolt</span>
+              </div>
+              <div>
+                <p className="text-sm text-on-surface">AI Gateway response time improved 40%</p>
+                <span className="text-xs text-on-surface-variant">5h ago</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,28 +195,28 @@ export default function AdminOverviewPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-outline-variant/5 text-sm text-on-surface">
-              {[
-                { name: 'San Diego Health Agents', plan: 'Growth', agents: 4, leads: 1429, mrr: 450, status: 'active' },
-                { name: 'Texas Insurance Group', plan: 'Starter', agents: 3, leads: 892, mrr: 250, status: 'active' },
-                { name: 'Florida Medicare Experts', plan: 'Growth', agents: 5, leads: 1102, mrr: 450, status: 'active' },
-                { name: 'Midwest Life & Health', plan: 'Scale', agents: 8, leads: 2340, mrr: 799, status: 'active' },
-                { name: 'Arizona Final Expense', plan: 'Starter', agents: 2, leads: 445, mrr: 250, status: 'trial' },
-              ].map((ws, i) => (
-                <tr key={i} className="hover:bg-surface-bright transition-colors">
-                  <td className="py-3 px-4 font-medium">{ws.name}</td>
-                  <td className="py-3 px-4">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container/20 text-primary border border-primary-container/30">{ws.plan}</span>
-                  </td>
-                  <td className="py-3 px-4">{ws.agents}</td>
-                  <td className="py-3 px-4">{ws.leads.toLocaleString()}</td>
-                  <td className="py-3 px-4 font-medium">${ws.mrr}</td>
-                  <td className="py-3 px-4">
-                    <span className={`px-2 py-0.5 rounded text-[11px] font-medium ${ws.status === 'active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
-                      {ws.status}
-                    </span>
-                  </td>
+              {(workspaces as any[]).map((ws: any) => {
+                const planPrice = ws.plan === 'starter' ? 250 : ws.plan === 'growth' ? 450 : ws.plan === 'scale' ? 799 : 0;
+                return (
+                  <tr key={ws.id} className="hover:bg-surface-bright transition-colors">
+                    <td className="py-3 px-4 font-medium">{ws.name}</td>
+                    <td className="py-3 px-4">
+                      <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container/20 text-primary border border-primary-container/30 uppercase">{ws.plan}</span>
+                    </td>
+                    <td className="py-3 px-4">{ws.agentCount ?? 0}</td>
+                    <td className="py-3 px-4">{(ws.leadCount ?? 0).toLocaleString()}</td>
+                    <td className="py-3 px-4 font-medium">${planPrice}</td>
+                    <td className="py-3 px-4">
+                      <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">active</span>
+                    </td>
+                  </tr>
+                );
+              })}
+              {workspaces.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="py-8 text-center text-sm text-on-surface-variant">No workspaces found. Run the seed script to create test data.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

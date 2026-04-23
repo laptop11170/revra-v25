@@ -1,9 +1,12 @@
 "use client";
 
 import { SubPageLayout } from "@/components/layout/SubPageLayout";
-import { useDataStore } from "@/lib/stores";
+import { useLeads, useUpdateLead } from "@/hooks/useLeads";
+import { usePipelineStages } from "@/hooks/useWorkspace";
 import { useAuthStore } from "@/lib/stores";
 import Link from "next/link";
+import { useState } from "react";
+import type { CoverageType } from "@/types";
 
 const stageColors: Record<string, string> = {
   "#2d5bff": "#2d5bff",
@@ -19,16 +22,29 @@ const stageColors: Record<string, string> = {
   "#6b7280": "#6b7280",
 };
 
+type CoverageFilter = "All" | CoverageType;
+type OwnerFilter = "All" | "Mine";
+
 export default function PipelinePage() {
   const session = useAuthStore((s) => s.session);
-  const leads = useDataStore((s) => s.leads);
-  const stages = useDataStore((s) => s.stages);
-  const moveLeadToStage = useDataStore((s) => s.moveLeadToStage);
+  const { data: allLeads = [] } = useLeads();
+  const { data: stages = [] } = usePipelineStages();
+  const updateLead = useUpdateLead();
 
-  const myLeads = leads.filter((l) => {
+  const [coverageFilter, setCoverageFilter] = useState<CoverageFilter>("All");
+  const [ownerFilter, setOwnerFilter] = useState<OwnerFilter>("Mine");
+  const [showCoverageMenu, setShowCoverageMenu] = useState(false);
+  const [showOwnerMenu, setShowOwnerMenu] = useState(false);
+
+  const myLeads = allLeads.filter((l: any) => {
     if (l.deletedAt) return false;
-    if (l.workspaceId !== session?.workspaceId) return false;
     if (session?.role === "agent" && l.assignedAgentId !== session?.userId) return false;
+    if (coverageFilter !== "All" && l.coverageType !== coverageFilter) return false;
+    return true;
+  }).filter((l: any) => {
+    if (ownerFilter === "Mine" && session?.role === "agent") {
+      return l.assignedAgentId === session?.userId;
+    }
     return true;
   });
 
@@ -45,7 +61,7 @@ export default function PipelinePage() {
     e.preventDefault();
     const leadId = e.dataTransfer.getData("leadId");
     if (leadId) {
-      moveLeadToStage(leadId, targetStageId);
+      updateLead.mutate({ id: leadId, pipeline: { stageId: targetStageId, enteredStageAt: Date.now() } });
     }
   };
 
@@ -59,13 +75,40 @@ export default function PipelinePage() {
         <div className="flex items-center gap-4 mb-6">
           <h2 className="text-xl font-bold tracking-tight text-on-surface">Pipeline</h2>
           <div className="h-5 w-px bg-outline-variant/30"></div>
-          <div className="flex items-center gap-2">
-            <button className="px-3 py-1.5 rounded-full bg-surface-container-highest text-xs font-medium text-on-surface hover:bg-surface-bright transition-colors flex items-center gap-1">
-              All Coverages <span className="material-symbols-outlined text-[14px]">arrow_drop_down</span>
-            </button>
-            <button className="px-3 py-1.5 rounded-full bg-surface-container-highest text-xs font-medium text-on-surface hover:bg-surface-bright transition-colors flex items-center gap-1">
-              My Leads <span className="material-symbols-outlined text-[14px]">arrow_drop_down</span>
-            </button>
+          <div className="flex items-center gap-2 relative">
+            {/* Coverage Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => { setShowCoverageMenu(!showCoverageMenu); setShowOwnerMenu(false); }}
+                className="px-3 py-1.5 rounded-full bg-surface-container-highest text-xs font-medium text-on-surface hover:bg-surface-bright transition-colors flex items-center gap-1"
+              >
+                {coverageFilter === "All" ? "All Coverages" : coverageFilter} <span className="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+              </button>
+              {showCoverageMenu && (
+                <div className="absolute top-full left-0 mt-1 bg-surface-container-highest border border-outline-variant/30 rounded-lg shadow-xl py-1 z-50 min-w-[140px]">
+                  <button onClick={() => { setCoverageFilter("All"); setShowCoverageMenu(false); }} className={`w-full text-left px-3 py-2 text-xs hover:bg-surface-container transition-colors ${coverageFilter === "All" ? "text-primary font-semibold" : "text-on-surface"}`}>All Coverages</button>
+                  {(["ACA", "Medicare", "Final Expense", "Life", "Group Health"] as CoverageType[]).map((c) => (
+                    <button key={c} onClick={() => { setCoverageFilter(c); setShowCoverageMenu(false); }} className={`w-full text-left px-3 py-2 text-xs hover:bg-surface-container transition-colors ${coverageFilter === c ? "text-primary font-semibold" : "text-on-surface"}`}>{c}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Owner Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => { setShowOwnerMenu(!showOwnerMenu); setShowCoverageMenu(false); }}
+                className="px-3 py-1.5 rounded-full bg-surface-container-highest text-xs font-medium text-on-surface hover:bg-surface-bright transition-colors flex items-center gap-1"
+              >
+                {ownerFilter === "All" ? "All Leads" : "My Leads"} <span className="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+              </button>
+              {showOwnerMenu && (
+                <div className="absolute top-full left-0 mt-1 bg-surface-container-highest border border-outline-variant/30 rounded-lg shadow-xl py-1 z-50 min-w-[120px]">
+                  <button onClick={() => { setOwnerFilter("All"); setShowOwnerMenu(false); }} className={`w-full text-left px-3 py-2 text-xs hover:bg-surface-container transition-colors ${ownerFilter === "All" ? "text-primary font-semibold" : "text-on-surface"}`}>All Leads</button>
+                  <button onClick={() => { setOwnerFilter("Mine"); setShowOwnerMenu(false); }} className={`w-full text-left px-3 py-2 text-xs hover:bg-surface-container transition-colors ${ownerFilter === "Mine" ? "text-primary font-semibold" : "text-on-surface"}`}>My Leads</button>
+                </div>
+              )}
+            </div>
           </div>
           <span className="ml-auto text-sm text-on-surface-variant">
             {myLeads.length} lead{myLeads.length !== 1 ? "s" : ""}
@@ -74,8 +117,8 @@ export default function PipelinePage() {
 
         <div className="flex-1 overflow-x-auto pb-4">
           <div className="flex gap-4 h-full min-w-max">
-            {stages.map((stage) => {
-              const stageLeads = myLeads.filter((l) => l.pipeline.stageId === stage.id);
+            {stages.map((stage: any) => {
+              const stageLeads = myLeads.filter((l: any) => l.pipeline?.stageId === stage.id);
               const daysInStage = (enteredAt: number) =>
                 Math.floor((Date.now() - enteredAt) / (1000 * 60 * 60 * 24));
 
@@ -102,8 +145,8 @@ export default function PipelinePage() {
                   </div>
 
                   <div className="flex-1 overflow-y-auto p-3 space-y-3">
-                    {stageLeads.map((lead) => {
-                      const days = daysInStage(lead.pipeline.enteredStageAt);
+                    {stageLeads.map((lead: any) => {
+                      const days = daysInStage((lead.pipeline as any).enteredStageAt || lead.pipeline.enteredStageAt);
                       const isStalled = days > 7;
 
                       return (

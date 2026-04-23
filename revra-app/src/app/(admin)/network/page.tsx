@@ -1,14 +1,11 @@
 "use client";
 
+import { useState } from 'react';
+import { useAdminHealth } from '@/hooks/useAdmin';
+
 export default function AdminNetworkPage() {
-  const services = [
-    { name: 'API Server', status: 'up', responseTime: 87, uptime: 99.9 },
-    { name: 'Database', status: 'up', responseTime: 23, uptime: 99.99 },
-    { name: 'AI Gateway', status: 'up', responseTime: 340, uptime: 99.7 },
-    { name: 'Twilio', status: 'up', responseTime: 156, uptime: 99.5 },
-    { name: 'Emma AI', status: 'degraded', responseTime: 890, uptime: 98.2 },
-    { name: 'Stripe', status: 'up', responseTime: 45, uptime: 100 },
-  ];
+  const { data: healthData } = useAdminHealth();
+  const health = (healthData as any)?.data;
 
   return (
     <div className="max-w-5xl">
@@ -20,22 +17,22 @@ export default function AdminNetworkPage() {
       {/* Status Overview */}
       <div className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 mb-6 flex items-center gap-6">
         <div className="flex items-center gap-3">
-          <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
-          <span className="text-lg font-bold text-on-surface">Healthy</span>
+          <span className={`w-3 h-3 rounded-full ${health?.status === 'healthy' ? 'bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]' : health?.status === 'degraded' ? 'bg-amber-400 animate-pulse' : 'bg-error'}`}></span>
+          <span className="text-lg font-bold text-on-surface capitalize">{health?.status || 'loading'}</span>
         </div>
         <div className="h-8 w-px bg-outline-variant/30"></div>
         <div className="grid grid-cols-3 gap-8">
           <div>
             <span className="text-xs text-on-surface-variant">Uptime (30d)</span>
-            <div className="text-xl font-bold text-on-surface">99.7%</div>
+            <div className="text-xl font-bold text-on-surface">{health?.uptime ?? '—'}</div>
           </div>
           <div>
             <span className="text-xs text-on-surface-variant">Avg Response</span>
-            <div className="text-xl font-bold text-on-surface">124ms</div>
+            <div className="text-xl font-bold text-on-surface">{health?.latency ?? '—'}ms</div>
           </div>
           <div>
-            <span className="text-xs text-on-surface-variant">Active Incidents</span>
-            <div className="text-xl font-bold text-on-surface">0</div>
+            <span className="text-xs text-on-surface-variant">Active Calls</span>
+            <div className="text-xl font-bold text-on-surface">{health?.callCount ?? 0}</div>
           </div>
         </div>
       </div>
@@ -46,21 +43,23 @@ export default function AdminNetworkPage() {
           <h3 className="text-sm font-bold uppercase text-on-surface tracking-wide">Service Status</h3>
         </div>
         <div className="divide-y divide-outline-variant/5">
-          {services.map((svc) => (
+          {(health?.services || []).map((svc: any) => (
             <div key={svc.name} className="flex items-center justify-between px-6 py-4">
               <div className="flex items-center gap-3">
                 <span className={`w-2 h-2 rounded-full ${svc.status === 'up' ? 'bg-emerald-400' : svc.status === 'degraded' ? 'bg-amber-400 animate-pulse' : 'bg-error'}`}></span>
                 <span className="font-medium text-on-surface">{svc.name}</span>
               </div>
               <div className="flex items-center gap-6 text-sm">
-                <div className="text-on-surface-variant">{svc.responseTime}ms</div>
-                <div className="text-on-surface-variant">{svc.uptime}% uptime</div>
+                <div className="text-on-surface-variant">{svc.latency ?? svc.responseTime}ms</div>
                 <span className={`px-2 py-0.5 rounded text-[11px] font-medium ${svc.status === 'up' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
                   {svc.status}
                 </span>
               </div>
             </div>
           ))}
+          {!health?.services?.length && (
+            <div className="px-6 py-4 text-sm text-on-surface-variant">Loading service status...</div>
+          )}
         </div>
       </div>
 

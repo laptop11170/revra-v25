@@ -1,31 +1,96 @@
 "use client";
 
 import { SubPageLayout } from "@/components/layout/SubPageLayout";
-import { useDataStore, useAuthStore } from "@/lib/stores";
-import { useState, useMemo } from "react";
+import { useAuthStore } from "@/lib/stores";
+import { useState, useMemo, useEffect } from "react";
+import { useAgents } from "@/hooks/useAgents";
+import {
+  useDiscussions,
+  useDiscussionMessages,
+  useCreateDiscussion,
+  useSendDiscussionMessage,
+} from "@/hooks/useDiscussions";
 
 export default function DiscussionsPage() {
   const session = useAuthStore((s) => s.session);
-  const channels = useDataStore((s) => s.channels);
-  const channelMessages = useDataStore((s) => s.channelMessages);
+  const { data: agents = [] } = useAgents();
+
+  const { data: channelList = [] } = useDiscussions();
   const [selectedChannelId, setSelectedChannelId] = useState<string | null>(null);
   const [messageText, setMessageText] = useState("");
+  const [showCreateChannel, setShowCreateChannel] = useState(false);
+  const [showCreateDM, setShowCreateDM] = useState(false);
+  const [newChannelName, setNewChannelName] = useState("");
+  const [selectedDMUserId, setSelectedDMUserId] = useState("");
+  const [showThreadMsgId, setShowThreadMsgId] = useState<string | null>(null);
 
-  const workspaceChannels = channels.filter(
-    (c) => c.workspaceId === session?.workspaceId && c.type === "channel"
+  const { data: messages = [], refetch: refetchMessages } = useDiscussionMessages(selectedChannelId || "");
+  const createChannel = useCreateDiscussion();
+  const sendMessage = useSendDiscussionMessage();
+
+  // Auto-select first channel
+  useEffect(() => {
+    if (channelList.length > 0 && !selectedChannelId) {
+      const firstChannel = channelList.find((c: any) => c.type === 'channel');
+      if (firstChannel) setSelectedChannelId(firstChannel.id);
+    }
+  }, [channelList, selectedChannelId]);
+
+  const handleSend = async () => {
+    if (!messageText.trim() || !selectedChannelId || !session) return;
+    try {
+      await sendMessage.mutateAsync({ channelId: selectedChannelId, content: messageText.trim() });
+      setMessageText("");
+      refetchMessages();
+    } catch {
+      // fail silently
+    }
+  };
+
+  const handleSelectChannel = (channelId: string) => {
+    setSelectedChannelId(channelId);
+  };
+
+  const handleCreateChannel = async () => {
+    if (!newChannelName.trim() || !session) return;
+    try {
+      await createChannel.mutateAsync({ type: 'channel', name: newChannelName.trim() });
+      setNewChannelName("");
+      setShowCreateChannel(false);
+    } catch {
+      // fail silently
+    }
+  };
+
+  const handleCreateDM = async () => {
+    if (!selectedDMUserId || !session) return;
+    const otherAgent = (agents as any[]).find((a) => a.id === selectedDMUserId);
+    try {
+      await createChannel.mutateAsync({
+        type: 'dm',
+        name: otherAgent?.name || selectedDMUserId,
+        participantId: selectedDMUserId,
+      });
+      setSelectedDMUserId("");
+      setShowCreateDM(false);
+    } catch {
+      // fail silently
+    }
+  };
+
+  const workspaceChannels = (channelList as any[]).filter(
+    (c: any) => c.type === "channel"
   );
-  const workspaceDMs = channels.filter(
-    (c) => c.workspaceId === session?.workspaceId && c.type === "dm"
+  const workspaceDMs = (channelList as any[]).filter(
+    (c: any) => c.type === "dm"
   );
 
-  const selectedChannel = workspaceChannels.find((c) => c.id === selectedChannelId) || workspaceChannels[0];
+  const selectedChannel = (workspaceChannels as any[]).find((c: any) => c.id === selectedChannelId) || (workspaceChannels as any[])[0];
 
   const msgs = useMemo(() => {
-    if (!selectedChannel) return [];
-    return channelMessages
-      .filter((m) => m.channelId === selectedChannel.id)
-      .sort((a, b) => a.createdAt - b.createdAt);
-  }, [selectedChannel, channelMessages]);
+    if (!selectedChannelId) return [];
+    return (messages as any[]).sort((a, b) => a.createdAt - b.createdAt);
+  }, [selectedChannelId, messages]);
 
   const getInitials = (name: string) =>
     name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
@@ -56,13 +121,13 @@ export default function DiscussionsPage() {
           <div className="py-4">
             <div className="px-4 flex items-center justify-between mb-2 group cursor-pointer">
               <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-widest">Channels</span>
-              <span className="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">add</span>
+              <button onClick={() => setShowCreateChannel(true)} className="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">add</button>
             </div>
             <ul className="space-y-0.5">
               {workspaceChannels.map((channel) => (
                 <li key={channel.id}>
                   <button
-                    onClick={() => setSelectedChannelId(channel.id)}
+                    onClick={() => handleSelectChannel(channel.id)}
                     className={`w-full flex items-center px-4 py-1.5 text-sm hover:bg-surface-container hover:text-on-surface transition-colors ${
                       selectedChannel?.id === channel.id ? "text-primary font-medium bg-surface-container-highest/50 border-l-2 border-primary" : "text-on-surface-variant"
                     }`}
@@ -84,18 +149,19 @@ export default function DiscussionsPage() {
           <div className="py-2">
             <div className="px-4 flex items-center justify-between mb-2 group cursor-pointer">
               <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-widest">Direct Messages</span>
-              <span className="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">add</span>
+              <button onClick={() => setShowCreateDM(true)} className="material-symbols-outlined text-[16px] text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">add</button>
             </div>
             <ul className="space-y-0.5">
               {workspaceDMs.map((dm) => {
-                const otherUserId = dm.participants?.find((p) => p !== session?.userId);
+                const otherUserId = dm.participants?.find((p: string) => p !== session?.userId);
+                const otherAgent = agents.find((a: any) => a.id === otherUserId);
                 return (
                   <li key={dm.id}>
                     <button className="w-full flex items-center px-4 py-1.5 text-sm hover:bg-surface-container hover:text-on-surface transition-colors">
                       <div className="flex items-center">
                         <div className="relative mr-2">
                           <div className="w-5 h-5 rounded-md bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">
-                            {otherUserId ? getInitials(otherUserId) : "?"}
+                            {otherAgent ? getInitials(otherAgent.name) : "?"}
                           </div>
                           <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-surface-container-low"></div>
                         </div>
@@ -159,20 +225,20 @@ export default function DiscussionsPage() {
                   <span className="bg-surface px-3 text-xs font-medium text-on-surface-variant relative z-10">{formatDate(Date.now())}</span>
                 </div>
 
-                {msgs.map((msg) => (
+                {msgs.map((msg: any) => (
                   <div key={msg.id} className="flex gap-4 group relative">
                     <div className="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-sm font-bold text-on-surface mt-1 shrink-0">
-                      {getInitials(msg.authorId)}
+                      {getInitials(msg.authorName)}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-baseline gap-2 mb-1">
-                        <span className="font-semibold text-sm text-on-surface">{msg.authorId}</span>
+                        <span className="font-semibold text-sm text-on-surface">{msg.authorName}</span>
                         <span className="text-xs text-on-surface-variant">{formatTime(msg.createdAt)}</span>
                       </div>
                       <p className="text-sm text-on-surface-variant leading-relaxed whitespace-pre-wrap">{msg.content}</p>
-                      {msg.reactions && Object.keys(msg.reactions).length > 0 && (
+                      {msg.reactions && Object.keys(msg.reactions || {}).length > 0 && (
                         <div className="flex gap-2 mt-2">
-                          {Object.entries(msg.reactions).map(([emoji, userIds]) => (
+                          {Object.entries(msg.reactions as Record<string, string[]>).map(([emoji, userIds]) => (
                             <button key={emoji} className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container border border-outline-variant/30 text-xs text-on-surface hover:bg-surface-container-high transition-colors">
                               <span>{emoji}</span>
                               <span className="text-on-surface-variant">{userIds.length}</span>
@@ -202,6 +268,12 @@ export default function DiscussionsPage() {
                     placeholder={`Message #${selectedChannel.name}...`}
                     value={messageText}
                     onChange={(e) => setMessageText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSend();
+                      }
+                    }}
                     rows={1}
                   ></textarea>
                   <div className="flex items-center justify-between px-2 pb-2 pt-1">
@@ -220,7 +292,7 @@ export default function DiscussionsPage() {
                       <button className="w-8 h-8 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-highest transition-colors flex items-center justify-center">
                         <span className="material-symbols-outlined text-[18px]">mic</span>
                       </button>
-                      <button className="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                      <button onClick={handleSend} className="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-colors">
                         <span className="material-symbols-outlined text-[18px] icon-fill">send</span>
                       </button>
                     </div>
@@ -251,10 +323,48 @@ export default function DiscussionsPage() {
           </div>
           <div className="p-6 flex flex-col items-center justify-center h-full text-center opacity-60">
             <span className="material-symbols-outlined text-4xl mb-3 text-outline">forum</span>
-            <p className="text-sm text-on-surface-variant font-medium">Select a message to view its thread</p>
+            <p className="text-sm text-on-surface-variant font-medium">Click a message to view its thread</p>
           </div>
         </aside>
       </div>
+
+      {showCreateChannel && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[100]" onClick={() => setShowCreateChannel(false)}>
+          <div className="bg-surface-container-highest rounded-2xl p-6 w-full max-w-sm shadow-2xl border border-outline-variant/20" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold text-on-surface">Create Channel</h3>
+              <button onClick={() => setShowCreateChannel(false)} className="p-1 rounded hover:bg-surface-container text-on-surface-variant"><span className="material-symbols-outlined">close</span></button>
+            </div>
+            <input type="text" value={newChannelName} onChange={(e) => setNewChannelName(e.target.value)} placeholder="channel-name" className="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-3 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary mb-6" onKeyDown={(e) => e.key === "Enter" && handleCreateChannel()} />
+            <div className="flex gap-3">
+              <button onClick={() => setShowCreateChannel(false)} className="flex-1 py-2.5 rounded-lg border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container">Cancel</button>
+              <button onClick={handleCreateChannel} className="flex-1 py-2.5 rounded-lg bg-primary-container text-on-primary-container text-sm font-bold">Create</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showCreateDM && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[100]" onClick={() => setShowCreateDM(false)}>
+          <div className="bg-surface-container-highest rounded-2xl p-6 w-full max-w-sm shadow-2xl border border-outline-variant/20" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold text-on-surface">New Direct Message</h3>
+              <button onClick={() => setShowCreateDM(false)} className="p-1 rounded hover:bg-surface-container text-on-surface-variant"><span className="material-symbols-outlined">close</span></button>
+            </div>
+            <label className="block text-xs font-medium text-on-surface-variant mb-1.5">Select teammate</label>
+            <select value={selectedDMUserId} onChange={(e) => setSelectedDMUserId(e.target.value)} className="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-3 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary mb-6">
+              <option value="">Choose...</option>
+              {agents.filter((a: any) => a.id !== session?.userId).map((a: any) => (
+                <option key={a.id} value={a.id}>{a.name}</option>
+              ))}
+            </select>
+            <div className="flex gap-3">
+              <button onClick={() => setShowCreateDM(false)} className="flex-1 py-2.5 rounded-lg border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container">Cancel</button>
+              <button onClick={handleCreateDM} disabled={!selectedDMUserId} className="flex-1 py-2.5 rounded-lg bg-primary-container text-on-primary-container text-sm font-bold disabled:opacity-40">Start DM</button>
+            </div>
+          </div>
+        </div>
+      )}
     </SubPageLayout>
   );
 }

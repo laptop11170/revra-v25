@@ -10,9 +10,9 @@ import type {
 // ============ Configuration ============
 
 export const AI_CONFIG = {
-  apiBase: process.env.AI_API_BASE || 'https://api.anthropic.com/v1',
+  apiBase: 'https://api.opusmax.pro/v1',
   apiKey: process.env.AI_API_KEY || '',
-  model: process.env.AI_MODEL || 'claude-haiku-4-20250514',
+  model: process.env.AI_MODEL || 'claude-sonnet-4-6',
   useMock: !process.env.AI_API_KEY,
 };
 
@@ -257,6 +257,7 @@ async function llmComplete(prompt: string, systemPrompt: string): Promise<string
       'Content-Type': 'application/json',
       'x-api-key': AI_CONFIG.apiKey,
       'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
     },
     body: JSON.stringify({
       model: AI_CONFIG.model,
@@ -281,11 +282,41 @@ export const realAI = {
     const conversation = messages.map((m) => `${m.role}: ${m.content}`).join('\n');
     const fullPrompt = `${conversation}\n\nProvide a helpful, actionable response.`;
 
-    const response = await llmComplete(fullPrompt, systemPrompt);
+    // Stream via SSE proxy route
+    const response = await fetch('/api/ai/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        systemPrompt,
+        messages: [{ role: 'user', content: fullPrompt }],
+        model: AI_CONFIG.model,
+      }),
+    });
 
-    const words = response.split(' ');
-    for (const word of words) {
-      yield word + ' ';
+    if (!response.ok || !response.body) {
+      throw new Error(`AI stream error: ${response.status}`);
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6).trim();
+          if (data && data !== '[DONE]') {
+            yield data;
+          }
+        }
+      }
     }
   },
 
